@@ -1,0 +1,198 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const pageData = {
+  title: 'Acupuncture in Dahlonega GA | Alternative Medicine Near Me',
+  description: 'Expert acupuncture services in Dahlonega, Georgia. Deanna Stennett provides Traditional Chinese Medicine and Five-Element Acupuncture just 30 minutes from Dahlonega.',
+  keywords: [
+    'acupuncture Dahlonega GA',
+    'acupuncture near me Dahlonega',
+    'holistic medicine Dahlonega',
+    'alternative medicine Dahlonega Georgia'
+  ],
+  canonicalUrl: 'https://acupunctureinnorthgeorgia.com/dahlonega-ga'
+};
+
+const serviceArea = {
+  name: 'Dahlonega',
+  distance: '30 minutes from Ellijay office',
+  landmarks: ['Dahlonega Gold Museum', 'University of North Georgia', 'Square in Dahlonega'],
+  nearbyTowns: ['Franklin NC', 'Hiawassee GA', 'Blue Ridge GA']
+};
+
+const localContent = `Patients in Dahlonega and surrounding North Georgia trust Deanna Stennett for expert acupuncture care. Whether you search "acupuncture near me" or "holistic medicine Dahlonega," we're here to help.`;
+---
+
+<Layout 
+  title={pageData.title} 
+  description={pageData.description} 
+  keywords={pageData.keywords}
+  canonicalUrl={pageData.canonicalUrl}
+>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Acupuncture in Dahlonega, Georgia</h1>
+      <p style="font-size: 1.25rem; opacity: 0.95;">Expert Holistic Medicine Just 30 Minutes Away</p>
+      
+      <div style="margin-top: var(--spacing-lg);">
+        <a href="#contact" class="btn btn-primary" style="background-color: white; color: var(--color-primary); margin-right: var(--spacing-sm);">Book Appointment</a>
+        <a href="tel:+17065551234" class="btn btn-secondary" style="border-color: white; color: white;">(706) 555-1234</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Local SEO Content -->
+  <section class="section section-light">
+    <div class="container">
+      <h2 style="margin-bottom: var(--spacing-lg);">Acupuncture Near Me in Dahlonega</h2>
+      
+      <p style="font-size: 1.125rem; line-height: 1.8;">Living in the historic gold rush town of Dahlonega, you deserve access to expert holistic healthcare. Deanna Stennett provides comprehensive acupuncture services just 30 minutes from downtown Dahlonega, serving patients throughout the Dahlonega area and surrounding communities.</p>
+      
+      <p style="font-size: 1.125rem; line-height: 1.8;">Whether you're searching for "acupuncture near me" or "alternative medicine Dahlonega," our practice offers Traditional Chinese Medicine, Five-Element Acupuncture, NAET allergy treatment, and Facial Rejuvenation acupuncture—all designed to restore your body's natural healing balance.</p>
+
+      <!-- Local Landmarks -->
+      <div style="margin-top: var(--spacing-xl);">
+        <h3>Serving Dahlonega & Surrounding Areas</h3>
+        
+        <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); margin-top: var(--spacing-md);">
+          <article class="card" style="text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: var(--spacing-sm);">🏔️</div>
+            <h4>{serviceArea.name}</h4>
+            <p>Main service area - 30 minutes away</p>
+          </article>
+
+          {serviceArea.nearbyTowns.map(town => (
+            <article class="card" style="text-align: center;">
+              <div style="font-size: 3rem; margin-bottom: var(--spacing-sm);">📍</div>
+              <h4>{town}</h4>
+              <p>Serving patients from this community</p>
+            </article>
+          ))}
+
+          <article class="card" style="text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: var(--spacing-sm);">🌲</div>
+            <h4>North Georgia Mountains</h4>
+            <p>Serving throughout the region</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- Conditions Treated Locally -->
+      <div style="margin-top: var(--spacing-xl);">
+        <h3>Common Concerns We Treat in Dahlonega</h3>
+        
+        <ul style="list-style-type: none; display: flex; flex-wrap: wrap; gap: var(--spacing-sm); padding-left: 0;">
+          {['Back pain from hiking', 'Migraines and headaches', 'Stress and anxiety', 'Allergies (seasonal & environmental)', 'Sports injuries', 'Chronic fatigue', 'Sleep disorders'].map(condition => (
+            <li style="background-color: var(--color-surface); padding: var(--spacing-sm) var(--spacing-lg); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">✓ {condition}</li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Why Choose Us -->
+      <div style="margin-top: var(--spacing-xl); background-color: var(--color-background); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+        <h3>Why Dahlonega Patients Choose Deanna</h3>
+        
+        <ul style="list-style-type: none; margin-top: var(--spacing-sm);">
+          <li style="padding: var(--spacing-xs) 0;">✓ 30+ years of clinical experience serving North Georgia</li>
+          <li style="padding: var(--spacing-xs) 0;">✓ NCCAOM certified and Georgia licensed acupuncturist</li>
+          <li style="padding: var(--spacing-xs) 0;">✓ Dual expertise in Five-Element & Traditional Chinese Medicine</li>
+          <li style="padding: var(--spacing-xs) 0;">✓ Convenient location just 30 minutes from Dahlonega</li>
+          <li style="padding: var(--spacing-xs) 0;">✓ Personalized treatment plans for each patient's unique needs</li>
+        </ul>
+      </div>
+
+      <!-- Call-to-action -->
+      <div style="margin-top: var(--spacing-xl); text-align: center;">
+        <h3>Ready to Start Your Healing Journey?</h3>
+        <p style="font-size: 1.25rem; margin-bottom: var(--spacing-md);">Dahlonega patients trust Deanna for expert acupuncture care.</p>
+        
+        <a href="#contact" class="btn btn-primary">Request an Appointment</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section section-gray">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Contact Us</h2>
+      
+      <div style="display: grid; gap: var(--spacing-xl); grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <!-- Contact Info -->
+        <div>
+          <h3>Office Locations</h3>
+          
+          <div style="margin-top: var(--spacing-md);">
+            <h4>Ellijay Office (Primary)</h4>
+            <address style="font-style: normal;">
+              11 Kiker Street<br/>
+              Ellijay, GA 30540
+            </address>
+            <p><strong>Distance from Dahlonega:</strong> {serviceArea.distance}</p>
+          </div>
+
+          <div style="margin-top: var(--spacing-md);">
+            <h4>Blairsville Office</h4>
+            <address style="font-style: normal;">
+              563 Gainesville Hwy<br/>
+              Blairsville, GA 30512
+            </address>
+          </div>
+
+          <div style="margin-top: var(--spacing-md);">
+            <h4>Phone</h4>
+            <a href="tel:+17065551234" style="font-size: 1.25rem; font-weight: 600;">(706) 555-1234</a>
+          </div>
+
+          <div style="margin-top: var(--spacing-md);">
+            <h4>Hours</h4>
+            <p>Monday - Friday: 9:00 AM - 5:00 PM<br/>Saturday & Sunday: By Appointment</p>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <form class="contact-form" action="/api/contact" method="POST">
+          <h3 style="text-align: center; margin-bottom: var(--spacing-md);">Request an Appointment</h3>
+          
+          <div class="form-group">
+            <label for="name" class="form-label">Full Name *</label>
+            <input type="text" id="name" name="name" class="form-input" required placeholder="Your full name"/>
+          </div>
+
+          <div class="form-group">
+            <label for="phone" class="form-label">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" class="form-input" required placeholder="(706) 555-1234"/>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Email Address *</label>
+            <input type="email" id="email" name="email" class="form-input" required placeholder="your@email.com"/>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Request Appointment</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO Content Block -->
+  <article style="display: none;">
+    <h2>Acupuncture in Dahlonega GA - Alternative Medicine Near Me</h2>
+    <p>Deanna Stennett provides expert acupuncture services to patients throughout Dahlonega, Georgia and the surrounding North Georgia mountains. Just 30 minutes from downtown Dahlonega, our practice offers Traditional Chinese Medicine, Five-Element Acupuncture, NAET allergy treatment, and Facial Rejuvenation.</p>
+
+    <h3>Acupuncture Near Me - Dahlonega GA</h3>
+    <p>Searching "acupuncture near me" in Dahlonega? Our convenient location serves patients from Dahlonega, Franklin NC, Hiawassee GA, Blue Ridge GA, and throughout the North Georgia mountains. Whether you're dealing with back pain from hiking, seasonal allergies, or chronic health concerns, Deanna provides personalized acupuncture treatment.</p>
+
+    <h3>Holistic Medicine in Dahlonega</h3>
+    <p>As a licensed acupuncturist with 30+ years of experience, Deanna bridges holistic and Western medicine to provide comprehensive care. Patients trust us for treating migraines, stress and anxiety, sports injuries, sleep disorders, digestive issues, and more.</p>
+
+    <h3>Serving North Georgia Mountains</h3>
+    <p>Besides Dahlonega, we serve patients from Jasper, Helen, Tallulah Falls, Ellijay, Blairsville, Blue Ridge, and throughout the region. Search "acupuncture near me" to find your holistic healing center in Northern Georgia.</p>
+
+    <h3>Five-Element Acupuncture in Dahlonega</h3>
+    <p>Deanna studied with Professor J.R. Worsley, a pioneer in bringing Five-Element Acupuncture to Western culture. This holistic approach addresses root emotional and physical causes of illness through elemental theory.</p>
+
+    <h3>NAET Allergy Treatment Near Dahlonega</h3>
+    <p>Safe, non-invasive NAET treatment helps eliminate allergies to foods, environmental triggers, and chemicals. Many North Georgia patients have achieved remarkable results with NAET for seasonal allergies and food intolerances.</p>
+  </article>
+</Layout>

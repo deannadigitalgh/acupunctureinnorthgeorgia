@@ -1,0 +1,206 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const pageData = {
+  title: 'About Deanna Stennett | Licensed Acupuncturist North Georgia',
+  description: 'Meet Deanna Stennett - Georgia licensed acupuncturist with 30+ years of experience. NCCAOM certified, former MUIH clinical supervisor & adjunct professor. Author of "Poetry of the Body". Serving Ellijay, Blairsville & Northern Georgia.',
+  keywords: [
+    'about Deanna Stennett',
+    'acupuncturist North Georgia',
+    'licensed acupuncturist Georgia',
+    'NCCAOM certified',
+    'Five-Element Acupuncture practitioner',
+    'acupuncture professor',
+    'Deanna Stennett author'
+  ],
+  canonicalUrl: 'https://acupunctureinnorthgeorgia.com/about'
+};
+
+// Credentials list
+const credentials = [
+  { title: 'Georgia Licensed Acupuncturist', description: 'Fully licensed to practice acupuncture in the state of Georgia' },
+  { title: 'Nationally Certified (NCCAOM)', description: 'Certified by the National Certification Commission for Acupuncture and Oriental Medicine' },
+  { title: 'Clinical Supervisor - MUIH', description: '20 years supervising acupuncture students at Maryland University of Integrative Health (formerly Tai Sophia Institute)' },
+  { title: 'Adjunct Professor', description: '20 years teaching didactic portion of Acupuncture Program at MUIH' },
+  { title: 'Published Author', description: 'Author of "Poetry of the Body: Stories about Acupuncture Points" - available on Amazon' }
+];
+
+// Education & Training
+const education = [
+  { institution: 'Maryland University of Integrative Health (MUIH)', program: 'Clinical Supervision & Teaching Certification' },
+  { institution: 'Professor J.R. Worsley', program: 'Five-Element Acupuncture Apprenticeship' },
+  { institution: 'NCCAOM', program: 'National Certification in Acupuncture and Oriental Medicine' }
+];
+
+// Specializations
+const specializations = [
+  { title: 'Traditional Chinese Medicine (TCM)', description: 'Classical acupuncture techniques based on thousands of years of Chinese medical tradition, focusing on balancing Qi flow through meridians.' },
+  { title: 'Five-Element Acupuncture', description: 'A holistic approach developed by Professor J.R. Worsley that addresses the root emotional and physical causes of illness through elemental theory.' },
+  { title: 'NAET Allergy Elimination Techniques', description: 'Safe, non-invasive method to identify and eliminate allergies to foods, chemicals, and environmental triggers.' },
+  { title: 'Facial Rejuvenation Acupuncture', description: 'Natural anti-aging treatment using fine needles to stimulate collagen production and improve facial circulation.' }
+];
+
+// Philosophy
+const philosophy = `Deanna's approach to healing is rooted in the belief that "I treat people, not diseases." She empowers patients to understand their bodies and discover the gentle power of the healing arts. Deanna bridges the gap between holistic and western medicine while providing a safe and nurturing atmosphere for healing.`;
+
+// Personal
+const personal = `Deanna loves animals, nature, and art, believing that we are part of nature and works of art ourselves. She is always looking to integrate new treatments and therapies into her practice, believing that continued learning is essential for any good acupuncturist.`;
+---
+
+<Layout 
+  title={pageData.title} 
+  description={pageData.description} 
+  keywords={pageData.keywords}
+  canonicalUrl={pageData.canonicalUrl}
+>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>About Deanna Stennett</h1>
+      <p style="font-size: 1.25rem; opacity: 0.95;">Georgia Licensed Acupuncturist | 30+ Years of Experience | Author & Educator</p>
+    </div>
+  </section>
+
+  <!-- Journey Section -->
+  <section class="section section-light">
+    <div class="container">
+      <h2 style="margin-bottom: var(--spacing-lg);">Deanna Stennett's Journey</h2>
+      
+      <p style="font-size: 1.125rem; line-height: 1.8;">Deanna Stennett has been a dedicated practitioner of holistic medicine since 1993. Deanna loves empowering patients to understand their bodies and discover the gentle power of the healing arts.</p>
+      
+      <p style="font-size: 1.125rem; line-height: 1.8;">As a well-renowned Acupuncturist, she enjoys being able to bridge the gap between holistic and western medicine while providing a safe and nurturing atmosphere in which to heal. Deanna is always looking to integrate new treatments and therapies into her practice and believes that continued learning is important for any good Acupuncturist.</p>
+      
+      <p style="font-size: 1.125rem; line-height: 1.8;">Deanna studied with the esteemed Professor J.R. Worsley who is known for bringing Five-Element Acupuncture to western culture. Ms. Stennett practices both Five-Element Acupuncture and Traditional Chinese Medicine based on what each individual patient needs.</p>
+      
+      <blockquote style="font-size: 1.5rem; font-family: var(--font-heading); text-align: center; margin: var(--spacing-xl) 0; color: var(--color-primary);">"I treat people, not diseases."</blockquote>
+      
+      <p>{philosophy}</p>
+      
+      <p style="margin-top: var(--spacing-md);">{personal}</p>
+    </div>
+  </section>
+
+  <!-- Credentials Section -->
+  <section class="section section-gray">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Certifications & Qualifications</h2>
+      
+      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        {credentials.map(cred => (
+          <article class="card">
+            <h3>{cred.title}</h3>
+            <p>{cred.description}</p>
+          </article>
+        ))}
+      </div>
+
+      <!-- Education -->
+      <div style="margin-top: var(--spacing-xl);">
+        <h3 style="text-align: center; margin-bottom: var(--spacing-lg);">Education & Training</h3>
+        
+        {education.map(edu => (
+          <article class="card" style="margin-bottom: var(--spacing-md);">
+            <h4>{edu.institution}</h4>
+            <p>{edu.program}</p>
+          </article>
+        ))}
+      </div>
+
+      <!-- Specializations -->
+      <div style="margin-top: var(--spacing-xl);">
+        <h3 style="text-align: center; margin-bottom: var(--spacing-lg);">Areas of Expertise</h3>
+        
+        {specializations.map(spec => (
+          <article class="card" style="margin-bottom: var(--spacing-md);">
+            <h4>{spec.title}</h4>
+            <p>{spec.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Published Work Section -->
+  <section class="section section-light">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Latest Work - Published Author</h2>
+      
+      <div style="max-width: 600px; margin: 0 auto;">
+        <article class="card" style="text-align: center;">
+          <div style="font-size: 4rem; margin-bottom: var(--spacing-md);">📚</div>
+          <h3>Poetry of the Body: Stories about Acupuncture Points</h3>
+          <p style="font-style: italic; color: var(--color-text-secondary);">Written for the lay person, making acupuncture accessible to everyone.</p>
+          
+          <a href="https://www.amazon.com/Poetry-Body-Stories-Acupuncture-Points/dp/1532057067" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-top: var(--spacing-md);">Purchase on Amazon</a>
+          
+          <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: var(--spacing-sm);">Available in paperback and electronic formats</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Locations Section -->
+  <section class="section section-gray">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Office Locations</h2>
+      
+      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <!-- Ellijay -->
+        <article class="card">
+          <h3>Ellijay Office</h3>
+          <address style="font-style: normal; margin-top: var(--spacing-sm);">
+            11 Kiker Street<br/>
+            Ellijay, GA 30540
+          </address>
+          
+          <div style="margin-top: var(--spacing-md);">
+            <a href="tel:+17065551234" class="btn btn-primary" style="width: 100%;">Call to Schedule</a>
+          </div>
+        </article>
+
+        <!-- Blairsville -->
+        <article class="card">
+          <h3>Blairsville Office</h3>
+          <address style="font-style: normal; margin-top: var(--spacing-sm);">
+            563 Gainesville Hwy<br/>
+            Blairsville, GA 30512
+          </address>
+          
+          <div style="margin-top: var(--spacing-md);">
+            <a href="tel:+17065551234" class="btn btn-primary" style="width: 100%;">Call to Schedule</a>
+          </div>
+        </article>
+      </div>
+
+      <!-- Call-to-action -->
+      <div style="text-align: center; margin-top: var(--spacing-xl);">
+        <p style="font-size: 1.25rem;">Ready to start your healing journey?</p>
+        <a href="/#contact" class="btn btn-primary" style="margin-top: var(--spacing-sm);">Request an Appointment</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO Content Block -->
+  <article style="display: none;">
+    <h2>About Deanna Stennett - Licensed Acupuncturist in North Georgia</h2>
+    <p>Deanna Stennett is a highly experienced and nationally certified acupuncturist serving Ellijay, Blairsville, Blue Ridge, and throughout Northern Georgia. With over 30 years of clinical practice since 1993, Deanna has developed deep expertise in both Traditional Chinese Medicine (TCM) and Five-Element Acupuncture.</p>
+    
+    <h3>Credentials & Education</h3>
+    <ul>
+      <li>Georgia Licensed Acupuncturist</li>
+      <li>Nationally Certified by the NCCAOM (National Certification Commission for Acupuncture and Oriental Medicine)</li>
+      <li>20 years as Clinical Supervisor at Maryland University of Integrative Health (MUIH), formerly Tai Sophia Institute</li>
+      <li>20 years as Adjunct Professor teaching the didactic portion of the Acupuncture Program at MUIH</li>
+      <li>Apprenticed with Professor J.R. Worsley, a pioneer in bringing Five-Element Acupuncture to Western culture</li>
+    </ul>
+
+    <h3>Published Author</h3>
+    <p>Deanna is the author of "Poetry of the Body: Stories about Acupuncture Points," a book written for laypeople that makes acupuncture accessible and understandable. Available on Amazon in both paperback and electronic formats.</p>
+
+    <h3>Clinical Approach</h3>
+    <p>Deanna's philosophy centers on treating people, not diseases. She empowers patients to understand their bodies and discover the gentle power of healing arts. Her approach bridges holistic and Western medicine while providing a safe, nurturing environment for healing.</p>
+
+    <h3>Serving Northern Georgia</h3>
+    <p>Patients travel from Ellijay, Blairsville, Blue Ridge, Dahlonega, Jasper, Helen, and throughout the North Georgia mountains to receive Deanna's expert care. Whether you're seeking treatment for chronic pain, allergies, stress management, or general wellness, Deanna provides personalized acupuncture treatments tailored to your unique needs.</p>
+  </article>
+</Layout>

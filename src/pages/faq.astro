@@ -1,0 +1,238 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const pageData = {
+  title: 'Acupuncture FAQ - Your Questions Answered | North Georgia',
+  description: 'Frequently asked questions about acupuncture treatment in Ellijay and Blairsville, GA. Learn what to expect, needle safety, preparation tips, and treatment frequency from Deanna Stennett.',
+  keywords: [
+    'acupuncture FAQ',
+    'what is acupuncture',
+    'do acupuncture needles hurt',
+    'prepare for first acupuncture',
+    'acupuncture side effects',
+    'how often acupuncture treatments'
+  ],
+  canonicalUrl: 'https://acupunctureinnorthgeorgia.com/faq'
+};
+
+// Complete FAQ data
+const faqs = [
+  {
+    category: 'First Visit Preparation',
+    questions: [
+      {
+        question: "How should I prepare for my first treatment?",
+        answer: `On the day of your first treatment, come rested, wear comfortable clothing, and if possible do not wear make-up. Absolutely do not wear any fragrances. Eat a light meal before your appointment as sometimes your blood sugar can drop from treatment. Bring the enclosed forms, filled out with you. If you have any questions, please write them down so you don't forget them.`
+      },
+      {
+        question: "What should I bring to my first appointment?",
+        answer: `Please bring completed patient intake forms (available on our website or at the office), a form of payment, and any relevant medical records if you're seeing us for a specific condition. Write down any questions you have so we can address them during your consultation.`
+      },
+      {
+        question: "How long is my first appointment?",
+        answer: `Your first visit is 90 minutes (1.5 hours). This includes a comprehensive health history consultation, physical exam, and your first acupuncture treatment. We want to take the time to fully understand your needs and create an effective treatment plan.`
+      }
+    ]
+  },
+  {
+    category: 'What to Expect',
+    questions: [
+      {
+        question: "What will my first session be like?",
+        answer: `There will be a consultation where the acupuncturist will go over your health history form with you for clarification. There will be more questions about you, your family history, your childhood from a physical and emotional perspective, and a discussion of your daily habits. After your consultation, you will be given a physical exam to help find any areas that coincide with your symptoms. Then you will have your first treatment.`
+      },
+      {
+        question: "What should I expect during an acupuncture session?",
+        answer: `You'll lie comfortably on a treatment table while Deanna inserts extremely fine needles at specific points on your body. Most people feel deeply relaxed during the 30-60 minute treatment. Some may fall asleep! Afterward, you'll likely feel calm and refreshed.`
+      },
+      {
+        question: "What should I expect from treatment?",
+        answer: `As everyone is different and heals differently, giving expectations may not serve, however, most people generally feel relaxed after each treatment. They generally report sleeping better, having more energy, etc. You should be experiencing changes in your condition within 4-10 treatments. Some of this is in your hands as the practitioner will recommend things to you. These things will enhance treatment if you follow the advice.`
+      }
+    ]
+  },
+  {
+    category: 'Needles & Safety',
+    questions: [
+      {
+        question: "Do the needles hurt?",
+        answer: `The needles themselves are the size of about 3 pieces of hair. When inserted in a non-acupuncture point, most patients don't feel the needle at all. When inserted into a point, the sensation varies from dull ache to electrical type sensations. The sensation is very momentary, and well worth the 1 or 2 seconds of feeling as the results can be astounding.`
+      },
+      {
+        question: "Are acupuncture needles safe?",
+        answer: `Yes! Acupuncture needles are sterile, single-use, and disposable. They're extremely thin—much thinner than hypodermic needles used for injections. Deanna has over 30 years of experience with an excellent safety record.`
+      },
+      {
+        question: "Does Acupuncture have any side effects?",
+        answer: `Possible side effects of Acupuncture are: dizziness, fainting, bruising, discomfort at the needle site. Everyone is different so you may experience one, all or none of these. In my 30+ years of practice, I have only had one patient faint, and bruising is the most common side effect. There are thousands of tiny capillaries all over your body, so bruising occurs when the needle nicks a capillary. The needles themselves are so small that they are unable to penetrate a larger blood vessel, so this most common side effect is very mild and goes away pretty quickly.`
+      },
+      {
+        question: "What if I'm afraid of needles?",
+        answer: `Many patients come in with needle anxiety! The good news is that acupuncture needles are incredibly thin—about the width of three hairs. Most people report not feeling them at all, or only a brief momentary sensation. Deanna takes extra time to explain each step and ensure you're comfortable throughout.`
+      }
+    ]
+  },
+  {
+    category: 'Treatment Frequency & Duration',
+    questions: [
+      {
+        question: "How often should I receive treatment?",
+        answer: `Acupuncture as a modality builds on itself. In other words you may not see immediate results, but over time you will. In the beginning treatments are spaced close together to help facilitate that accumulation of treatment, and as your symptoms begin to abate, then the treatments are spread out, with the goal always being to have maintenance treatments once every season. You cannot have too much acupuncture, but it is possible to space the treatments too far apart. If all your symptoms come back between treatments, then the spacing is too far and we will be in effect starting over every time. It is very important not to do this if you want to heal the cause of the problem.`
+      },
+      {
+        question: "How many treatments will I need?",
+        answer: `This varies by individual and condition. Most people experience noticeable changes within 4-10 treatments. A general guideline is one month of weekly treatments for every year you've had a chronic condition. Acute issues may resolve faster, while long-standing conditions require more time.`
+      },
+      {
+        question: "What's the rule of thumb for treatment frequency?",
+        answer: `"One month of weekly treatments for every year you have had a condition." This is a general guideline—your specific plan will be personalized based on your unique needs and healing response.`
+      }
+    ]
+  },
+  {
+    category: 'Chronic & Terminal Illness',
+    questions: [
+      {
+        question: "Do you help treat terminal or chronic illness?",
+        answer: `When I treat most people, I am looking to resolve situations to help their body, mind and spirit to restore their health. This is true with chronic illness. In the case of terminal illness, I shift my focus from getting my patient well, to helping my patient be as comfortable as possible as they go through their transition. This would be pain relief, breathing relief, anxiety relief and so forth. It's possible to live well, even in the process of dying, so quality of life is the focus.`
+      },
+      {
+        question: "Can acupuncture help with chronic pain?",
+        answer: `Yes! Acupuncture has been shown to be highly effective for various types of chronic pain including back pain, neck pain, arthritis, migraines, and fibromyalgia. Many patients experience significant relief and reduced reliance on pain medications.`
+      },
+      {
+        question: "What conditions does acupuncture treat?",
+        answer: `Acupuncture is effective for a wide range of conditions including bodily pain (sports injuries, muscle pain, back/neck pain, knee pain, arthritis), digestive issues (IBS, acid reflux, nausea), mental well-being (stress, anxiety, insomnia, depression), and respiratory complaints (sinusitis, allergies).`
+      }
+    ]
+  },
+  {
+    category: 'After Treatment Care',
+    questions: [
+      {
+        question: "What should I do after my acupuncture session?",
+        answer: `Rest if you feel like it—many people feel deeply relaxed. Drink plenty of water to help flush toxins. Avoid strenuous exercise, alcohol, and heavy meals for the rest of the day. Pay attention to how your body feels over the next 24-48 hours.`
+      },
+      {
+        question: "Can I drive after acupuncture?",
+        answer: `Yes! Most people feel relaxed but alert after treatment and can safely drive themselves home. If you're feeling particularly drowsy, consider having someone pick you up or using rideshare services.`
+      }
+    ]
+  },
+  {
+    category: 'Pricing & Insurance',
+    questions: [
+      {
+        question: "How much does acupuncture cost?",
+        answer: `First visit (90 minutes): $130. Follow-up treatments (60 minutes): $90. We accept cash, check, and most major credit cards.`
+      },
+      {
+        question: "Do you accept insurance?",
+        answer: `We provide super bills that you can submit to your insurance provider for possible reimbursement. Many acupuncture practices are out-of-network, but some plans do offer partial coverage. Please check with your insurance provider.`
+      }
+    ]
+  }
+];
+
+// Additional resources
+const resources = [
+  { title: 'Patient Intake Forms', link: '/services#patient-forms' },
+  { title: 'Treatment Pricing', link: '/services#pricing' },
+  { title: 'Book Appointment', link: '/#contact' }
+];
+
+// Call-to-action
+const cta = {
+  primaryText: 'Schedule Your First Appointment',
+  secondaryText: '(706) 555-1234'
+};
+---
+
+<Layout 
+  title={pageData.title} 
+  description={pageData.description} 
+  keywords={pageData.keywords}
+  canonicalUrl={pageData.canonicalUrl}
+>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Your Questions, Answered</h1>
+      <p style="font-size: 1.25rem; opacity: 0.95;">I'm Here for You</p>
+      
+      <p style="margin-top: var(--spacing-md); max-width: 700px; margin-left: auto; margin-right: auto;">If you've never visited a professional Acupuncturist before, you're bound to have lots of questions or concerns. Below, you'll find a list of several frequently asked questions from my patients.</p>
+      
+      <div style="margin-top: var(--spacing-lg);">
+        <a href="#contact" class="btn btn-primary" style="background-color: white; color: var(--color-primary); margin-right: var(--spacing-sm);">{cta.primaryText}</a>
+        <a href="tel:+17065551234" class="btn btn-secondary" style="border-color: white; color: white;">{cta.secondaryText}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Sections -->
+  <section class="section section-light">
+    <div class="container">
+      {faqs.map(category => (
+        <article style="margin-bottom: var(--spacing-xxl);">
+          <h2 style="color: var(--color-secondary); margin-bottom: var(--spacing-lg);">{category.category}</h2>
+          
+          {category.questions.map(faq => (
+            <details class="faq-item" style="margin-bottom: var(--spacing-md);">
+              <summary class="faq-question">{faq.question}</summary>
+              <p class="faq-answer">{faq.answer}</p>
+            </details>
+          ))}
+        </article>
+      ))}
+
+      <!-- Connect Section -->
+      <div style="margin-top: var(--spacing-xxl); text-align: center;">
+        <h3>Still Have Questions?</h3>
+        <p style="font-size: 1.125rem; margin-bottom: var(--spacing-lg);">Connect with me today for more information.</p>
+        
+        <a href="#contact" class="btn btn-primary">{cta.primaryText}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Links Section -->
+  <section class="section section-gray">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Quick Links</h2>
+      
+      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+        {resources.map(resource => (
+          <article class="card" style="text-align: center;">
+            <a href={resource.link} class="btn btn-secondary">{resource.title}</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO Content Block -->
+  <article style="display: none;">
+    <h2>Acupuncture FAQ - Frequently Asked Questions in North Georgia</h2>
+    <p>Finding answers to your acupuncture questions is important before starting treatment. Deanna Stennett, licensed acupuncturist serving Ellijay, Blairsville, Blue Ridge, and throughout Northern Georgia, provides comprehensive information about what to expect during acupuncture sessions.</p>
+
+    <h3>Common Acupuncture Questions</h3>
+    
+    <h4>Do acupuncture needles hurt?</h4>
+    <p>The needles are extremely fine—about the size of three hairs. Most patients don't feel them at all, or experience only a brief momentary sensation that's well worth the results.</p>
+
+    <h4>How should I prepare for my first treatment?</h4>
+    <p>Come rested, wear comfortable clothing, avoid makeup and fragrances, eat a light meal beforehand, and bring completed intake forms. Write down any questions you want to ask.</p>
+
+    <h4>What should I expect from acupuncture treatment?</h4>
+    <p>Most people feel relaxed after each session, report sleeping better, having more energy, and experiencing changes within 4-10 treatments. A general guideline is one month of weekly treatments for every year you've had a condition.</p>
+
+    <h4>Are acupuncture needles safe?</h4>
+    <p>Yes! Acupuncture needles are sterile, single-use, and disposable. Deanna has over 30 years of experience with an excellent safety record.</p>
+
+    <h4>How often should I receive treatment?</h4>
+    <p>Treatments begin close together to build momentum, then space out as symptoms improve. The goal is maintenance treatments once per season after healing is achieved.</p>
+
+    <h3>Serving Northern Georgia</h3>
+    <p>Patients from Ellijay, Blairsville, Blue Ridge, Dahlonega, Jasper, Helen, and throughout the North Georgia mountains trust Deanna with their acupuncture care. Search "acupuncture near me" to find your holistic healing center in Northern Georgia.</p>
+  </article>
+</Layout>

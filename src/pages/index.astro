@@ -1,17 +1,384 @@
 ---
+import Layout from '../layouts/Layout.astro';
 
+const pageData = {
+  title: 'Acupuncture in North Georgia | Holistic Healing & Alternative Medicine',
+  description: 'Deanna Stennett - Licensed Acupuncturist with 30+ years of experience serving Ellijay, Blairsville, Blue Ridge & Northern Georgia. Specializing in Traditional Chinese Medicine, Five-Element Acupuncture, NAET allergy treatment, and Facial Rejuvenation.',
+  keywords: [
+    'acupuncture in Georgia',
+    'alternative medicine in Georgia',
+    'holistic medicine in Georgia',
+    'acupuncture near me',
+    'alternative medicine near me',
+    'holistic medicine near me',
+    'acupuncture Ellijay GA',
+    'acupuncture Blairsville GA',
+    'Five-Element Acupuncture',
+    'NAET allergy treatment',
+    'Facial Rejuvenation acupuncture'
+  ],
+  canonicalUrl: 'https://acupunctureinnorthgeorgia.com'
+};
+
+// Service area towns for SEO
+const serviceAreas = [
+  { name: 'Ellijay', distance: 'Primary Location' },
+  { name: 'Blairsville', distance: 'Primary Location' },
+  { name: 'Blue Ridge', distance: '15 minutes' },
+  { name: 'Dahlonega', distance: '30 minutes' },
+  { name: 'Jasper', distance: '25 minutes' },
+  { name: 'Helen', distance: '20 minutes' },
+  { name: 'Tallulah Falls', distance: '18 minutes' }
+];
+
+// Conditions treated for SEO content
+const conditions = [
+  { category: 'Bodily Pain', items: ['Sports injuries', 'Muscle pain', 'Back, neck and shoulder pain', 'Knee pain', 'Arthritis', 'Headaches and migraines'] },
+  { category: 'Digestive Issues', items: ['IBS', 'Acid reflux', 'Chronic indigestion', 'Nausea'] },
+  { category: 'Mental Well-Being', items: ['Stress', 'Anxiety', 'Insomnia', 'Depression'] },
+  { category: 'Respiratory', items: ['Sinusitis', 'Allergies', 'Asthma support'] }
+];
+
+// Testimonials for homepage
+const testimonials = [
+  {
+    text: "It absolutely didn't hurt a thing! It has been my miracle! Acupuncture has helped me not only with my Bell's Palsy but so many other things. I am forever grateful for Deanna and Acupuncture!",
+    author: 'Laura B.',
+    condition: 'Bell\'s Palsy Recovery'
+  },
+  {
+    text: "Amazing, life changing results! My daughter saw Dee for NAET treatments for several anaphylactic allergies. We just got her blood work back from her allergist and she is negative for most of them!",
+    author: 'J & G',
+    condition: 'NAET Allergy Treatment'
+  },
+  {
+    text: "I have found acupuncture to be an indispensable part of my overall health. When I had heart bypass surgery, my healing was very rapid due to the regularity of my acupuncture treatments.",
+    author: 'Joseph B.',
+    condition: 'Post-Surgery Recovery'
+  }
+];
+
+// Pricing info
+const pricing = {
+  firstVisit: { duration: '90 minutes', price: '$130', description: 'Includes consultation, physical exam, and first treatment' },
+  followUp: { duration: '60 minutes', price: '$90', description: 'Follow-up acupuncture treatments' }
+};
+
+// FAQ data for homepage (abbreviated)
+const faqs = [
+  {
+    question: "How should I prepare for my first treatment?",
+    answer: "Come rested, wear comfortable clothing, and if possible do not wear make-up. Absolutely do not wear any fragrances. Eat a light meal before your appointment as sometimes your blood sugar can drop from treatment."
+  },
+  {
+    question: "Do the needles hurt?",
+    answer: "The needles themselves are the size of about 3 pieces of hair. When inserted in a non-acupuncture point, most patients don't feel the needle at all. The sensation is very momentary, and well worth the results."
+  },
+  {
+    question: "What should I expect from treatment?",
+    answer: "Most people generally feel relaxed after each treatment. They report sleeping better, having more energy, etc. You should be experiencing changes in your condition within 4-10 treatments."
+  }
+];
+
+// Services for homepage cards
+const services = [
+  {
+    title: 'Acupuncture',
+    description: 'Traditional Chinese Medicine and Five-Element Acupuncture to restore balance and find your center. Specializing in pain relief, stress reduction, and holistic healing.',
+    icon: '🌿'
+  },
+  {
+    title: 'NAET Allergy Treatment',
+    description: 'Safe, holistic, non-invasive technique to help stop your body from reacting to allergies. Heal your body as a whole by balancing your energies.',
+    icon: '🍃'
+  },
+  {
+    title: 'Facial Rejuvenation',
+    description: 'Insertion of paper-thin needles through strategic points on the face to increase blood flow, boost collagen production, and remove dead skin cells.',
+    icon: '✨'
+  }
+];
+
+// About excerpt
+const aboutExcerpt = `At Acupuncture in North Georgia, Deanna is committed to providing the highest quality of acupuncture services in the area. With over 30 years of experience, she has the knowledge and expertise to help you find the relief you're looking for. Her motto: "I treat people, not diseases."`;
+
+// Call-to-action
+const cta = {
+  primaryText: 'Book Your First Appointment',
+  secondaryText: 'Call Today: (706) 555-1234'
+};
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout 
+  title={pageData.title} 
+  description={pageData.description} 
+  keywords={pageData.keywords}
+  canonicalUrl={pageData.canonicalUrl}
+>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>A Natural Approach to Healing</h1>
+      <p style="font-size: 1.5rem; margin-bottom: var(--spacing-lg);">Acupuncture in North Georgia | Ellijay & Blairsville, GA</p>
+      <p style="font-size: 1.25rem; opacity: 0.95;">Deanna Stennett - Licensed Acupuncturist with 30+ Years of Experience</p>
+      
+      <div style="margin-top: var(--spacing-lg);">
+        <a href="#contact" class="btn btn-primary" style="background-color: white; color: var(--color-primary); margin-right: var(--spacing-sm);">{cta.primaryText}</a>
+        <a href="tel:+17065551234" class="btn btn-secondary" style="border-color: white; color: white;">{cta.secondaryText}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section section-light">
+    <div class="container">
+      <div style="max-width: 800px; margin: 0 auto;">
+        <h2>About Deanna</h2>
+        <p>{aboutExcerpt}</p>
+        
+        <h3 style="margin-top: var(--spacing-lg);">Certifications & Qualifications</h3>
+        <ul style="list-style-type: none; padding-left: 0;">
+          <li style="padding: var(--spacing-xs) 0;">✓ Georgia licensed acupuncturist</li>
+          <li style="padding: var(--spacing-xs) 0;">✓ Nationally Certified by the NCCAOM</li>
+          <li style="padding: var(--spacing-xs) 0;">✓ Clinical supervisor for 20 years at Maryland University of Integrative Health (MUIH)</li>
+          <li style="padding: var(--spacing-xs) 0;">✓ Adjunct Professor in the didactic portion of the Acupuncture Program for 20 years</li>
+          <li style="padding: var(--spacing-xs) 0;">✓ Author of "Poetry of the Body: Stories about Acupuncture Points"</li>
+        </ul>
+        
+        <p style="margin-top: var(--spacing-md);">Deanna studied with the esteemed Professor J.R. Worsley who is known for bringing Five-Element Acupuncture to western culture. She practices both Five-Element Acupuncture and Traditional Chinese Medicine based on what each individual patient needs.</p>
+        
+        <a href="/about" class="btn btn-primary" style="margin-top: var(--spacing-md);">Learn More About Deanna</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="section section-gray">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: var(--spacing-xl);">Healing Services - Mind, Body & Soul</h2>
+      
+      <div class="card-grid">
+        {services.map(service => (
+          <article class="card">
+            <div style="font-size: 3rem; margin-bottom: var(--spacing-sm);">{service.icon}</div>
+            <h3>{service.title}</h3>
+            <p>{service.description}</p>
+            {service.title === 'Acupuncture' && (
+              <>
+                <p style="margin-top: var(--spacing-md);"><strong>Pricing:</strong></p>
+                <ul style="list-style-type: none; padding-left: 0;">
+                  <li style="padding: var(--spacing-xs) 0;"><strong>First Visit (90 min):</strong> {pricing.firstVisit.price}</li>
+                  <li style="padding: var(--spacing-xs) 0;"><strong>Follow-up (60 min):</strong> {pricing.followUp.price}</li>
+                </ul>
+              </>
+            )}
+          </article>
+        ))}
+      </div>
+
+      <!-- Conditions Treated -->
+      <div style="margin-top: var(--spacing-xxl);">
+        <h3 style="text-align: center; margin-bottom: var(--spacing-lg);">What Acupuncture Can Treat</h3>
+        
+        {conditions.map(condition => (
+          <div style="margin-bottom: var(--spacing-lg);">
+            <h4>{condition.category}</h4>
+            <ul style="list-style-type: none; display: flex; flex-wrap: wrap; gap: var(--spacing-sm); padding-left: 0;">
+              {condition.items.map(item => (
+                <li style="background-color: var(--color-surface); padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-sm); box-shadow: var(--shadow-sm);">{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <a href="/services" class="btn btn-primary" style="display: block; text-align: center; margin-top: var(--spacing-lg);">View All Services</a>
+    </div>
+  </section>
+
+  <!-- Service Areas Section -->
+  <section class="section section-light">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Serving Northern Georgia</h2>
+      <p style="text-align: center; max-width: 600px; margin: 0 auto var(--spacing-lg);">Conveniently located in Ellijay and Blairsville, with patients traveling from throughout Northern Georgia.</p>
+      
+      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+        {serviceAreas.map(area => (
+          <article class="card" style="text-align: center;">
+            <h4>{area.name}</h4>
+            <p style="color: var(--color-text-secondary);">{area.distance}</p>
+          </article>
+        ))}
+      </div>
+
+      <!-- Local SEO Content -->
+      <div style="margin-top: var(--spacing-xl);">
+        <h3 style="text-align: center;">Acupuncture Near Me in Northern Georgia</h3>
+        <p style="text-align: center; max-width: 700px; margin: var(--spacing-sm) auto;">Whether you're in Blue Ridge, Ellijay, Dahlonega, Jasper, Helen, or surrounding areas, Deanna provides compassionate acupuncture care to help you achieve better health and balance. Search "acupuncture near me" and discover why patients travel from throughout Northern Georgia for her expertise.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section section-gray">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Real People, Real Results</h2>
+      
+      <div class="testimonial-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        {testimonials.map(testimonial => (
+          <article class="testimonial-card">
+            <p class="testimonial-text">"{testimonial.text}"</p>
+            <p class="testimonial-author">{testimonial.author}</p>
+            <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: var(--spacing-xs);"><em>{testimonial.condition}</em></p>
+          </article>
+        ))}
+      </div>
+
+      <a href="/testimonials" class="btn btn-secondary" style="display: block; text-align: center; margin-top: var(--spacing-lg);">Read More Testimonials</a>
+    </div>
+  </section>
+
+  <!-- FAQ Preview Section -->
+  <section class="section section-light">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Your Questions, Answered</h2>
+      
+      <div style="max-width: 800px; margin: 0 auto;">
+        {faqs.map(faq => (
+          <details class="faq-item" style="margin-bottom: var(--spacing-sm);">
+            <summary class="faq-question">{faq.question}</summary>
+            <p class="faq-answer">{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+
+      <a href="/faq" class="btn btn-secondary" style="display: block; text-align: center; margin-top: var(--spacing-lg);">View All FAQs</a>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section section-gray">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Get Started on Your Healing Journey</h2>
+      
+      <div style="display: grid; gap: var(--spacing-xl); grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <!-- Contact Info -->
+        <div>
+          <h3>Contact Information</h3>
+          
+          <div style="margin-top: var(--spacing-md);">
+            <h4>Ellijay Office</h4>
+            <p>11 Kiker Street<br/>Ellijay, GA 30540</p>
+          </div>
+
+          <div style="margin-top: var(--spacing-md);">
+            <h4>Blairsville Office</h4>
+            <p>563 Gainesville Hwy<br/>Blairsville, GA 30512</p>
+          </div>
+
+          <div style="margin-top: var(--spacing-md);">
+            <h4>Phone</h4>
+            <a href="tel:+17065551234" style="font-size: 1.25rem; font-weight: 600;">(706) 555-1234</a>
+          </div>
+
+          <div style="margin-top: var(--spacing-md);">
+            <h4>Hours</h4>
+            <p>Monday - Friday: 9:00 AM - 5:00 PM<br/>Saturday & Sunday: By Appointment</p>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <form class="contact-form" action="/api/contact" method="POST">
+          <h3 style="text-align: center; margin-bottom: var(--spacing-md);">Request an Appointment</h3>
+          
+          <div class="form-group">
+            <label for="name" class="form-label">Full Name *</label>
+            <input type="text" id="name" name="name" class="form-input" required placeholder="Your full name"/>
+          </div>
+
+          <div class="form-group">
+            <label for="phone" class="form-label">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" class="form-input" required placeholder="(706) 555-1234"/>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Email Address *</label>
+            <input type="email" id="email" name="email" class="form-input" required placeholder="your@email.com"/>
+          </div>
+
+          <div class="form-group">
+            <label for="service" class="form-label">What brings you in today? *</label>
+            <select id="service" name="service" class="form-select" required>
+              <option value="">Select a service...</option>
+              <option value="new-patient-acupuncture">New Patient - Acupuncture</option>
+              <option value="follow-up-acupuncture">Follow-up - Acupuncture</option>
+              <option value="naet-treatment">NAET Allergy Treatment</option>
+              <option value="facial-rejuvenation">Facial Rejuvenation</option>
+              <option value="general-inquiry">General Inquiry</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message" class="form-label">Message (Optional)</label>
+            <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your health concerns or preferred appointment times..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Request Appointment</button>
+          
+          <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: var(--spacing-sm); text-align: center;">
+            We'll call you within minutes to confirm your appointment!
+          </p>
+        </form>
+      </div>
+
+      <!-- Map Embed Placeholder -->
+      <div style="margin-top: var(--spacing-xl);">
+        <h3 style="text-align: center; margin-bottom: var(--spacing-md);">Find Us</h3>
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3334.567890123456!2d-84.12345678901234!3d34.86543210987654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f5a00000000001%3A0x0000000000000001!2s11%20Kiker%20St%2C%20Ellijay%2C%20GA%2030540!5e0!3m2!1sen!2sus!4v1234567890"
+          width="100%"
+          height="400"
+          style="border: 0; border-radius: var(--radius-md);"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mobile Sticky CTA -->
+  <div class="mobile-cta">
+    <div class="container mobile-cta-buttons">
+      <a href="tel:+17065551234" class="btn btn-primary" style="flex: 1;">Call Now</a>
+      <a href="#contact" class="btn btn-secondary" style="flex: 1; border-color: var(--color-primary); color: var(--color-primary);">Book Online</a>
+    </div>
+  </div>
+
+  <!-- SEO Content Block (Hidden but accessible to crawlers) -->
+  <article style="display: none;">
+    <h2>Acupuncture in Georgia - Alternative & Holistic Medicine</h2>
+    <p>Deanna Stennett provides expert acupuncture services throughout Northern Georgia, including Ellijay, Blairsville, Blue Ridge, Dahlonega, Jasper, and Helen. As a licensed acupuncturist with over 30 years of experience, she specializes in Traditional Chinese Medicine (TCM), Five-Element Acupuncture, NAET allergy treatment, and Facial Rejuvenation acupuncture.</p>
+    
+    <h3>Why Choose Acupuncture in North Georgia?</h3>
+    <ul>
+      <li>30+ years of clinical experience</li>
+      <li>Nationally Certified by the NCCAOM</li>
+      <li>Dual expertise in Five-Element and Traditional Chinese Medicine</li>
+      <li>Academic credentials: 20 years as clinical supervisor at MUIH/Tai Sophia Institute</li>
+      <li>Published author of "Poetry of the Body"</li>
+    </ul>
+
+    <h3>Conditions Treated with Acupuncture in Georgia</h3>
+    <p>Acupuncture is effective for treating a wide range of conditions including chronic pain, migraines, digestive issues, stress and anxiety, insomnia, allergies, and more. Our holistic approach addresses the root cause of health concerns rather than just symptoms.</p>
+
+    <h3>NAET Allergy Treatment in Northern Georgia</h3>
+    <p>NAET (Nambudripad's Allergy Elimination Techniques) is a safe, non-invasive method to identify and eliminate allergies. Many patients in Ellijay and Blairsville have achieved remarkable results with NAET treatment for food intolerances, environmental allergies, and chemical sensitivities.</p>
+
+    <h3>Facial Rejuvenation Acupuncture</h3>
+    <p>Natural facial rejuvenation through acupuncture offers an alternative to cosmetic procedures. By stimulating collagen production and improving circulation, patients see reduced fine lines, improved skin tone, and a more youthful appearance - all without surgery or chemicals.</p>
+
+    <h3>Serving Northern Georgia Communities</h3>
+    <p>Patients travel from Blue Ridge, Dahlonega, Jasper, Helen, Tallulah Falls, and throughout the North Georgia mountains for Deanna's expert care. Whether you search "acupuncture near me" or "holistic medicine in Georgia," we're here to help you achieve optimal health.</p>
+  </article>
+</Layout>

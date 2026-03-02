@@ -1,0 +1,346 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const pageData = {
+  title: 'Acupuncture Services | NAET & Facial Rejuvenation - North Georgia',
+  description: 'Comprehensive acupuncture services in Ellijay and Blairsville, GA. Specializing in Traditional Chinese Medicine, Five-Element Acupuncture, NAET allergy treatment, and Facial Rejuvenation. First visit $130 (90 min), follow-ups $90 (60 min).',
+  keywords: [
+    'acupuncture services Georgia',
+    'NAET allergy treatment Ellijay',
+    'Facial Rejuvenation acupuncture',
+    'Five-Element Acupuncture North Georgia',
+    'Traditional Chinese Medicine GA',
+    'acupuncture pricing',
+    'holistic healing services'
+  ],
+  canonicalUrl: 'https://acupunctureinnorthgeorgia.com/services'
+};
+
+// Pricing details
+const pricing = {
+  firstVisit: {
+    duration: '90 minutes (1.5 hours)',
+    price: '$130',
+    description: 'Includes comprehensive consultation, physical exam, and your first acupuncture treatment'
+  },
+  followUp: {
+    duration: '60 minutes',
+    price: '$90',
+    description: 'Follow-up acupuncture treatments tailored to your healing progress'
+  }
+};
+
+// Service details
+const services = [
+  {
+    title: 'Acupuncture (Traditional Chinese Medicine)',
+    icon: '🌿',
+    overview: 'Acupuncture is a hands-on body treatment that leaves patients feeling relaxed and renewed. Since each person is different, treatments are designed for each individual person.',
+    benefits: ['Pain relief and management', 'Stress reduction and relaxation', 'Improved sleep quality', 'Enhanced immune function', 'Digestive health support'],
+    conditionsTreated: [
+      { category: 'Bodily Pain', items: ['Sports injuries', 'Muscle pain', 'Back, neck and shoulder pain', 'Knee and hip pain', 'Carpal tunnel syndrome', 'Arthritis', 'Sciatica', 'Headaches and migraines'] },
+      { category: 'Digestive Issues', items: ['IBS', 'Acid reflux/heartburn', 'Chronic indigestion', 'Nausea and vomiting', 'Constipation or diarrhea'] },
+      { category: 'Mental Well-Being', items: ['Stress and anxiety', 'Insomnia', 'Depression support', 'Emotional balance'] },
+      { category: 'Respiratory', items: ['Sinusitis', 'Allergies', 'Asthma support'] }
+    ]
+  },
+  {
+    title: 'Five-Element Acupuncture',
+    icon: '🍃',
+    overview: 'Based on the teachings of Professor J.R. Worsley, Five-Element Acupuncture is a holistic approach that addresses the root emotional and physical causes of illness through elemental theory (Wood, Fire, Earth, Metal, Water).',
+    benefits: ['Addresses root causes rather than symptoms', 'Emotional healing alongside physical relief', 'Long-lasting results', 'Personalized treatment plans', 'Holistic mind-body-spirit approach'],
+    conditionsTreated: [
+      { category: 'Emotional Health', items: ['Anxiety and worry', 'Grief and loss', 'Anger management', 'Fear and phobias'] },
+      { category: 'Physical Symptoms', items: ['Chronic pain', 'Fatigue', 'Digestive disorders', 'Sleep disturbances'] }
+    ]
+  },
+  {
+    title: 'NAET Allergy Elimination Techniques',
+    icon: '✨',
+    overview: 'NAET is a safe, holistic, and non-invasive technique to help stop your body from reacting to allergies. These treatments are intended to heal your body as a whole by balancing your energies.',
+    benefits: ['Identifies specific allergens through muscle testing', 'Non-drug approach to allergy relief', 'Treats food, environmental, and chemical sensitivities', 'Safe for children and adults', 'Long-lasting results'],
+    conditionsTreated: [
+      { category: 'Food Allergies & Intolerances', items: ['Dairy intolerance', 'Gluten sensitivity', 'Nut allergies', 'Shellfish allergy'] },
+      { category: 'Environmental Allergies', items: ['Pollen allergies', 'Mold sensitivity', 'Pet dander reactions'] },
+      { category: 'Chemical Sensitivities', items: ['Fragrance sensitivities', 'Cleaning product reactions', 'Medication sensitivities'] }
+    ]
+  },
+  {
+    title: 'Facial Rejuvenation Acupuncture',
+    icon: '💆',
+    overview: 'Facial rejuvenation involves the insertion of paper-thin needles through strategic points on the face and other body parts. This increases blood flow to the face, boosts collagen production, and removes dead skin cells.',
+    benefits: ['Natural anti-aging without surgery', 'Improved skin tone and texture', 'Reduced fine lines and wrinkles', 'Enhanced natural glow', 'Stress relief during treatment'],
+    conditionsTreated: [
+      { category: 'Aging Concerns', items: ['Fine lines and wrinkles', 'Loss of skin elasticity', 'Dull complexion'] },
+      { category: 'Skin Conditions', items: ['Acne scarring', 'Puffiness under eyes', 'Dark circles'] }
+    ]
+  }
+];
+
+// Treatment process
+const treatmentProcess = [
+  { step: 1, title: 'Initial Consultation (First Visit)', description: 'Your first visit is 90 minutes and includes a comprehensive health history consultation, physical exam, and your first acupuncture treatment.' },
+  { step: 2, title: 'Treatment Planning', description: 'Deanna creates a personalized treatment plan based on your unique needs, symptoms, and healing goals.' },
+  { step: 3, title: 'Acupuncture Sessions (Follow-up)', description: '60-minute follow-up treatments where fine needles are inserted at strategic points to restore balance and promote healing.' },
+  { step: 4, title: 'Lifestyle Recommendations', description: 'Deanna provides personalized advice on diet, exercise, and self-care practices to enhance treatment results.' }
+];
+
+// FAQ preview
+const faqs = [
+  { question: "What should I expect during my first visit?", answer: "Your first visit is 90 minutes and includes a comprehensive consultation about your health history, a physical exam, and your first acupuncture treatment. This allows Deanna to understand your unique needs and create a personalized treatment plan." },
+  { question: "Do the needles hurt?", answer: "The needles are extremely fine—about the size of three hairs. Most patients don't feel them when inserted into non-acupuncture points. When inserted into a point, sensations vary from dull ache to electrical feelings, but it's very momentary (1-2 seconds) and well worth the results." },
+  { question: "How many treatments will I need?", answer: "Most people experience changes within 4-10 treatments. A general rule of thumb is one month of weekly treatments for every year you've had a condition. As symptoms improve, treatments are spaced further apart with maintenance sessions once per season." },
+  { question: "What should I do before treatment?", answer: "Come rested, wear comfortable clothing, and avoid wearing makeup or fragrances. Eat a light meal beforehand as blood sugar can drop during treatment. Bring any completed forms and write down questions you want to ask." }
+];
+
+// Testimonials for services page
+const testimonials = [
+  { text: "My daughter saw Dee for NAET treatments for several anaphylactic allergies. We just got her blood work back from her allergist and she is negative for most of them!", author: 'J & G', condition: 'NAET Allergy Treatment' },
+  { text: "I feel so much better now and can eat and be around items that caused me discomfort before. I have continued to go to Dee for acupuncture treatments 1-2 times a month.", author: 'Jackie A.', condition: 'Food Intolerance Treatment' }
+];
+
+// Call-to-action
+const cta = {
+  primaryText: 'Book Your First Appointment',
+  secondaryText: '(706) 555-1234'
+};
+---
+
+<Layout 
+  title={pageData.title} 
+  description={pageData.description} 
+  keywords={pageData.keywords}
+  canonicalUrl={pageData.canonicalUrl}
+>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Healing Services - Mind, Body & Soul</h1>
+      <p style="font-size: 1.25rem; opacity: 0.95;">Everybody holds the key to their own healing, but sometimes the body needs a little help.</p>
+      
+      <div style="margin-top: var(--spacing-lg);">
+        <a href="#contact" class="btn btn-primary" style="background-color: white; color: var(--color-primary); margin-right: var(--spacing-sm);">{cta.primaryText}</a>
+        <a href="tel:+17065551234" class="btn btn-secondary" style="border-color: white; color: white;">{cta.secondaryText}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview Section -->
+  <section class="section section-light">
+    <div class="container">
+      <p style="font-size: 1.125rem; line-height: 1.8;">As an experienced acupuncturist, Deanna works with you to restore your balance and find your center. She specializes in acupuncture as well as Facial Rejuvenation and NAET.</p>
+      
+      <div style="margin-top: var(--spacing-xl);">
+        <h2>Treatment Pricing</h2>
+        
+        <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-top: var(--spacing-md);">
+          <article class="card">
+            <h3>First Visit</h3>
+            <p style="font-size: 2rem; font-weight: 700; color: var(--color-primary);">{pricing.firstVisit.price}</p>
+            <p><strong>{pricing.firstVisit.duration}</strong></p>
+            <p style="color: var(--color-text-secondary);">{pricing.firstVisit.description}</p>
+          </article>
+
+          <article class="card">
+            <h3>Follow-up Treatments</h3>
+            <p style="font-size: 2rem; font-weight: 700; color: var(--color-primary);">{pricing.followUp.price}</p>
+            <p><strong>{pricing.followUp.duration}</strong></p>
+            <p style="color: var(--color-text-secondary);">{pricing.followUp.description}</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Detail Section -->
+  <section class="section section-gray">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: var(--spacing-xl);">Our Services</h2>
+      
+      {services.map(service => (
+        <article style="margin-bottom: var(--spacing-xxl);">
+          <div style="display: flex; align-items: center; gap: var(--spacing-sm); margin-bottom: var(--spacing-md);">
+            <span style="font-size: 2.5rem;">{service.icon}</span>
+            <h3>{service.title}</h3>
+          </div>
+
+          <p style="font-size: 1.125rem; line-height: 1.8;">{service.overview}</p>
+
+          <!-- Benefits -->
+          {service.benefits && (
+            <div style="margin-top: var(--spacing-md);">
+              <h4 style="color: var(--color-secondary);">Benefits:</h4>
+              <ul style="list-style-type: none; display: flex; flex-wrap: wrap; gap: var(--spacing-sm); padding-left: 0;">
+                {service.benefits.map(benefit => (
+                  <li style="background-color: var(--color-surface); padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-sm); box-shadow: var(--shadow-sm);">✓ {benefit}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <!-- Conditions Treated -->
+          {service.conditionsTreated && (
+            <div style="margin-top: var(--spacing-lg);">
+              <h4 style="color: var(--color-secondary);">What This Service Can Treat:</h4>
+              
+              {service.conditionsTreated.map(category => (
+                <div style="margin-bottom: var(--spacing-md);">
+                  <p><strong>{category.category}:</strong></p>
+                  <ul style="list-style-type: none; display: flex; flex-wrap: wrap; gap: var(--spacing-sm); padding-left: 0;">
+                    {category.items.map(item => (
+                      <li style="background-color: var(--color-background); padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-sm);">{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          )}
+        </article>
+      ))}
+
+      <!-- Mission Statement -->
+      <blockquote style="font-size: 1.25rem; font-family: var(--font-heading); text-align: center; margin-top: var(--spacing-xl); padding: var(--spacing-lg); background-color: var(--color-background); border-radius: var(--radius-md);">
+        "Deanna's mission is to allow her patients to heal and overcome. Through a variety of alternative treatments and approaches, she is able to unlock the potential of self-healing in each patient, sometimes resulting in improvements from the very first session."
+      </blockquote>
+
+      <p style="text-align: center; margin-top: var(--spacing-md);">Trust Deanna's hands, trust your ability to heal, and allow yourself to feel better than you ever imagined possible.</p>
+    </div>
+  </section>
+
+  <!-- Treatment Process Section -->
+  <section class="section section-light">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Your Treatment Journey</h2>
+      
+      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+        {treatmentProcess.map(process => (
+          <article class="card" style="text-align: center;">
+            <div style="font-size: 3rem; font-weight: 700; color: var(--color-primary); margin-bottom: var(--spacing-sm);">{process.step}</div>
+            <h4>{process.title}</h4>
+            <p>{process.description}</p>
+          </article>
+        ))}
+      </div>
+
+      <!-- General Rule of Thumb -->
+      <div style="margin-top: var(--spacing-xl); text-align: center;">
+        <h3>A Guideline for Treatment Frequency</h3>
+        <p style="font-size: 1.25rem; margin-top: var(--spacing-sm);">"One month of weekly treatments for every year you have had a condition."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section section-gray">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Patient Results</h2>
+      
+      <div class="testimonial-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        {testimonials.map(testimonial => (
+          <article class="testimonial-card">
+            <p class="testimonial-text">"{testimonial.text}"</p>
+            <p class="testimonial-author">{testimonial.author}</p>
+            <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: var(--spacing-xs);"><em>{testimonial.condition}</em></p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Preview Section -->
+  <section class="section section-light">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Frequently Asked Questions</h2>
+      
+      <div style="max-width: 800px; margin: 0 auto;">
+        {faqs.map(faq => (
+          <details class="faq-item" style="margin-bottom: var(--spacing-sm);">
+            <summary class="faq-question">{faq.question}</summary>
+            <p class="faq-answer">{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+
+      <a href="/faq" class="btn btn-secondary" style="display: block; text-align: center; margin-top: var(--spacing-lg);">View All FAQs</a>
+    </div>
+  </section>
+
+  <!-- Patient Forms Section -->
+  <section class="section section-gray">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Patient Intake Forms</h2>
+      
+      <article class="card" style="max-width: 600px; margin: 0 auto;">
+        <p style="font-size: 1.125rem; text-align: center;">Already have an appointment? Below are patient intake forms for your upcoming visit!</p>
+        
+        <div style="margin-top: var(--spacing-lg);">
+          <a href="#" class="btn btn-primary" style="display: block; text-align: center; margin-bottom: var(--spacing-sm);">Download Patient Intake Form (PDF)</a>
+          <a href="#" class="btn btn-secondary" style="display: block; text-align: center;">Download Health History Questionnaire (PDF)</a>
+        </div>
+
+        <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: var(--spacing-md); text-align: center;">If you have any questions, please do not hesitate to reach out.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section section-light">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Ready to Begin Your Healing Journey?</h2>
+      
+      <div style="max-width: 600px; margin: 0 auto;">
+        <form class="contact-form" action="/api/contact" method="POST">
+          <div class="form-group">
+            <label for="name" class="form-label">Full Name *</label>
+            <input type="text" id="name" name="name" class="form-input" required placeholder="Your full name"/>
+          </div>
+
+          <div class="form-group">
+            <label for="phone" class="form-label">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" class="form-input" required placeholder="(706) 555-1234"/>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Email Address *</label>
+            <input type="email" id="email" name="email" class="form-input" required placeholder="your@email.com"/>
+          </div>
+
+          <div class="form-group">
+            <label for="service" class="form-label">Interested Service *</label>
+            <select id="service" name="service" class="form-select" required>
+              <option value="">Select a service...</option>
+              <option value="new-patient-acupuncture">New Patient - Acupuncture</option>
+              <option value="follow-up-acupuncture">Follow-up - Acupuncture</option>
+              <option value="naet-treatment">NAET Allergy Treatment</option>
+              <option value="facial-rejuvenation">Facial Rejuvenation</option>
+              <option value="general-inquiry">General Inquiry</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Request Appointment</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO Content Block -->
+  <article style="display: none;">
+    <h2>Acupuncture Services in North Georgia - Comprehensive Holistic Care</h2>
+    <p>Deanna Stennett offers a full range of acupuncture services in Ellijay and Blairsville, Georgia. Whether you're seeking relief from chronic pain, allergy treatment through NAET, or natural facial rejuvenation, our holistic approach addresses the root causes of health concerns.</p>
+
+    <h3>Acupuncture Pricing & What to Expect</h3>
+    <ul>
+      <li><strong>First Visit ($130):</strong> 90-minute comprehensive consultation including health history review, physical exam, and your first acupuncture treatment</li>
+      <li><strong>Follow-up Treatments ($90):</strong> 60-minute sessions tailored to your healing progress</li>
+    </ul>
+
+    <h3>NAET Allergy Treatment in Northern Georgia</h3>
+    <p>NAET (Nambudripad's Allergy Elimination Techniques) provides a safe, non-invasive approach to identifying and eliminating allergies. Many patients in Ellijay, Blairsville, Blue Ridge, and throughout Northern Georgia have achieved remarkable results with NAET for food intolerances, environmental allergies, and chemical sensitivities.</p>
+
+    <h3>Facial Rejuvenation Acupuncture</h3>
+    <p>Natural facial rejuvenation through acupuncture offers an effective alternative to cosmetic procedures. By inserting paper-thin needles at strategic points on the face, we increase blood flow, boost collagen production, and remove dead skin cells for a more youthful appearance.</p>
+
+    <h3>Serving Northern Georgia Communities</h3>
+    <p>Patients travel from Ellijay, Blairsville, Blue Ridge, Dahlonega, Jasper, Helen, and throughout the North Georgia mountains to receive Deanna's expert acupuncture services. Search "acupuncture near me" and discover why patients trust us with their healing journey.</p>
+  </article>
+</Layout>

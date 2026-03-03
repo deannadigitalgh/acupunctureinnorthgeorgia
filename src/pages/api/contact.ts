@@ -18,8 +18,33 @@ export async function POST({ request }) {
       );
     }
 
-    // In production, integrate with your email service (Formspree, EmailJS, etc.)
-    // For now, log the submission
+    // Formspree integration - Replace FORM_ID with your actual Form ID from https://formspree.io/
+    const FORMSPREE_FORM_ID = import.meta.env.FORMSPREE_FORM_ID || 'YOUR_FORM_ID';
+    const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_FORM_ID}`;
+
+    // Send email via Formspree
+    const response = await fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        name,
+        phone,
+        email,
+        service,
+        message,
+        source: "acupunctureinnorthgeorgia.com"
+      })
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || 'Failed to send email');
+    }
+
+    // Log submission for debugging (remove in production or use proper logging service)
     console.log('New contact form submission:', {
       name,
       phone,
@@ -28,20 +53,6 @@ export async function POST({ request }) {
       message,
       timestamp: new Date().toISOString()
     });
-
-    // TODO: Replace with actual email integration
-    // Example using Formspree or similar service:
-    /*
-    const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, phone, email, service, message })
-    });
-    
-    if (!response.ok) {
-      throw new Error('Failed to send email');
-    }
-    */
 
     return new Response(
       JSON.stringify({ 

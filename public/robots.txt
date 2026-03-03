@@ -1,0 +1,11 @@
+# Robots.txt for Acupuncture in North Georgia
+# https://acupunctureinnorthgeorgia.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://acupunctureinnorthgeorgia.com/sitemap.xml
+
+# Crawl-delay for polite crawling (optional)
+Crawl-delay: 1

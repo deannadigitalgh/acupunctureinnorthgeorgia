@@ -8,14 +8,20 @@
 
 ## 🎯 Project Goals Achieved
 
-### Task 1: Acupuncture Website ✅
+### Task 1: Acupuncture Website ✅ COMPLETE
 - [x] Migrated from Wix to zero-cost static hosting
 - [x] Self-maintainable by non-technical user (via GitHub Copilot)
 - [x] Optimized for target SEO keywords in Georgia/Northern Georgia
 - [x] Fast lead capture form with immediate email notification
+- [x] Visual branding implemented:
+  - Logo integrated into navigation header on all pages
+  - Professional headshot added to About page and homepage
+  - Consistent mobile-responsive image display
 
-### Task 2: Shamanism Website ⏳
-- [ ] To be built using same solution (separate repository recommended)
+### Task 2: Shamanism Website 🦁 IN PROGRESS
+- [ ] See `TASK_2_SHAMANISM_WEBSITE.md` for full project scope
+- [ ] Awaiting client content (services, pricing, testimonials, photos)
+- [ ] Separate repository recommended (`projaa-shaman`)
 
 ---
 
@@ -37,9 +43,14 @@
 
 ```
 projaa-acu/
+├── public/                       # Static assets (served at root URL)
+│   ├── favicon.svg               # Simplified practice favicon (10.5KB — replace old placeholder)
+│   ├── favicon.ico               # Legacy fallback (delete 175KB version, recreate from SVG if needed)
+│   ├── logo.svg                  # Practice logo for headers/hero sections
+│   └── AA-headshot-dee.jpg       # Deanna's professional headshot
 ├── src/
 │   ├── layouts/
-│   │   └── Layout.astro          # Global layout with schema markup
+│   │   └── Layout.astro          # Global layout with schema markup + embedded CSS
 │   ├── pages/
 │   │   ├── index.astro           # Homepage (SEO optimized)
 │   │   ├── about.astro           # Deanna's bio & credentials
@@ -53,7 +64,7 @@ projaa-acu/
 │   │   └── api/
 │   │       └── contact.ts        # Form submission handler
 │   └── styles/
-│       └── global.css            # Mobile-first, performance optimized
+│       └── global.css            # Legacy file - CSS now embedded in Layout.astro
 ├── public/                       # Static assets (favicon, images)
 ├── astro.config.mjs             # Astro configuration
 ├── package.json                 # Dependencies
@@ -159,6 +170,49 @@ Choose one of these free options:
 
 ---
 
+## 🖼️ Visual Assets
+
+### Logo & Headshot Implementation
+The following assets have been integrated into the website:
+
+| Asset | Location | Usage |
+|-------|----------|-------|
+| `favicon.svg` | `/public/favicon.svg` | Primary favicon (SVG format for scalability) |
+| `favicon.ico` | `/public/favicon.ico` | Fallback favicon for older browsers |
+| `logo-large.svg` | `/public/logo-large.svg` | **All pages**: Navigation header (all) + Top/bottom of pages WITHOUT headshots (Services, FAQ, Testimonials, Service Area pages: Blue Ridge, Dahlonega, Jasper, Helen) |
+| `AA-headshot-dee.jpg` | `/public/AA-headshot-dee.jpg` | About page hero section + homepage About section (paired with logo) |
+
+### Logo Placement Strategy
+
+**Navigation Header (All Pages)**: Consistent branding, always accessible  
+**Pages WITH Headshot (About + Homepage About Section)**: Large logo frames headshot at top and bottom - creates visual bookends around personal connection  
+**Pages WITHOUT Headshot (Services, FAQ, Testimonials, Service Area pages)**: Large logo at top AND bottom of page - establishes brand identity before content and reinforces it after  
+
+This placement strategy ensures AA's professional branding is present on every page while using the headshot strategically to build personal trust where it matters most.
+
+> **Note**: Additional logo variants (`logo-med.svg`, `logo-tiny.svg`, PNG icons) are available in `/public/` but not currently used. This keeps the site focused on content and faster loading.
+
+### How AA Can Update Images (Non-Technical Workflow)
+
+**Option 1: GitHub Copilot in WebStorm/VS Code**
+1. Open project in WebStorm or VS Code
+2. Replace image files in `/public/` folder
+3. Commit and push to GitHub
+4. Cloudflare auto-deploys within 60 seconds
+
+**Option 2: Direct File Replacement**
+1. Navigate to `public/` folder
+2. Replace existing images with new versions (keep same filename)
+3. Save, commit, and push
+4. Site updates automatically
+
+> 💡 **Tip:** For best performance, optimize images before uploading:
+> - Logos: SVG format preferred (scalable vector graphics)
+> - Photos: JPEG/WebP format, max 2MB file size
+> - Use tools like [Squoosh.app](https://squoosh.app/) or [TinyPNG](https://tinypng.com/)
+
+---
+
 ## 📝 Content Management for AA
 
 ### How AA Can Update Content (Non-Technical Workflow)
@@ -186,10 +240,10 @@ Choose one of these free options:
 
 ## 🎯 Next Steps & Recommendations
 
-### Immediate Actions
+### Immediate Actions (Before Launch)
 1. [ ] Set up Cloudflare Pages deployment
-2. [ ] Configure email form integration (Formspree recommended)
-3. [ ] Claim and optimize Google Business Profile
+2. [ ] Configure email form integration (Formspree recommended) - **CRITICAL**
+3. [ ] Claim and optimize Google Business Profile - **CRITICAL**
 4. [ ] Submit sitemap to Google Search Console
 5. [ ] Create social media profiles (Facebook, Instagram)
 
@@ -198,6 +252,11 @@ Choose one of these free options:
 - **Months 2-3:** Begin ranking for long-tail keywords
 - **Months 4-6:** Target primary keywords start appearing in top results
 - **Ongoing:** Add blog content, collect reviews, build backlinks
+
+### SEO Implementation Status
+See [`SEO_EVALUATION_AA_WEBSITE_PROJECT.md`](SEO_EVALUATION_AA_WEBSITE_PROJECT.md) for detailed analysis of how well the current implementation aligns with research-backed SEO best practices.
+
+**Current Score: 7/10** - Excellent technical foundation, missing critical off-page elements (GBP, backlinks, blog content).
 
 ### Cost Savings Summary
 | Platform | Monthly Cost | Annual Savings |
@@ -208,55 +267,75 @@ Choose one of these free options:
 
 ---
 
-## 🔧 Technical Notes & Troubleshooting
+## 🔧 Technical Notes & Key Lessons Learned
 
-### Known Issues Fixed
+### 🎓 Critical Astro Patterns (Learned Through Debugging)
 
-**Issue #1: Page not rendering when running `npm run dev` (BLANK SCREEN)**  
-**Root Cause:** Using `{Astro.children}` to inject page content in layouts - this syntax doesn't work in Astro!  
-**Solution:** Changed to `<slot />` which is the correct Astro syntax for layout content injection.
+#### 1. Layout Content Injection: `<slot />` Not `{Astro.children}`
 
-**Issue #2: CSS not loading**  
-**Root Cause:** Importing CSS at top of Layout file with `<html>`, `<head>`, `<body>` structure.  
-**Solution:** Moved all CSS into inline `<style is:global>` block within `Layout.astro`.
-
-### Performance Optimizations
-- Zero JavaScript sent to browser by default (Astro)
-- HTML compression enabled (`compressHTML: true`)
-- Inline stylesheets for critical CSS (embedded in Layout)
-- Lazy loading on images and iframes
-- Minimal external dependencies
-
-### Development Workflow & Troubleshooting
-
-#### If Page is Blank (No Content, No Errors)
-
-**Step 1: Test if Astro Dev Server Works at All**
-Visit these test pages:
-- `http://localhost:4321/test.html` - Should show RED background
-- `http://localhost:4321/test.astro` - Should show GREEN background  
-- `http://localhost:4321/test2.astro` - Should show YELLOW background
-
-**Step 2: Clear Cache & Restart**
-```bash
-rm -rf .astro node_modules/.cache
-npm run dev
+❌ **WRONG** (React/Vue syntax - doesn't work in Astro):
+```astro
+<body>
+    {Astro.children}
+</body>
 ```
 
-**Step 3: Check Browser Console**
-Open DevTools (F12) → Console tab and look for:
-- JavaScript errors
-- CSS loading failures
-- Component hydration issues
+✅ **CORRECT** (Astro syntax):
+```astro
+<body>
+    <slot />
+</body>
+```
 
-#### Common Issues
+This was the #1 cause of blank pages. Always use `<slot />` to inject page content into layouts.
 
-| Symptom | Likely Cause | Fix |
-|---------|--------------|-----|
-| Blank page, no console errors | Layout missing `<body>` tag | Fixed in current version |
-| Blank page with red/green test pages working | CSS import issue | Use `<style is:global>` instead of `import` |
-| 404 on routes | Wrong file extension or path | Ensure `.astro` files are in correct location |
-| Styles not loading | Global styles not embedded | Move CSS to Layout's `<style is:global>` block |
+#### 2. Global CSS in Full-Page Layouts
+
+When your layout has `<html>`, `<head>`, and `<body>` tags, you **cannot** import CSS at the top:
+
+❌ **WRONG**:
+```astro
+---
+import '../styles/global.css';  // Doesn't work!
+---
+<html>...</html>
+```
+
+✅ **CORRECT**:
+```astro
+<head>
+    <style is:global>
+        /* All your CSS here */
+    </style>
+</head>
+```
+
+#### 3. JSON-LD Schema Injection
+
+Use `set:html` for injecting dynamic JSON into script tags:
+
+```astro
+<script 
+    type="application/ld+json"
+    set:html={schemaJson}
+></script>
+```
+
+---
+
+### ⚠️ Troubleshooting Blank Pages
+
+If you encounter a blank page when running `npm run dev`:
+
+1. **Check Layout uses `<slot />`** - Not `{Astro.children}` (that's React syntax!)
+2. **Clear cache and restart**:
+   ```bash
+   rm -rf .astro node_modules/.cache
+   npm run dev
+   ```
+3. **Verify global styles are embedded** in `Layout.astro` using `<style is:global>`
+
+### Development Workflow
 
 ```bash
 # Start dev server with hot reload
@@ -273,20 +352,69 @@ npm run preview
 If page doesn't render:
 1. Check Console tab for JavaScript errors
 2. Check Network tab to verify CSS files are loading (status 200)
-3. Verify HTML structure includes `<body>` tag
+3. Verify HTML structure includes `<body>` tag and `<slot />` in layout
 4. Clear browser cache and reload
 
+### Known Issues Fixed
+
+**Issue: Contact header button doesn't work on all pages**  
+**Root Cause:** Navigation link used `href="#contact"` but only worked on pages with a section having `id="contact"`. Pages `about.astro` and `faq.astro` were missing this section.  
+**Solution:** Added contact form sections to both `about.astro` and `faq.astro` so the navigation "Contact" link works consistently across all 9 pages.
+
+**Issue: Page not rendering when running `npm run dev` (BLANK SCREEN)**  
+**Root Cause:** Using `{Astro.children}` instead of `<slot />` in Layout.astro  
+**Solution:** Changed to `<slot />` which is the correct Astro syntax for layout content injection.
+
+**Issue: CSS not loading**  
+**Root Cause:** Importing CSS at top of Layout file with `<html>`, `<head>`, `<body>` structure.  
+**Solution:** Moved all CSS into inline `<style is:global>` block within `Layout.astro`.
+
+❌ **WRONG:**
+```astro
+<body>
+    {Astro.children}  <!-- This does NOT work in Astro! -->
+</body>
+```
+
+✅ **CORRECT:**
+```astro
+<body>
+    <slot />  <!-- This is the correct Astro syntax -->
+</body>
+```
+
+This was the #1 cause of blank pages during development. Always use `<slot />` to inject page content into layouts.
+
+### Performance Optimizations
+- Zero JavaScript sent to browser by default (Astro)
+- HTML compression enabled (`compressHTML: true`)
+- Inline stylesheets for critical CSS (embedded in Layout)
+- Lazy loading on images and iframes
+- Minimal external dependencies
+
 ### Accessibility Features
-- Semantic HTML structure
-- Skip-to-content link
-- Proper ARIA labels where needed
+- Semantic HTML structure with proper heading hierarchy
+- Skip-to-content link for keyboard users
 - High contrast color scheme
-- Keyboard navigation support
+- Touch-friendly targets (48px minimum per WCAG guidelines)
 
 ### Browser Support
 - All modern browsers (Chrome, Firefox, Safari, Edge)
 - Mobile browsers (iOS Safari, Chrome Mobile)
-- Graceful degradation for older browsers
+
+---
+
+## 🦁 TASK 2: Shamanism Website
+
+**Status:** Ready for Development - See [`TASK_2_SHAMANISM_WEBSITE.md`](TASK_2_SHAMANISM_WEBSITE.md) for full scope.
+
+A second static website is being built using the same Astro + Cloudflare Pages stack for AA's shamanic healing practice "Heart Of A Lion Shamanism". The technical architecture, deployment process, and maintenance workflow are identical to this acupuncture site.
+
+**Key Differences:**
+- Separate repository recommended (`projaa-shaman`)
+- Different branding (reds/golds vs. healing greens/blues)
+- Workshop calendar feature (not needed on acupuncture site)
+- Target keywords: "Shamanic Healing in Georgia", "Shamanic Workshop Near Me"
 
 ---
 
@@ -297,6 +425,22 @@ If page doesn't render:
 **Offices:** 
 - Ellijay: 11 Kiker Street, Ellijay, GA 30540
 - Blairsville: 563 Gainesville Hwy, Blairsville, GA 30512
+
+---
+
+## 🧹 Pre-Deployment Cleanup
+
+**IMPORTANT: Remove debug test files before deploying to production!**
+
+The following test files were created during development and should be deleted:
+
+```bash
+rm src/pages/test.html
+rm src/pages/test.astro  
+rm src/pages/test2.astro
+```
+
+These files can cause warnings in the dev server and should not be included in your production build.
 
 ---
 

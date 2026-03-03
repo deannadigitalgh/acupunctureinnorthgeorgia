@@ -14,7 +14,7 @@ const schema = {
   "@type": "HealthAndBeautyBusiness",
   "name": "Acupuncture in North Georgia",
   "alternateName": "North Ga Acupuncture",
-  "image": "https://acupunctureinnorthgeorgia.com/logo.png",
+  "image": "https://acupunctureinnorthgeorgia.com/logo.svg",
   "description": "Deanna Stennett - Licensed Acupuncturist with 30+ years of experience providing Traditional Chinese Medicine, Five-Element Acupuncture, NAET allergy treatment, and Facial Rejuvenation in Ellijay and Blairsville, Georgia.",
   "url": "https://acupunctureinnorthgeorgia.com",
   "telephone": "+17065551234",
@@ -112,9 +112,12 @@ const schemaJson = JSON.stringify(schema);
     <!-- Canonical URL -->
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     
-    <!-- Favicon -->
+    <!-- Favicons - Multiple sizes for different devices -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/logo192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/logo16.png" />
     
     <!-- Schema Markup (JSON-LD) -->
     <script 
@@ -276,9 +279,38 @@ a:hover {
   align-items: center;
 }
 
-.logo {
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 50px;
+  width: auto;
+  transition: opacity var(--transition-fast);
+}
+
+.logo-link:hover .logo-img {
+  opacity: 0.85;
+}
+
+/* Logo sizing */
+.logo-lg-nav {
+  height: 60px;
+  width: auto;
+}
+
+@media (max-width: 768px) {
+  .logo-lg-nav {
+    height: 45px;
+  }
+}
+
+.logo-text {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--color-primary);
 }
@@ -533,6 +565,11 @@ a:hover {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  /* Mobile logo sizing */
+  .logo-lg-nav {
+    height: 45px;
+  }
+  
   .nav-links {
     display: none;
     position: absolute;
@@ -606,6 +643,31 @@ textarea:focus-visible {
     </style>
   </head>
   <body style="margin: 0; padding: 0;">
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container nav-container">
+        <a href="/" class="logo-link">
+          <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" class="logo-img logo-lg-nav" />
+          <span class="logo-text">Acupuncture in North Georgia</span>
+        </a>
+        
+        <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About Deanna</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/testimonials">Testimonials</a></li>
+          <li><a href="#contact" style="color: var(--color-primary); font-weight: 600;">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    
     <slot />
   </body>
 </html>

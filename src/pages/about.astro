@@ -53,11 +53,21 @@ const personal = `Deanna loves animals, nature, and art, believing that we are p
   keywords={pageData.keywords}
   canonicalUrl={pageData.canonicalUrl}
 >
-  <!-- Hero Section -->
+  <!-- Hero Section with Headshot -->
   <section class="hero">
-    <div class="container hero-content">
-      <h1>About Deanna Stennett</h1>
-      <p style="font-size: 1.25rem; opacity: 0.95;">Georgia Licensed Acupuncturist | 30+ Years of Experience | Author & Educator</p>
+    <div class="container hero-content" style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-xl); flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 300px; max-width: 500px; display: flex; flex-direction: column; align-items: center; gap: var(--spacing-lg);">
+        <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" style="max-width: 300px; width: 100%; height: auto;" />
+        <img 
+          src="/AA-headshot-dee.jpg" 
+          alt="Deanna Stennett - Licensed Acupuncturist in North Georgia" 
+          style="width: 100%; height: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow-md);"
+        />
+      </div>
+      <div style="flex: 2; min-width: 300px;">
+        <h1>About Deanna Stennett</h1>
+        <p style="font-size: 1.25rem; opacity: 0.95;">Georgia Licensed Acupuncturist | 30+ Years of Experience | Author & Educator</p>
+      </div>
     </div>
   </section>
 
@@ -175,7 +185,52 @@ const personal = `Deanna loves animals, nature, and art, believing that we are p
       <!-- Call-to-action -->
       <div style="text-align: center; margin-top: var(--spacing-xl);">
         <p style="font-size: 1.25rem;">Ready to start your healing journey?</p>
-        <a href="/#contact" class="btn btn-primary" style="margin-top: var(--spacing-sm);">Request an Appointment</a>
+        <a href="#contact" class="btn btn-primary" style="margin-top: var(--spacing-sm);">Request an Appointment</a>
+      </div>
+
+      <!-- Logo at bottom -->
+      <div style="text-align: center; margin-top: var(--spacing-xl);">
+        <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" style="max-width: 300px; width: 100%; height: auto;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section section-gray">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Ready to Begin Your Healing Journey?</h2>
+      
+      <div style="max-width: 600px; margin: 0 auto;">
+        <form class="contact-form" action="/api/contact" method="POST">
+          <div class="form-group">
+            <label for="name" class="form-label">Full Name *</label>
+            <input type="text" id="name" name="name" class="form-input" required placeholder="Your full name"/>
+          </div>
+
+          <div class="form-group">
+            <label for="phone" class="form-label">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" class="form-input" required placeholder="(706) 555-1234"/>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Email Address *</label>
+            <input type="email" id="email" name="email" class="form-input" required placeholder="your@email.com"/>
+          </div>
+
+          <div class="form-group">
+            <label for="service" class="form-label">Interested Service *</label>
+            <select id="service" name="service" class="form-select" required>
+              <option value="">Select a service...</option>
+              <option value="new-patient-acupuncture">New Patient - Acupuncture</option>
+              <option value="follow-up-acupuncture">Follow-up - Acupuncture</option>
+              <option value="naet-treatment">NAET Allergy Treatment</option>
+              <option value="facial-rejuvenation">Facial Rejuvenation</option>
+              <option value="general-inquiry">General Inquiry</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Request Appointment</button>
+        </form>
       </div>
     </div>
   </section>

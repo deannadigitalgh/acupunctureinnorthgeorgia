@@ -262,5 +262,93 @@ If you run into any issues:
 
 ---
 
+## ⚠️ Known Console Warnings (Third-Party Library Issues)
+
+The Cal.com embed generates console warnings in Chrome. These are **known issues with Cal.com's library**, not our implementation:
+
+### Warning 1: `markdownToSafeHTML` Client-Side Import
+
+**What It Is:**
+```
+markdownToSafeHTML.ts:8 `markdownToSafeHTML` should not be imported on the client side.
+```
+
+**Root Cause:** Cal.com incorrectly imports a server-side utility function that should only be used during build time.
+
+**Impact:** None - This is purely a console warning. The markdown rendering functionality works correctly.
+
+### Warning 2: Zustand Deprecation Notice
+
+**What It Is:**
+```
+[DEPRECATED] Use `createWithEqualityFn` instead of `create` or use `useStoreWithEqualityFn` instead of `useStore`. They can be imported from 'zustand/traditional'.
+```
+
+**Root Cause:** Cal.com's embed script uses an older version of the zustand state management library.
+
+**Impact:** None - This is a deprecation warning, not an error. The booking calendar functions correctly.
+
+### Warning 3: aria-hidden Focus Issue (Accessibility)
+
+**What It Is:**
+```
+Blocked aria-hidden on an element because its descendant retained focus.
+The focus must not be hidden from assistive technology users.
+```
+
+**Root Cause:** Cal.com's modal dialog sets `aria-hidden="true"` on a parent element while a child element still has keyboard focus.
+
+**Impact:** Minor - Screen reader users may experience confusion during the booking flow, but appointments can still be booked.
+
+### Why We Keep These Warnings Visible
+
+We intentionally don't suppress these console warnings because:
+
+1. **Debugging Value**: If Cal.com releases a breaking change, we need to know immediately
+2. **Transparency**: Developers reviewing the code should see these warnings and understand they're third-party issues
+3. **Best Practice**: Silencing all warnings makes it harder to catch real problems in our own code
+
+### Resolution Status
+
+| Warning | Source | Impact | Fix Plan |
+|---------|--------|--------|----------|
+| `markdownToSafeHTML` | Cal.com bug | None (warning only) | Monitor Cal.com releases |
+| Zustand deprecation | Older zustand API | None (warning only) | Monitor Cal.com releases |
+| aria-hidden focus | Accessibility issue | Minor (screen readers) | Keep inline embed for SEO benefits |
+
+### Monitoring Plan
+
+✅ **What We've Done:**
+- Documented these warnings clearly in this guide
+- Verified functionality is not impacted
+- Confirmed these are Cal.com library issues, not our implementation bugs
+
+📋 **Ongoing Tasks:**
+1. Monitor Cal.com releases at https://github.com/calcom/cal.com/releases for fixes to:
+   - `markdownToSafeHTML` client-side import issue
+   - Zustand deprecation updates
+   - Accessibility improvements (aria-hidden handling)
+
+2. File GitHub issues if these persist after Cal.com releases updates:
+   - https://github.com/calcom/cal.com/issues
+
+3. Evaluate alternatives only if warnings become critical for accessibility compliance:
+   - Calendly (different pricing model)
+   - Square Appointments (free tier available)
+   - Setmore (free tier with good accessibility)
+
+### Testing Checklist After Cal.com Updates
+
+After any Cal.com updates, verify:
+
+- [ ] Calendar loads correctly on homepage
+- [ ] Booking flow completes successfully
+- [ ] Email confirmations are sent
+- [ ] Google Calendar sync works (if configured)
+- [ ] Mobile display is functional
+- [ ] No new console errors appear
+
+---
+
 **Last Updated:** February 2026  
-**Version:** 1.0
+**Version:** 1.1 (Added warnings documentation)

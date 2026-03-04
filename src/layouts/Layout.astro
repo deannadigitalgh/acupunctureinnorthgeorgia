@@ -115,6 +115,9 @@ const schemaJson = JSON.stringify(schema);
     <!-- Favicons - Multiple sizes for different devices -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     
+    <!-- Cal.com Embed Script - Load once globally -->
+    <script src="https://app.cal.com/embed/embed.js" defer></script>
+    
     <!-- Schema Markup (JSON-LD) -->
     <script 
       id="schema-json"
@@ -122,32 +125,9 @@ const schemaJson = JSON.stringify(schema);
       set:html={schemaJson}
     ></script>
     
-    <!-- Cal.com Embed Script - Loads on all pages for booking functionality -->
-    <script src="https://assets.cal.com/embed.js" defer></script>
-    
     <!-- Global Styles -->
     <style is:global>
 /* Global Styles - Acupuncture in North Georgia */
-
-/* Cal.com Embed Styles - Ensure proper z-index and positioning */
-.cal-embed-popup {
-  z-index: 9999 !important;
-}
-
-/* Cal.com Inline Embed Container */
-.cal-embed-container {
-  min-height: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-/* Responsive adjustments for cal.com embed */
-@media (max-width: 768px) {
-  .cal-embed-container {
-    min-height: 400px;
-  }
-}
 /* Mobile-First, Performance Optimized */
 
 :root {

@@ -233,7 +233,7 @@ The following assets have been integrated into the website:
 
 This placement strategy ensures AA's professional branding is present on every page while using the headshot strategically to build personal trust where it matters most.
 
-> **Note**: Additional logo variants (`logo-med.svg`, `logo-tiny.svg`, PNG icons) are available in `/public/` but not currently used. This keeps the site focused on content and faster loading.
+> **Note**: Additional logo variants (`logo-med.svg`, `icon.svg`, PNG icons) are available in `/public/` but not currently used. This keeps the site focused on content and faster loading.
 
 ### How AA Can Update Images (Non-Technical Workflow)
 
@@ -298,21 +298,23 @@ The following critical fixes have been implemented based on the SEO evaluation:
 
 ### 📅 NEW: Cal.com Online Booking Integration (February 2026)
 
-1. ✅ **Cal.com Embed Script Added** - Loaded on all pages via `Layout.astro`
-2. ✅ **Inline Calendar Widget** - Month view embedded in homepage contact section
-3. ✅ **Dual Booking Options** - Online self-service calendar + traditional phone form
-4. ✅ **Configuration Centralized** - Cal.com settings in `src/config/contact.ts`
-5. ✅ **Responsive Styling** - Mobile-optimized embed container with proper z-index
+1. ✅ **Cal.com Inline Embed Implemented** - Month view calendar embedded in homepage contact section using `set:html` directive for script execution
+2. ✅ **Dual Booking Options** - Online self-service calendar + traditional phone form
+3. ✅ **Configuration Centralized** - Cal.com settings in `src/config/contact.ts` (update `calLink`, `containerId`, and `layout`)
+4. ✅ **Responsive Styling** - Mobile-optimized embed container with proper z-index and scroll handling
+5. ✅ **SEO-Friendly** - Inline embed allows Google to index calendar content (vs. hidden floating button)
 
 ### ⚠️ REMAINING CRITICAL ACTIONS (You Must Complete)
 
 1. **[ ] Set up Cal.com Account & Configure Event Types** (Recommended but optional)
-   ```bash
-   # Go to https://cal.com and create account
-   # Create event types: "New Patient Acupuncture", "Follow-up Appointment"
-   # Update src/config/contact.ts with your cal.com username/event URL
-   # Example: baseUrl: 'deanna-stennett/new-patient-acupuncture'
-   ```
+   - See [`CAL_COM_SETUP_GUIDE.md`](CAL_COM_SETUP_GUIDE.md) for detailed step-by-step instructions
+   - Quick steps:
+     ```bash
+     # Go to https://cal.com and create account
+     # Create event types: "New Patient Acupuncture", "Follow-up Appointment"
+     # Update src/config/contact.ts with your cal.com username/event URL
+     # Example: calLink: 'deanna-stennett/new-patient-acupuncture'
+     ```
 
 2. **[ ] Set up Formspree Account & Get Form ID**
    ```bash
@@ -370,6 +372,20 @@ See [`SEO_EVALUATION_AA_WEBSITE_PROJECT.md`](SEO_EVALUATION_AA_WEBSITE_PROJECT.m
 ### What is Cal.com?
 Cal.com is a free, open-source scheduling platform that allows clients to book appointments directly from your website. It integrates with Google Calendar, iCal, and other calendar services.
 
+### Why Inline Embed (Not Floating Button)?
+
+Based on SEO evaluations and user performance research:
+
+| Feature | **Inline Embed** ✅ | Floating Button ❌ |
+|---------|---------------------|-------------------|
+| **SEO Indexing** | Google can index calendar content | Hidden from crawlers |
+| **Conversion Rate** | Higher (visible immediately) | Lower (requires click) |
+| **Mobile UX** | Better (native scroll) | Can be tricky on small screens |
+| **Professional Look** | More trustworthy for healthcare | Looks like ad/pop-up |
+| **Accessibility** | Screen readers can access | May require extra steps |
+
+**Recommendation**: Inline embed is the best choice for medical/healthcare practices where trust and SEO matter.
+
 ### How It Works on This Site
 
 1. **Inline Embed** - A month-view calendar appears in the homepage contact section
@@ -383,13 +399,56 @@ Edit `src/config/contact.ts` to update the Cal.com profile:
 
 ```typescript
 export const CAL_COM = {
-  baseUrl: 'deanna-stennett', // Replace with your actual cal.com username or event type URL
+  calLink: 'deannastennett/newacuellijay', // Your event type slug from Cal.com
+  containerId: 'my-cal-inline-newacuellijay', // Unique ID for this embed
+  layout: 'month_view' as const, // Options: month_view, week_view, day_view
 } as const;
 ```
 
-**Example URLs:**
-- Profile page: `https://cal.com/deanna-stennett`
-- Specific event type: `https://cal.com/deanna-stennett/new-patient-acupuncture`
+**How to Get Your Embed Code:**
+
+1. **Log into Cal.com Dashboard**: https://app.cal.com
+2. **Go to Event Types**: Click on your event type (e.g., "New Acupuncture Appointment")
+3. **Click "Share" or "Embed"** in the top right
+4. **Choose "Inline Embed"** option
+5. **Copy the HTML code** and update `src/config/contact.ts` with:
+   - Your `calLink` (the event type slug)
+   - Your `containerId` (the div ID from the embed code)
+
+**Example Event Type URLs:**
+- Profile page: `https://cal.com/deannastennett`
+- Specific event type: `https://cal.com/deannastennett/newacuellijay`
+
+### Technical Implementation Notes
+
+This site uses Astro's `set:html` directive to render the Cal.com embed code. This is critical because:
+
+1. **Script Execution**: The Cal.com embed requires JavaScript to run. Using `{config.getCalEmbedHtml()}` with `set:html` ensures the script executes properly instead of being escaped as text.
+2. **Security**: Astro's `set:html` is safe here because we control the template string in `contact.ts`.
+3. **Performance**: The Cal.com embed script loads asynchronously, so it doesn't block page rendering.
+
+**Alternative Approaches Considered:**
+- ❌ **React Component**: Would require installing React runtime (adds ~15KB bundle)
+- ❌ **Iframe Embed**: Less flexible styling, potential cross-origin issues
+- ✅ **Inline Script with `set:html`**: Zero dependencies, full control, best performance
+
+### Testing Your Integration
+
+After updating `calLink` in `src/config/contact.ts`:
+
+1. **Local Test**: Run `npm run dev` and navigate to homepage
+2. **Verify Calendar Loads**: You should see a month-view calendar in the contact section
+3. **Test Booking Flow**: Click on an available date → select time → complete booking form
+4. **Check Email Confirmation**: Both you and the client should receive confirmation emails
+
+### Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| Calendar doesn't load | Check browser console for errors; verify `calLink` matches your Cal.com event type slug exactly |
+| Script not executing | Ensure you're using `set:html={config.getCalEmbedHtml()}` in the Astro template, not `{config.getCalEmbedScript()}` |
+| Wrong layout showing | Update `layout` property in `CAL_COM` config (`month_view`, `week_view`, or `day_view`) |
+| Mobile display issues | The embed is responsive by default; check that container has sufficient width (min 300px recommended) |
 
 ### Benefits for AA
 
@@ -398,14 +457,47 @@ export const CAL_COM = {
 ✅ **Calendar Sync** - Automatic conflict prevention  
 ✅ **Email Notifications** - Automated reminders to both parties  
 ✅ **Free Tier** - No cost for basic scheduling features  
+✅ **SEO Boost** - Google can index calendar content (vs. hidden floating button)  
 
 ### Migration Path
 
-1. Create Cal.com account at https://cal.com
-2. Connect Google Calendar (if using Apple Calendar, use iCal sync)
-3. Create event types matching services (New Patient: 90min, Follow-up: 60min)
-4. Update `baseUrl` in `src/config/contact.ts` with your cal.com username
-5. Commit and push - changes deploy automatically!
+1. **Create Cal.com Account**: https://cal.com (free tier available)
+2. **Connect Your Calendar**: 
+   - Google Calendar: Direct integration
+   - Apple Calendar: Use iCal sync URL
+3. **Create Event Types** in Cal.com dashboard:
+   - "New Acupuncture Appointment" (90 minutes)
+   - "Follow-up Appointment" (60 minutes)
+   - "NAET Allergy Treatment" (as needed)
+4. **Get Embed Code**: For each event type, click Share → Inline Embed
+5. **Update Configuration** in `src/config/contact.ts`:
+   ```typescript
+   calLink: 'deannastennett/newacuellijay', // Your event type slug
+   containerId: 'my-cal-inline-newacuellijay', // Unique ID per embed
+   layout: 'month_view' as const,
+   ```
+6. **Commit and Push** - Changes deploy automatically to Cloudflare Pages!
+
+### Adding Multiple Event Types
+
+If you want different calendars for different services (e.g., acupuncture vs shamanism):
+
+1. Create separate event types in Cal.com dashboard
+2. Get embed code for each one
+3. Update `containerId` to be unique per embed:
+   ```typescript
+   // For acupuncture site
+   containerId: 'my-cal-inline-acu',
+   
+   // For shamanism site (separate repo)
+   containerId: 'my-cal-inline-shaman',
+   ```
+
+4. Update the `calLink` to point to different event types:
+   ```typescript
+   calLink: 'deannastennett/new-patient-acupuncture'  // Acupuncture
+   calLink: 'deannastennett/shamanic-healing-session' // Shamanism
+   ```
 
 ---
 

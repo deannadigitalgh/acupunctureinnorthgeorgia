@@ -105,10 +105,41 @@ export const SERVICES = [
 // ==================== BOOKING / SCHEDULING ====================
 
 export const CAL_COM = {
-  // Replace with AA's actual cal.com profile URL or event type
-  // Example: 'https://cal.com/deanna-stennett' or 'https://cal.com/deanna-stennett/30min'
-  baseUrl: 'deanna-stennett', // Just the username/event slug (used in embed)
+  // Your Cal.com profile URL (without https://cal.com/)
+  calLink: 'deannastennett/newacuellijay', // Profile/event type slug
+  
+  // For inline embed - the div ID that will contain the calendar
+  containerId: 'my-cal-inline-newacuellijay',
+  
+  // Layout options
+  layout: 'month_view' as const,
 } as const;
+
+/**
+ * Get Cal.com embed script tag only (for non-Astro contexts)
+ */
+export function getCalEmbedScript(): string {
+  return `
+    <div style="width:100%;height:600px;overflow:auto;border-radius:8px;background:#fff;" id="${CAL_COM.containerId}"></div>
+    <script src="https://app.cal.com/embed/embed.js" defer></script>
+    <script>
+      window.Cal = window.Cal || function() { 
+        const cal = window.Cal; 
+        if (!cal.loaded) { 
+          cal.ns = {}; 
+          cal.q = cal.q || []; 
+          cal.loaded = true; 
+        } 
+      };
+      Cal("init", "${CAL_COM.containerId}", {origin: "https://app.cal.com"});
+      Cal.ns.${CAL_COM.containerId}("inline", {
+        elementOrSelector: "#${CAL_COM.containerId}",
+        config: { layout: "${CAL_COM.layout}", useSlotsViewOnSmallScreen: "true" },
+        calLink: "${CAL_COM.calLink}"
+      });
+    </script>
+  `.trim();
+}
 
 // ==================== SOCIAL & CONTACT FORMS ====================
 

@@ -271,12 +271,37 @@ const cta = {
         <div class="cal-embed-container" style="background-color: var(--color-surface); padding: var(--spacing-lg); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
           <h3 style="text-align: center; margin-bottom: var(--spacing-md);">Book Your Appointment Online</h3>
           
-          <!-- Cal.com Inline Embed -->
-          <div 
-            class="cal-embed" 
-            data-cal-src={config.CAL_COM.baseUrl} 
-            data-cal-config='{ "layout": "month_view" }'>
-          </div>
+          <!-- Cal.com Inline Embed Container -->
+          <div id={config.CAL_COM.containerId} style="width:100%;height:600px;overflow:auto;border-radius:8px;background:#fff;"></div>
+          
+          <!-- Initialize Cal.com after embed.js loads -->
+          <script>{`
+            (function() {
+              console.log('Cal.com init script running...');
+              
+              // Wait for Cal.com to be ready
+              function initCal() {
+                if (typeof Cal === 'undefined') {
+                  console.log('Cal.com not loaded yet, retrying in 100ms...');
+                  setTimeout(initCal, 100);
+                  return;
+                }
+                
+                console.log('Cal.com is ready, initializing...');
+                Cal("init", "${config.CAL_COM.containerId}", {origin:"https://app.cal.com"});
+                Cal.ns.${config.CAL_COM.containerId}("inline", {
+                  elementOrSelector:"#${config.CAL_COM.containerId}",
+                  config: {"layout":"${config.CAL_COM.layout}","useSlotsViewOnSmallScreen":"true"},
+                  calLink: "${config.CAL_COM.calLink}"
+                });
+                Cal.ns.${config.CAL_COM.containerId}("ui", {"hideEventTypeDetails":false,"layout":"${config.CAL_COM.layout}"});
+                console.log('Cal.com initialized successfully!');
+              }
+              
+              // Try immediately, then poll if needed
+              initCal();
+            })();
+          `}</script>
           
           <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: var(--spacing-md); text-align: center;">
             Select a time that works for you, or fill out the form below and we'll call you within minutes!

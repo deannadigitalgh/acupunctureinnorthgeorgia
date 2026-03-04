@@ -102,6 +102,14 @@ export const SERVICES = [
   },
 ] as const;
 
+// ==================== BOOKING / SCHEDULING ====================
+
+export const CAL_COM = {
+  // Replace with AA's actual cal.com profile URL or event type
+  // Example: 'https://cal.com/deanna-stennett' or 'https://cal.com/deanna-stennett/30min'
+  baseUrl: 'deanna-stennett', // Just the username/event slug (used in embed)
+} as const;
+
 // ==================== SOCIAL & CONTACT FORMS ====================
 
 export const EMAIL = {

@@ -267,9 +267,25 @@ const cta = {
           </div>
         </div>
 
-        <!-- Contact Form -->
+        <!-- Cal.com Booking Widget - Inline Embed -->
+        <div class="cal-embed-container" style="background-color: var(--color-surface); padding: var(--spacing-lg); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+          <h3 style="text-align: center; margin-bottom: var(--spacing-md);">Book Your Appointment Online</h3>
+          
+          <!-- Cal.com Inline Embed -->
+          <div 
+            class="cal-embed" 
+            data-cal-src={config.CAL_COM.baseUrl} 
+            data-cal-config='{ "layout": "month_view" }'>
+          </div>
+          
+          <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: var(--spacing-md); text-align: center;">
+            Select a time that works for you, or fill out the form below and we'll call you within minutes!
+          </p>
+        </div>
+
+        <!-- Alternative Contact Form (for users who prefer to be called) -->
         <form class="contact-form" action="/api/contact" method="POST">
-          <h3 style="text-align: center; margin-bottom: var(--spacing-md);">Request an Appointment</h3>
+          <h3 style="text-align: center; margin-bottom: var(--spacing-md);">Prefer a Phone Call?</h3>
           
           <div class="form-group">
             <label for="name" class="form-label">Full Name *</label>

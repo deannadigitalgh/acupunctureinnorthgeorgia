@@ -40,6 +40,7 @@
 | **Version Control** | GitHub | Free |
 | **Content Management** | GitHub Copilot (free tier) | $0-10/mo |
 | **Forms** | Custom API route + email integration | Free |
+| **Online Booking** | Cal.com (self-service scheduling) | Free tier available |
 
 **Total Monthly Cost: $0** (vs. Wix's $27-49/month)
 
@@ -295,9 +296,25 @@ The following critical fixes have been implemented based on the SEO evaluation:
 7. ✅ **Test Files Cleaned Up** - All debug test files removed from `src/pages/`
 8. ✅ **Privacy Policy Links Added** - All contact forms now link to privacy policy
 
+### 📅 NEW: Cal.com Online Booking Integration (February 2026)
+
+1. ✅ **Cal.com Embed Script Added** - Loaded on all pages via `Layout.astro`
+2. ✅ **Inline Calendar Widget** - Month view embedded in homepage contact section
+3. ✅ **Dual Booking Options** - Online self-service calendar + traditional phone form
+4. ✅ **Configuration Centralized** - Cal.com settings in `src/config/contact.ts`
+5. ✅ **Responsive Styling** - Mobile-optimized embed container with proper z-index
+
 ### ⚠️ REMAINING CRITICAL ACTIONS (You Must Complete)
 
-1. **[ ] Set up Formspree Account & Get Form ID**
+1. **[ ] Set up Cal.com Account & Configure Event Types** (Recommended but optional)
+   ```bash
+   # Go to https://cal.com and create account
+   # Create event types: "New Patient Acupuncture", "Follow-up Appointment"
+   # Update src/config/contact.ts with your cal.com username/event URL
+   # Example: baseUrl: 'deanna-stennett/new-patient-acupuncture'
+   ```
+
+2. **[ ] Set up Formspree Account & Get Form ID**
    ```bash
    # Go to https://formspree.io/ and create account
    # Create new form for AA's email address
@@ -305,7 +322,7 @@ The following critical fixes have been implemented based on the SEO evaluation:
    # FORMSPREE_FORM_ID=your_actual_form_id_here
    ```
 
-2. **[ ] Claim & Optimize Google Business Profile** (Required for #1 rankings)
+3. **[ ] Claim & Optimize Google Business Profile** (Required for #1 rankings)
    - Go to https://business.google.com/
    - Verify both Ellijay and Blairsville locations
    - Upload 20+ professional photos
@@ -345,6 +362,50 @@ See [`SEO_EVALUATION_AA_WEBSITE_PROJECT.md`](SEO_EVALUATION_AA_WEBSITE_PROJECT.m
 | Wix (current) | $27-49 | $324-588 |
 | WordPress self-hosted | $10-20 | $120-240 + maintenance time |
 | **This solution** | **$0** | **$324-588/year** |
+
+---
+
+## 📅 Cal.com Integration Details
+
+### What is Cal.com?
+Cal.com is a free, open-source scheduling platform that allows clients to book appointments directly from your website. It integrates with Google Calendar, iCal, and other calendar services.
+
+### How It Works on This Site
+
+1. **Inline Embed** - A month-view calendar appears in the homepage contact section
+2. **Self-Service Booking** - Clients can select available times instantly
+3. **Calendar Sync** - Events automatically sync with AA's Google Calendar (if configured)
+4. **Fallback Form** - Traditional email form remains for clients who prefer phone calls
+
+### Configuration
+
+Edit `src/config/contact.ts` to update the Cal.com profile:
+
+```typescript
+export const CAL_COM = {
+  baseUrl: 'deanna-stennett', // Replace with your actual cal.com username or event type URL
+} as const;
+```
+
+**Example URLs:**
+- Profile page: `https://cal.com/deanna-stennett`
+- Specific event type: `https://cal.com/deanna-stennett/new-patient-acupuncture`
+
+### Benefits for AA
+
+✅ **24/7 Booking** - Clients can book outside office hours  
+✅ **No Back-and-Forth** - Eliminates phone tag and scheduling delays  
+✅ **Calendar Sync** - Automatic conflict prevention  
+✅ **Email Notifications** - Automated reminders to both parties  
+✅ **Free Tier** - No cost for basic scheduling features  
+
+### Migration Path
+
+1. Create Cal.com account at https://cal.com
+2. Connect Google Calendar (if using Apple Calendar, use iCal sync)
+3. Create event types matching services (New Patient: 90min, Follow-up: 60min)
+4. Update `baseUrl` in `src/config/contact.ts` with your cal.com username
+5. Commit and push - changes deploy automatically!
 
 ---
 

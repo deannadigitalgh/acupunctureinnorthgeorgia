@@ -288,7 +288,7 @@ The following critical fixes have been implemented based on the SEO evaluation:
 
 1. ✅ **Sitemap Plugin Added** - Astro sitemap plugin configured in `astro.config.mjs`
 2. ✅ **robots.txt Created** - Located at `/public/robots.txt` with sitemap reference
-3. ✅ **Schema Markup Updated** - Real phone number (+17066359999) and GPS coordinates (Ellijay: 34.8657, -84.8290)
+3. ✅ **Schema Markup Updated** - Real phone number (+14109619033) and GPS coordinates (Ellijay: 34.8657, -84.8290)
 4. ✅ **Formspree Integration Ready** - Contact form API route configured for email delivery (requires Form ID setup)
 5. ✅ **Privacy Policy Page Created** - `/privacy-policy` page with HIPAA-compliant language
 6. ✅ **Favicon References Fixed** - Removed non-existent fallback files from Layout.astro

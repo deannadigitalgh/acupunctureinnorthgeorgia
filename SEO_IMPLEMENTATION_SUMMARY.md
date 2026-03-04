@@ -60,7 +60,7 @@ Crawl-delay: 1
 **File Modified:** `src/layouts/Layout.astro`
 
 **Changes Made:**
-- Updated phone number from placeholder `+17065551234` → **`+17066359999`**
+- Updated phone number from placeholder `+17065551234` → **`+14109619033`**
 - Updated GPS coordinates to Ellijay office: **`34.8657, -84.8290`**
 - Maintained all other schema fields (service areas, hours, founder info)
 

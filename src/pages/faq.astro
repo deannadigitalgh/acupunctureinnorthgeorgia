@@ -1,9 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import * as config from '../config/contact.ts';
 
 const pageData = {
-  title: 'Acupuncture FAQ - Your Questions Answered | North Georgia',
-  description: 'Frequently asked questions about acupuncture treatment in Ellijay and Blairsville, GA. Learn what to expect, needle safety, preparation tips, and treatment frequency from Deanna Stennett.',
+  title: `Acupuncture FAQ - Your Questions Answered | ${config.PRACTICE.name}`,
+  description: `Frequently asked questions about acupuncture treatment in Ellijay and Blairsville, GA. Learn what to expect, needle safety, preparation tips, and treatment frequency from ${config.PRACTICE.founderName}.`,
   keywords: [
     'acupuncture FAQ',
     'what is acupuncture',
@@ -12,7 +13,7 @@ const pageData = {
     'acupuncture side effects',
     'how often acupuncture treatments'
   ],
-  canonicalUrl: 'https://acupunctureinnorthgeorgia.com/faq'
+  canonicalUrl: `${config.DOMAIN}/faq`
 };
 
 // Complete FAQ data
@@ -124,7 +125,7 @@ const faqs = [
     questions: [
       {
         question: "How much does acupuncture cost?",
-        answer: `First visit (90 minutes): $130. Follow-up treatments (60 minutes): $90. We accept cash, check, and most major credit cards.`
+        answer: `First visit (${config.PRICING.firstVisit.duration}): ${config.PRICING.firstVisit.price}. Follow-up treatments (${config.PRICING.followUp.duration}): ${config.PRICING.followUp.price}. We accept cash, check, and most major credit cards.`
       },
       {
         question: "Do you accept insurance?",
@@ -163,8 +164,8 @@ const cta = {
       <p style="margin-top: var(--spacing-md); max-width: 700px; margin-left: auto; margin-right: auto;">If you've never visited a professional Acupuncturist before, you're bound to have lots of questions or concerns. Below, you'll find a list of several frequently asked questions from my patients.</p>
       
       <div style="margin-top: var(--spacing-lg);">
-        <a href="#contact" class="btn btn-primary" style="background-color: white; color: var(--color-primary); margin-right: var(--spacing-sm);">{cta.primaryText}</a>
-        <a href="tel:+17065551234" class="btn btn-secondary" style="border-color: white; color: white;">{cta.secondaryText}</a>
+        <a href="#contact" class="btn btn-primary" style="background-color: white; color: var(--color-primary); margin-right: var(--spacing-sm);">{config.PRICING.firstVisit.price} First Visit</a>
+        <a href={config.getPhoneLink()} class="btn btn-secondary" style="border-color: white; color: white;">{config.PHONE.formatted}</a>
       </div>
     </div>
   </section>

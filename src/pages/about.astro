@@ -1,9 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import * as config from '../config/contact.ts';
 
 const pageData = {
-  title: 'About Deanna Stennett | Licensed Acupuncturist North Georgia',
-  description: 'Meet Deanna Stennett - Georgia licensed acupuncturist with 30+ years of experience. NCCAOM certified, former MUIH clinical supervisor & adjunct professor. Author of "Poetry of the Body". Serving Ellijay, Blairsville & Northern Georgia.',
+  title: `About ${config.PRACTICE.founderName} | Licensed Acupuncturist North Georgia`,
+  description: `Meet ${config.PRACTICE.founderName} - Georgia licensed acupuncturist with 30+ years of experience. NCCAOM certified, former MUIH clinical supervisor & adjunct professor. Author of "Poetry of the Body". Serving Ellijay, Blairsville & Northern Georgia.`,
   keywords: [
     'about Deanna Stennett',
     'acupuncturist North Georgia',
@@ -13,7 +14,7 @@ const pageData = {
     'acupuncture professor',
     'Deanna Stennett author'
   ],
-  canonicalUrl: 'https://acupunctureinnorthgeorgia.com/about'
+  canonicalUrl: `${config.DOMAIN}/about`
 };
 
 // Credentials list
@@ -159,12 +160,11 @@ const personal = `Deanna loves animals, nature, and art, believing that we are p
         <article class="card">
           <h3>Ellijay Office</h3>
           <address style="font-style: normal; margin-top: var(--spacing-sm);">
-            11 Kiker Street<br/>
-            Ellijay, GA 30540
+            {config.OFFICES.ellijay.fullAddress}
           </address>
           
           <div style="margin-top: var(--spacing-md);">
-            <a href="tel:+14109619033" class="btn btn-primary" style="width: 100%;">Call to Schedule</a>
+            <a href={config.getPhoneLink(config.OFFICES.ellijay.phone)} class="btn btn-primary" style="width: 100%;">Call to Schedule</a>
           </div>
         </article>
 
@@ -172,12 +172,11 @@ const personal = `Deanna loves animals, nature, and art, believing that we are p
         <article class="card">
           <h3>Blairsville Office</h3>
           <address style="font-style: normal; margin-top: var(--spacing-sm);">
-            563 Gainesville Hwy<br/>
-            Blairsville, GA 30512
+            {config.OFFICES.blairsville.fullAddress}
           </address>
           
           <div style="margin-top: var(--spacing-md);">
-            <a href="tel:+14109619033" class="btn btn-primary" style="width: 100%;">Call to Schedule</a>
+            <a href={config.getPhoneLink(config.OFFICES.blairsville.phone)} class="btn btn-primary" style="width: 100%;">Call to Schedule</a>
           </div>
         </article>
       </div>

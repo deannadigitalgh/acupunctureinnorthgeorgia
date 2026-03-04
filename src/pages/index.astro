@@ -1,9 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import * as config from '../config/contact.ts';
 
 const pageData = {
-  title: 'Acupuncture in North Georgia | Holistic Healing & Alternative Medicine',
-  description: 'Deanna Stennett - Licensed Acupuncturist with 30+ years of experience serving Ellijay, Blairsville, Blue Ridge & Northern Georgia. Specializing in Traditional Chinese Medicine, Five-Element Acupuncture, NAET allergy treatment, and Facial Rejuvenation.',
+  title: `${config.PRACTICE.name} | Holistic Healing & Alternative Medicine`,
+  description: `${config.PRACTICE.founderName} - Licensed Acupuncturist with 30+ years of experience serving Ellijay, Blairsville, Blue Ridge & Northern Georgia. Specializing in Traditional Chinese Medicine, Five-Element Acupuncture, NAET allergy treatment, and Facial Rejuvenation.`,
   keywords: [
     'acupuncture in Georgia',
     'alternative medicine in Georgia',
@@ -17,21 +18,10 @@ const pageData = {
     'NAET allergy treatment',
     'Facial Rejuvenation acupuncture'
   ],
-  canonicalUrl: 'https://acupunctureinnorthgeorgia.com'
+  canonicalUrl: config.DOMAIN
 };
 
-// Service area towns for SEO
-const serviceAreas = [
-  { name: 'Ellijay', distance: 'Primary Location' },
-  { name: 'Blairsville', distance: 'Primary Location' },
-  { name: 'Blue Ridge', distance: '15 minutes' },
-  { name: 'Dahlonega', distance: '30 minutes' },
-  { name: 'Jasper', distance: '25 minutes' },
-  { name: 'Helen', distance: '20 minutes' },
-  { name: 'Tallulah Falls', distance: '18 minutes' }
-];
-
-// Conditions treated for SEO content
+// Conditions treated for SEO content (kept local - page-specific data)
 const conditions = [
   { category: 'Bodily Pain', items: ['Sports injuries', 'Muscle pain', 'Back, neck and shoulder pain', 'Knee pain', 'Arthritis', 'Headaches and migraines'] },
   { category: 'Digestive Issues', items: ['IBS', 'Acid reflux', 'Chronic indigestion', 'Nausea'] },
@@ -39,7 +29,7 @@ const conditions = [
   { category: 'Respiratory', items: ['Sinusitis', 'Allergies', 'Asthma support'] }
 ];
 
-// Testimonials for homepage
+// Testimonials for homepage (kept local - page-specific data)
 const testimonials = [
   {
     text: "It absolutely didn't hurt a thing! It has been my miracle! Acupuncture has helped me not only with my Bell's Palsy but so many other things. I am forever grateful for Deanna and Acupuncture!",
@@ -58,13 +48,7 @@ const testimonials = [
   }
 ];
 
-// Pricing info
-const pricing = {
-  firstVisit: { duration: '90 minutes', price: '$130', description: 'Includes consultation, physical exam, and first treatment' },
-  followUp: { duration: '60 minutes', price: '$90', description: 'Follow-up acupuncture treatments' }
-};
-
-// FAQ data for homepage (abbreviated)
+// FAQ data for homepage (kept local - page-specific data)
 const faqs = [
   {
     question: "How should I prepare for my first treatment?",
@@ -80,32 +64,13 @@ const faqs = [
   }
 ];
 
-// Services for homepage cards
-const services = [
-  {
-    title: 'Acupuncture',
-    description: 'Traditional Chinese Medicine and Five-Element Acupuncture to restore balance and find your center. Specializing in pain relief, stress reduction, and holistic healing.',
-    icon: '🌿'
-  },
-  {
-    title: 'NAET Allergy Treatment',
-    description: 'Safe, holistic, non-invasive technique to help stop your body from reacting to allergies. Heal your body as a whole by balancing your energies.',
-    icon: '🍃'
-  },
-  {
-    title: 'Facial Rejuvenation',
-    description: 'Insertion of paper-thin needles through strategic points on the face to increase blood flow, boost collagen production, and remove dead skin cells.',
-    icon: '✨'
-  }
-];
+// About excerpt (kept local - page-specific data)
+const aboutExcerpt = `At ${config.PRACTICE.name}, ${config.PRACTICE.founderName} is committed to providing the highest quality of acupuncture services in the area. With over 30 years of experience, she has the knowledge and expertise to help you find the relief you're looking for. Her motto: "I treat people, not diseases."`;
 
-// About excerpt
-const aboutExcerpt = `At Acupuncture in North Georgia, Deanna is committed to providing the highest quality of acupuncture services in the area. With over 30 years of experience, she has the knowledge and expertise to help you find the relief you're looking for. Her motto: "I treat people, not diseases."`;
-
-// Call-to-action
+// Call-to-action (using centralized config)
 const cta = {
   primaryText: 'Book Your First Appointment',
-  secondaryText: 'Call Today: (706) 555-1234'
+  secondaryText: `Call Today: ${config.PHONE.formatted}`
 };
 ---
 
@@ -118,13 +83,13 @@ const cta = {
   <!-- Hero Section -->
   <section class="hero">
     <div class="container hero-content">
-      <h1>A Natural Approach to Healing</h1>
-      <p style="font-size: 1.5rem; margin-bottom: var(--spacing-lg);">Acupuncture in North Georgia | Ellijay & Blairsville, GA</p>
-      <p style="font-size: 1.25rem; opacity: 0.95;">Deanna Stennett - Licensed Acupuncturist with 30+ Years of Experience</p>
+      <h1>{config.PRACTICE.tagline}</h1>
+      <p style="font-size: 1.5rem; margin-bottom: var(--spacing-lg);">{config.PRACTICE.name} | Ellijay & Blairsville, GA</p>
+      <p style="font-size: 1.25rem; opacity: 0.95;">{config.PRACTICE.founderName} - Licensed Acupuncturist with 30+ Years of Experience</p>
       
       <div style="margin-top: var(--spacing-lg);">
         <a href="#contact" class="btn btn-primary" style="background-color: white; color: var(--color-primary); margin-right: var(--spacing-sm);">{cta.primaryText}</a>
-        <a href="tel:+17065551234" class="btn btn-secondary" style="border-color: white; color: white;">{cta.secondaryText}</a>
+        <a href={config.getPhoneLink()} class="btn btn-secondary" style="border-color: white; color: white;">{cta.secondaryText}</a>
       </div>
     </div>
   </section>
@@ -173,7 +138,7 @@ const cta = {
       <h2 style="text-align: center; margin-bottom: var(--spacing-xl);">Healing Services - Mind, Body & Soul</h2>
       
       <div class="card-grid">
-        {services.map(service => (
+        {config.SERVICES.map(service => (
           <article class="card">
             <div style="font-size: 3rem; margin-bottom: var(--spacing-sm);">{service.icon}</div>
             <h3>{service.title}</h3>
@@ -182,8 +147,8 @@ const cta = {
               <>
                 <p style="margin-top: var(--spacing-md);"><strong>Pricing:</strong></p>
                 <ul style="list-style-type: none; padding-left: 0;">
-                  <li style="padding: var(--spacing-xs) 0;"><strong>First Visit (90 min):</strong> {pricing.firstVisit.price}</li>
-                  <li style="padding: var(--spacing-xs) 0;"><strong>Follow-up (60 min):</strong> {pricing.followUp.price}</li>
+                  <li style="padding: var(--spacing-xs) 0;"><strong>First Visit ({config.PRICING.firstVisit.duration}):</strong> {config.PRICING.firstVisit.price}</li>
+                  <li style="padding: var(--spacing-xs) 0;"><strong>Follow-up ({config.PRICING.followUp.duration}):</strong> {config.PRICING.followUp.price}</li>
                 </ul>
               </>
             )}
@@ -218,7 +183,7 @@ const cta = {
       <p style="text-align: center; max-width: 600px; margin: 0 auto var(--spacing-lg);">Conveniently located in Ellijay and Blairsville, with patients traveling from throughout Northern Georgia.</p>
       
       <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-        {serviceAreas.map(area => (
+        {config.SERVICE_AREAS.map(area => (
           <article class="card" style="text-align: center;">
             <h4>{area.name}</h4>
             <p style="color: var(--color-text-secondary);">{area.distance}</p>
@@ -283,22 +248,22 @@ const cta = {
           
           <div style="margin-top: var(--spacing-md);">
             <h4>Ellijay Office</h4>
-            <p>11 Kiker Street<br/>Ellijay, GA 30540</p>
+            <p>{config.OFFICES.ellijay.fullAddress}</p>
           </div>
 
           <div style="margin-top: var(--spacing-md);">
             <h4>Blairsville Office</h4>
-            <p>563 Gainesville Hwy<br/>Blairsville, GA 30512</p>
+            <p>{config.OFFICES.blairsville.fullAddress}</p>
           </div>
 
           <div style="margin-top: var(--spacing-md);">
             <h4>Phone</h4>
-            <a href="tel:+17065551234" style="font-size: 1.25rem; font-weight: 600;">(410) 961-9033</a>
+            <a href={config.getPhoneLink()} style="font-size: 1.25rem; font-weight: 600;">{config.PHONE.formatted}</a>
           </div>
 
           <div style="margin-top: var(--spacing-md);">
             <h4>Hours</h4>
-            <p>Monday - Friday: 9:00 AM - 5:00 PM<br/>Saturday & Sunday: By Appointment</p>
+            <p>{config.HOURS.fullDescription}</p>
           </div>
         </div>
 
@@ -370,7 +335,7 @@ const cta = {
   <!-- Mobile Sticky CTA -->
   <div class="mobile-cta">
     <div class="container mobile-cta-buttons">
-      <a href="tel:+17065551234" class="btn btn-primary" style="flex: 1;">Call Now</a>
+      <a href={config.getPhoneLink()} class="btn btn-primary" style="flex: 1;">Call Now</a>
       <a href="#contact" class="btn btn-secondary" style="flex: 1; border-color: var(--color-primary); color: var(--color-primary);">Book Online</a>
     </div>
   </div>

@@ -352,6 +352,24 @@ See [`SEO_EVALUATION_AA_WEBSITE_PROJECT.md`](SEO_EVALUATION_AA_WEBSITE_PROJECT.m
 
 ### 🎓 Critical Astro Patterns (Learned Through Debugging)
 
+#### 0. Centralized Configuration Pattern ✅ NEW!
+
+**Always use `src/config/contact.ts` for site-wide constants:**
+
+```typescript
+// src/config/contact.ts - Single source of truth
+import * as config from '../config/contact.ts';
+
+// Usage in any page:
+<a href={config.getPhoneLink()}>{config.PHONE.formatted}</a>
+```
+
+**Benefits:**
+- ✅ One edit updates ALL pages
+- ✅ Eliminates data duplication (15+ instances → 1 source)
+- ✅ Prevents inconsistent phone numbers across pages
+- ✅ Easy for non-technical users to maintain
+
 #### 1. Layout Content Injection: `<slot />` Not `{Astro.children}`
 
 ❌ **WRONG** (React/Vue syntax - doesn't work in Astro):
@@ -506,6 +524,58 @@ A second static website is being built using the same Astro + Cloudflare Pages s
 **Offices:** 
 - Ellijay: 11 Kiker Street, Ellijay, GA 30540
 - Blairsville: 563 Gainesville Hwy, Blairsville, GA 30512
+
+---
+
+## 🔧 Centralized Configuration System
+
+### Overview
+All site-wide contact information, pricing, and business details are now centralized in a single configuration file: `src/config/contact.ts`. This eliminates data duplication across all pages and ensures consistency.
+
+### What's Centralized?
+
+| Category | Examples |
+|----------|----------|
+| **Practice Info** | Name, founder name, tagline |
+| **Contact Details** | Phone number (formatted + E.164), office addresses |
+| **Business Hours** | Weekday/weekend hours, full description |
+| **Service Areas** | All Northern Georgia towns with distances |
+| **Pricing** | First visit ($130/90min), follow-up ($90/60min) |
+| **Services** | Acupuncture, NAET, Facial Rejuvenation (basic info) |
+| **SEO Config** | Domain URL, primary keywords |
+
+### How to Update Contact Info
+
+**Non-technical users:** Simply edit `src/config/contact.ts`:
+
+```typescript
+export const PHONE = {
+  main: '+14109619033',           // Change this ONE value
+  formatted: '(410) 961-9033',    // Update display format too
+} as const;
+```
+
+**Result:** Phone number updates automatically across ALL 9 pages!
+
+### Benefits Achieved
+
+| Before | After |
+|--------|-------|
+| ❌ 15+ phone number instances scattered across pages | ✅ 1 source of truth |
+| ❌ Inconsistent numbers (410 vs 706 area codes) | ✅ Guaranteed consistency |
+| ❌ Risk of missing a page when updating | ✅ Automatic propagation |
+| ❌ Hard to maintain long-term | ✅ Easy for non-technical users |
+
+### Technical Implementation
+
+```typescript
+// src/config/contact.ts - Single source of truth
+export const PHONE = { main: '+14109619033', formatted: '(410) 961-9033' };
+
+// Any page imports and uses it
+import * as config from '../config/contact.ts';
+<a href={config.getPhoneLink()}>{config.PHONE.formatted}</a>
+```
 
 ---
 

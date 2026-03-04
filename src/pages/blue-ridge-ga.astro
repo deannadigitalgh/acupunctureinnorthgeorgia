@@ -1,9 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import * as config from '../config/contact.ts';
 
 const pageData = {
-  title: 'Acupuncture in Blue Ridge GA | Holistic Medicine Near Me',
-  description: 'Expert acupuncture services in Blue Ridge, Georgia. Deanna Stennett provides Traditional Chinese Medicine, Five-Element Acupuncture, and NAET allergy treatment just minutes from Blue Ridge.',
+  title: `Acupuncture in Blue Ridge GA | Holistic Medicine Near Me`,
+  description: `Expert acupuncture services in Blue Ridge, Georgia. ${config.PRACTICE.founderName} provides Traditional Chinese Medicine, Five-Element Acupuncture, and NAET allergy treatment just minutes from Blue Ridge.`,
   keywords: [
     'acupuncture Blue Ridge GA',
     'acupuncture near me Blue Ridge',
@@ -11,7 +12,7 @@ const pageData = {
     'alternative medicine Blue Ridge Georgia',
     'Five-Element Acupuncture Blue Ridge'
   ],
-  canonicalUrl: 'https://acupunctureinnorthgeorgia.com/blue-ridge-ga'
+  canonicalUrl: `${config.DOMAIN}/blue-ridge-ga`
 };
 
 const serviceArea = {
@@ -38,7 +39,7 @@ const localContent = `Patients in Blue Ridge and surrounding North Georgia mount
       
       <div style="margin-top: var(--spacing-lg);">
         <a href="#contact" class="btn btn-primary" style="background-color: white; color: var(--color-primary); margin-right: var(--spacing-sm);">Book Appointment</a>
-        <a href="tel:+14109619033" class="btn btn-secondary" style="border-color: white; color: white;">(410) 961-9033</a>
+        <a href={config.getPhoneLink()} class="btn btn-secondary" style="border-color: white; color: white;">{config.PHONE.formatted}</a>
       </div>
     </div>
   </section>
@@ -139,29 +140,23 @@ const localContent = `Patients in Blue Ridge and surrounding North Georgia mount
           
           <div style="margin-top: var(--spacing-md);">
             <h4>Ellijay Office (Primary)</h4>
-            <address style="font-style: normal;">
-              11 Kiker Street<br/>
-              Ellijay, GA 30540
-            </address>
+            <address style="font-style: normal;">{config.OFFICES.ellijay.fullAddress}</address>
             <p><strong>Distance from Blue Ridge:</strong> {serviceArea.distance}</p>
           </div>
 
           <div style="margin-top: var(--spacing-md);">
             <h4>Blairsville Office</h4>
-            <address style="font-style: normal;">
-              563 Gainesville Hwy<br/>
-              Blairsville, GA 30512
-            </address>
+            <address style="font-style: normal;">{config.OFFICES.blairsville.fullAddress}</address>
           </div>
 
           <div style="margin-top: var(--spacing-md);">
             <h4>Phone</h4>
-            <a href="tel:+14109619033" style="font-size: 1.25rem; font-weight: 600;">(410) 961-9033</a>
+            <a href={config.getPhoneLink()} style="font-size: 1.25rem; font-weight: 600;">{config.PHONE.formatted}</a>
           </div>
 
           <div style="margin-top: var(--spacing-md);">
             <h4>Hours</h4>
-            <p>Monday - Friday: 9:00 AM - 5:00 PM<br/>Saturday & Sunday: By Appointment</p>
+            <p>{config.HOURS.fullDescription}</p>
           </div>
         </div>
 

@@ -1,9 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import * as config from '../config/contact.ts';
 
 const pageData = {
-  title: 'Acupuncture Testimonials & Patient Reviews | North Georgia',
-  description: 'Read real patient testimonials about acupuncture treatment with Deanna Stennell in Ellijay and Blairsville, GA. See results for Bell\'s Palsy, allergies, chronic pain, and more.',
+  title: `Acupuncture Testimonials & Patient Reviews | ${config.PRACTICE.name}`,
+  description: `Read real patient testimonials about acupuncture treatment with ${config.PRACTICE.founderName} in Ellijay and Blairsville, GA. See results for Bell\\'s Palsy, allergies, chronic pain, and more.`,
   keywords: [
     'acupuncture testimonials',
     'patient reviews acupuncture Georgia',
@@ -11,7 +12,7 @@ const pageData = {
     'NAET allergy treatment results',
     'Facial Rejuvenation before and after'
   ],
-  canonicalUrl: 'https://acupunctureinnorthgeorgia.com/testimonials'
+  canonicalUrl: `${config.DOMAIN}/testimonials`
 };
 
 // Complete testimonials from old site
@@ -63,10 +64,10 @@ const categories = [
   { name: 'Post-Surgery Recovery', count: 1 }
 ];
 
-// Call-to-action
+// Call-to-action (using centralized config)
 const cta = {
-  primaryText: 'Start Your Own Success Story',
-  secondaryText: '(410) 961-9033'
+  primaryText: `Start Your Own Success Story - ${config.PRICING.firstVisit.price} First Visit`,
+  secondaryText: config.PHONE.formatted
 };
 ---
 
@@ -83,6 +84,11 @@ const cta = {
       <p style="font-size: 1.25rem; opacity: 0.95;">Real People, Real Results</p>
       
       <p style="margin-top: var(--spacing-md); max-width: 700px; margin-left: auto; margin-right: auto;">What My Patients Say</p>
+      
+      <div style="margin-top: var(--spacing-lg);">
+        <a href="#contact" class="btn btn-primary" style="background-color: white; color: var(--color-primary);">{cta.primaryText}</a>
+        <a href={config.getPhoneLink()} class="btn btn-secondary" style="border-color: white; color: white;">{cta.secondaryText}</a>
+      </div>
     </div>
   </section>
 
@@ -122,7 +128,7 @@ const cta = {
         <h3>Create Your Own Success Story</h3>
         <p style="margin-bottom: var(--spacing-md);">Join the many patients who have found healing and relief through acupuncture.</p>
         
-        <a href="#contact" class="btn btn-primary">{cta.primaryText}</a>
+        <a href="#contact" class="btn btn-primary">{config.PRICING.firstVisit.price} First Visit - {cta.primaryText}</a>
       </div>
     </div>
   </section>
@@ -221,8 +227,11 @@ const cta = {
 
           <div class="form-group">
             <label for="phone" class="form-label">Phone Number *</label>
-            <input type="tel" id="phone" name="phone" class="form-input" required placeholder="(410) 961-9033"/>
+            <input type="tel" id="phone" name="phone" class="form-input" required placeholder={config.PHONE.formatted}/>
           </div>
+
+          <!-- Quick Call Button -->
+          <a href={config.getPhoneLink()} class="btn btn-secondary" style="width: 100%; margin-top: var(--spacing-sm); text-align: center;">Or Call {config.PHONE.formatted}</a>
 
           <div class="form-group">
             <label for="email" class="form-label">Email Address *</label>

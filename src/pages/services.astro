@@ -1,9 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import * as config from '../config/contact.ts';
 
 const pageData = {
-  title: 'Acupuncture Services | NAET & Facial Rejuvenation - North Georgia',
-  description: 'Comprehensive acupuncture services in Ellijay and Blairsville, GA. Specializing in Traditional Chinese Medicine, Five-Element Acupuncture, NAET allergy treatment, and Facial Rejuvenation. First visit $130 (90 min), follow-ups $90 (60 min).',
+  title: `Acupuncture Services | NAET & Facial Rejuvenation - ${config.PRACTICE.name}`,
+  description: `Comprehensive acupuncture services in Ellijay and Blairsville, GA. Specializing in Traditional Chinese Medicine, Five-Element Acupuncture, NAET allergy treatment, and Facial Rejuvenation. First visit ${config.PRICING.firstVisit.price} (${config.PRICING.firstVisit.duration}), follow-ups ${config.PRICING.followUp.price} (${config.PRICING.followUp.duration}).`,
   keywords: [
     'acupuncture services Georgia',
     'NAET allergy treatment Ellijay',
@@ -13,70 +14,24 @@ const pageData = {
     'acupuncture pricing',
     'holistic healing services'
   ],
-  canonicalUrl: 'https://acupunctureinnorthgeorgia.com/services'
+  canonicalUrl: `${config.DOMAIN}/services`
 };
 
 // Logo placement - top of page (no headshot on this page)
 const showLogoTop = true;
 const showLogoBottom = true;
 
-// Pricing details
-const pricing = {
-  firstVisit: {
-    duration: '90 minutes (1.5 hours)',
-    price: '$130',
-    description: 'Includes comprehensive consultation, physical exam, and your first acupuncture treatment'
-  },
-  followUp: {
-    duration: '60 minutes',
-    price: '$90',
-    description: 'Follow-up acupuncture treatments tailored to your healing progress'
-  }
-};
-
-// Service details
-const services = [
-  {
-    title: 'Acupuncture (Traditional Chinese Medicine)',
-    icon: '🌿',
-    overview: 'Acupuncture is a hands-on body treatment that leaves patients feeling relaxed and renewed. Since each person is different, treatments are designed for each individual person.',
-    benefits: ['Pain relief and management', 'Stress reduction and relaxation', 'Improved sleep quality', 'Enhanced immune function', 'Digestive health support'],
-    conditionsTreated: [
-      { category: 'Bodily Pain', items: ['Sports injuries', 'Muscle pain', 'Back, neck and shoulder pain', 'Knee and hip pain', 'Carpal tunnel syndrome', 'Arthritis', 'Sciatica', 'Headaches and migraines'] },
-      { category: 'Digestive Issues', items: ['IBS', 'Acid reflux/heartburn', 'Chronic indigestion', 'Nausea and vomiting', 'Constipation or diarrhea'] },
-      { category: 'Mental Well-Being', items: ['Stress and anxiety', 'Insomnia', 'Depression support', 'Emotional balance'] },
-      { category: 'Respiratory', items: ['Sinusitis', 'Allergies', 'Asthma support'] }
-    ]
-  },
+// Use centralized services config (from contact.ts)
+const localServices = [
+  ...config.SERVICES,
   {
     title: 'Five-Element Acupuncture',
-    icon: '🍃',
+    icon: '🍃' as const,
     overview: 'Based on the teachings of Professor J.R. Worsley, Five-Element Acupuncture is a holistic approach that addresses the root emotional and physical causes of illness through elemental theory (Wood, Fire, Earth, Metal, Water).',
     benefits: ['Addresses root causes rather than symptoms', 'Emotional healing alongside physical relief', 'Long-lasting results', 'Personalized treatment plans', 'Holistic mind-body-spirit approach'],
     conditionsTreated: [
       { category: 'Emotional Health', items: ['Anxiety and worry', 'Grief and loss', 'Anger management', 'Fear and phobias'] },
       { category: 'Physical Symptoms', items: ['Chronic pain', 'Fatigue', 'Digestive disorders', 'Sleep disturbances'] }
-    ]
-  },
-  {
-    title: 'NAET Allergy Elimination Techniques',
-    icon: '✨',
-    overview: 'NAET is a safe, holistic, and non-invasive technique to help stop your body from reacting to allergies. These treatments are intended to heal your body as a whole by balancing your energies.',
-    benefits: ['Identifies specific allergens through muscle testing', 'Non-drug approach to allergy relief', 'Treats food, environmental, and chemical sensitivities', 'Safe for children and adults', 'Long-lasting results'],
-    conditionsTreated: [
-      { category: 'Food Allergies & Intolerances', items: ['Dairy intolerance', 'Gluten sensitivity', 'Nut allergies', 'Shellfish allergy'] },
-      { category: 'Environmental Allergies', items: ['Pollen allergies', 'Mold sensitivity', 'Pet dander reactions'] },
-      { category: 'Chemical Sensitivities', items: ['Fragrance sensitivities', 'Cleaning product reactions', 'Medication sensitivities'] }
-    ]
-  },
-  {
-    title: 'Facial Rejuvenation Acupuncture',
-    icon: '💆',
-    overview: 'Facial rejuvenation involves the insertion of paper-thin needles through strategic points on the face and other body parts. This increases blood flow to the face, boosts collagen production, and removes dead skin cells.',
-    benefits: ['Natural anti-aging without surgery', 'Improved skin tone and texture', 'Reduced fine lines and wrinkles', 'Enhanced natural glow', 'Stress relief during treatment'],
-    conditionsTreated: [
-      { category: 'Aging Concerns', items: ['Fine lines and wrinkles', 'Loss of skin elasticity', 'Dull complexion'] },
-      { category: 'Skin Conditions', items: ['Acne scarring', 'Puffiness under eyes', 'Dark circles'] }
     ]
   }
 ];
@@ -123,8 +78,8 @@ const cta = {
       <p style="font-size: 1.25rem; opacity: 0.95;">Everybody holds the key to their own healing, but sometimes the body needs a little help.</p>
       
       <div style="margin-top: var(--spacing-lg);">
-        <a href="#contact" class="btn btn-primary" style="background-color: white; color: var(--color-primary); margin-right: var(--spacing-sm);">{cta.primaryText}</a>
-        <a href="tel:+17065551234" class="btn btn-secondary" style="border-color: white; color: white;">{cta.secondaryText}</a>
+        <a href="#contact" class="btn btn-primary" style="background-color: white; color: var(--color-primary); margin-right: var(--spacing-sm);">{config.PRICING.firstVisit.price} First Visit</a>
+        <a href={config.getPhoneLink()} class="btn btn-secondary" style="border-color: white; color: white;">{config.PHONE.formatted}</a>
       </div>
     </div>
   </section>
@@ -147,16 +102,16 @@ const cta = {
         <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-top: var(--spacing-md);">
           <article class="card">
             <h3>First Visit</h3>
-            <p style="font-size: 2rem; font-weight: 700; color: var(--color-primary);">{pricing.firstVisit.price}</p>
-            <p><strong>{pricing.firstVisit.duration}</strong></p>
-            <p style="color: var(--color-text-secondary);">{pricing.firstVisit.description}</p>
+            <p style="font-size: 2rem; font-weight: 700; color: var(--color-primary);">{config.PRICING.firstVisit.price}</p>
+            <p><strong>{config.PRICING.firstVisit.duration}</strong></p>
+            <p style="color: var(--color-text-secondary);">Includes comprehensive consultation, physical exam, and your first acupuncture treatment</p>
           </article>
 
           <article class="card">
             <h3>Follow-up Treatments</h3>
-            <p style="font-size: 2rem; font-weight: 700; color: var(--color-primary);">{pricing.followUp.price}</p>
-            <p><strong>{pricing.followUp.duration}</strong></p>
-            <p style="color: var(--color-text-secondary);">{pricing.followUp.description}</p>
+            <p style="font-size: 2rem; font-weight: 700; color: var(--color-primary);">{config.PRICING.followUp.price}</p>
+            <p><strong>{config.PRICING.followUp.duration}</strong></p>
+            <p style="color: var(--color-text-secondary);">Follow-up acupuncture treatments tailored to your healing progress</p>
           </article>
         </div>
       </div>
@@ -168,7 +123,7 @@ const cta = {
     <div class="container">
       <h2 style="text-align: center; margin-bottom: var(--spacing-xl);">Our Services</h2>
       
-      {services.map(service => (
+      {localServices.map(service => (
         <article style="margin-bottom: var(--spacing-xxl);">
           <div style="display: flex; align-items: center; gap: var(--spacing-sm); margin-bottom: var(--spacing-md);">
             <span style="font-size: 2.5rem;">{service.icon}</span>

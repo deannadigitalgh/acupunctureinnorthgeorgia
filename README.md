@@ -304,6 +304,15 @@ The following critical fixes have been implemented based on the SEO evaluation:
 4. ✅ **Responsive Styling** - Mobile-optimized embed container with proper z-index and scroll handling
 5. ✅ **SEO-Friendly** - Inline embed allows Google to index calendar content (vs. hidden floating button)
 
+### ⚠️ Known Console Warnings (Third-Party Library Issues)
+
+The Cal.com embed generates two console warnings in Chrome. These are **known issues with Cal.com's library**, not our implementation:
+
+1. **`markdownToSafeHTML` client-side import** - Cal.com incorrectly imports a server-side utility
+2. **Zustand deprecation notice** - Cal.com uses older zustand API (`create` vs `createWithEqualityFn`)
+
+**Impact**: None - These are warnings only, functionality is unaffected. See [`CAL_COM_WARNINGS.md`](CAL_COM_WARNINGS.md) for detailed analysis and monitoring plan.
+
 ### ⚠️ REMAINING CRITICAL ACTIONS (You Must Complete)
 
 1. **[ ] Set up Cal.com Account & Configure Event Types** (Recommended but optional)
@@ -368,6 +377,8 @@ See [`SEO_EVALUATION_AA_WEBSITE_PROJECT.md`](SEO_EVALUATION_AA_WEBSITE_PROJECT.m
 ---
 
 ## 📅 Cal.com Integration Details
+
+> **Note**: See [`CAL_COM_WARNINGS.md`](CAL_COM_WARNINGS.md) for detailed analysis of known console warnings (third-party library issues that don't affect functionality).
 
 ### What is Cal.com?
 Cal.com is a free, open-source scheduling platform that allows clients to book appointments directly from your website. It integrates with Google Calendar, iCal, and other calendar services.

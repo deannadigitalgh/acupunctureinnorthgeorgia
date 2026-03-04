@@ -306,12 +306,13 @@ The following critical fixes have been implemented based on the SEO evaluation:
 
 ### ⚠️ Known Console Warnings (Third-Party Library Issues)
 
-The Cal.com embed generates two console warnings in Chrome. These are **known issues with Cal.com's library**, not our implementation:
+The Cal.com embed generates console warnings in Chrome. These are **known issues with Cal.com's library**, not our implementation:
 
 1. **`markdownToSafeHTML` client-side import** - Cal.com incorrectly imports a server-side utility
 2. **Zustand deprecation notice** - Cal.com uses older zustand API (`create` vs `createWithEqualityFn`)
+3. **aria-hidden focus issue** - Accessibility concern in modal dialogs
 
-**Impact**: None - These are warnings only, functionality is unaffected. See [`CAL_COM_WARNINGS.md`](CAL_COM_WARNINGS.md) for detailed analysis and monitoring plan.
+**Impact**: None to Minor - These are warnings only, functionality is unaffected. See [`CAL_COM_SETUP_GUIDE.md`](CAL_COM_SETUP_GUIDE.md) (see "Known Console Warnings" section near the end) for detailed analysis and monitoring plan.
 
 ### ⚠️ REMAINING CRITICAL ACTIONS (You Must Complete)
 

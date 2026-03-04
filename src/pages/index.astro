@@ -271,37 +271,22 @@ const cta = {
         <div class="cal-embed-container" style="background-color: var(--color-surface); padding: var(--spacing-lg); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
           <h3 style="text-align: center; margin-bottom: var(--spacing-md);">Book Your Appointment Online</h3>
           
-          <!-- Cal.com Inline Embed Container -->
-          <div id={config.CAL_COM.containerId} style="width:100%;height:600px;overflow:auto;border-radius:8px;background:#fff;"></div>
+          <!-- Cal.com Inline Embed Container - Using OFFICIAL embed code -->
+          <div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline-newacuellijay"></div>
           
-          <!-- Initialize Cal.com after embed.js loads -->
-          <script>{`
-            (function() {
-              console.log('Cal.com init script running...');
-              
-              // Wait for Cal.com to be ready
-              function initCal() {
-                if (typeof Cal === 'undefined') {
-                  console.log('Cal.com not loaded yet, retrying in 100ms...');
-                  setTimeout(initCal, 100);
-                  return;
-                }
-                
-                console.log('Cal.com is ready, initializing...');
-                Cal("init", "${config.CAL_COM.containerId}", {origin:"https://app.cal.com"});
-                Cal.ns.${config.CAL_COM.containerId}("inline", {
-                  elementOrSelector:"#${config.CAL_COM.containerId}",
-                  config: {"layout":"${config.CAL_COM.layout}","useSlotsViewOnSmallScreen":"true"},
-                  calLink: "${config.CAL_COM.calLink}"
-                });
-                Cal.ns.${config.CAL_COM.containerId}("ui", {"hideEventTypeDetails":false,"layout":"${config.CAL_COM.layout}"});
-                console.log('Cal.com initialized successfully!');
-              }
-              
-              // Try immediately, then poll if needed
-              initCal();
-            })();
-          `}</script>
+          <!-- Official Cal.com inline embed script -->
+          <script type="text/javascript">
+            (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+            Cal("init", "newacuellijay", {origin:"https://app.cal.com"});
+
+            Cal.ns.newacuellijay("inline", {
+              elementOrSelector:"#my-cal-inline-newacuellijay",
+              config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+              calLink: "deannastennett/newacuellijay",
+            });
+
+            Cal.ns.newacuellijay("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+          </script>
           
           <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: var(--spacing-md); text-align: center;">
             Select a time that works for you, or fill out the form below and we'll call you within minutes!

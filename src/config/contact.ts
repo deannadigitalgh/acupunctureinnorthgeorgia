@@ -111,6 +111,11 @@ export const CAL_COM = {
   // For inline embed - the div ID that will contain the calendar
   containerId: 'my-cal-inline-newacuellijay',
   
+  // IMPORTANT: Cal.com uses a separate namespace for the API calls
+  // This is different from the container ID!
+  // See src/pages/index.astro for the official embed code
+  apiNamespace: 'newacuellijay',
+  
   // Layout options
   layout: 'month_view' as const,
 } as const;

@@ -54,7 +54,8 @@ projaa-acu/
 │   ├── favicon.svg               # Simplified practice favicon (10.5KB — replace old placeholder)
 │   ├── favicon.ico               # Legacy fallback (delete 175KB version, recreate from SVG if needed)
 │   ├── logo.svg                  # Practice logo for headers/hero sections
-│   └── AA-headshot-dee.jpg       # Deanna's professional headshot
+│   └── headshots/                # Professional headshots
+│       └── AA-headshot-10.jpg    # Deanna's professional headshot
 ├── src/
 │   ├── layouts/
 │   │   └── Layout.astro          # Global layout with schema markup + embedded CSS
@@ -223,7 +224,7 @@ The following assets have been integrated into the website:
 | `favicon.svg` | `/public/favicon.svg` | Primary favicon (SVG format for scalability) |
 | `favicon.ico` | `/public/favicon.ico` | Fallback favicon for older browsers |
 | `logo-large.svg` | `/public/logo-large.svg` | **All pages**: Navigation header (all) + Top/bottom of pages WITHOUT headshots (Services, FAQ, Testimonials, Service Area pages: Blue Ridge, Dahlonega, Jasper, Helen) |
-| `AA-headshot-dee.jpg` | `/public/AA-headshot-dee.jpg` | About page hero section + homepage About section (paired with logo) |
+| `AA-headshot-10.jpg` | `/public/headshots/AA-headshot-10.jpg` | About page hero section + homepage About section (paired with logo) |
 
 ### Logo Placement Strategy
 

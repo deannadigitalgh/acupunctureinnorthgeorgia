@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import HeadshotCarousel from '../components/HeadshotCarousel.astro';
 import * as config from '../config/contact.ts';
 
 const pageData = {
@@ -102,11 +103,7 @@ const cta = {
       
       <div style="display: flex; align-items: center; gap: var(--spacing-xl); flex-wrap: wrap;">
         <div style="flex: 1; min-width: 300px; max-width: 400px;">
-          <img 
-            src="/headshots/AA-headshot-10.jpg" 
-            alt="Deanna Stennett - Licensed Acupuncturist in North Georgia" 
-            style="width: 100%; height: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow-md);"
-          />
+          <HeadshotCarousel altText="Deanna Stennett - Licensed Acupuncturist in North Georgia" />
         </div>
         <div style="flex: 2; min-width: 300px;">
           <h2>About Deanna</h2>

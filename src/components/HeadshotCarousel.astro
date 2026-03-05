@@ -1,0 +1,85 @@
+---
+// Headshot Carousel Component - Fades between all available headshots every 3 seconds
+interface Props {
+  altText?: string;
+}
+
+const { altText = "Deanna Stennett - Licensed Acupuncturist" } = Astro.props;
+
+// List of all headshot filenames (10 total)
+const headshots = [
+  '/headshots/AA-headshot-1.jpeg',
+  '/headshots/AA-headshot-2.jpeg',
+  '/headshots/AA-headshot-3.jpeg',
+  '/headshots/AA-headshot-4.jpeg',
+  '/headshots/AA-headshot-5.jpeg',
+  '/headshots/AA-headshot-6.jpeg',
+  '/headshots/AA-headshot-7.jpeg',
+  '/headshots/AA-headshot-8.jpeg',
+  '/headshots/AA-headshot-9.jpeg',
+  '/headshots/AA-headshot-10.jpg'
+];
+
+const currentHeadshot = headshots[Math.floor(Math.random() * headshots.length)];
+---
+
+<div class="headshot-carousel" style="position: relative; width: 100%; height: auto;">
+  {headshots.map((src, index) => (
+    <img 
+      src={src} 
+      alt={`${altText} - Photo ${index + 1}`}
+      class={`headshot-image ${index === 0 ? 'active' : ''}`}
+      style="position: absolute; top: 0; left: 0; width: 100%; height: auto; opacity: 0; transition: opacity 1s ease-in-out;"
+    />
+  ))}
+</div>
+
+<style is:global>
+@keyframes headshotFade {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.headshot-carousel .headshot-image.active {
+  animation: headshotFade 3s infinite ease-in-out;
+  opacity: 1 !important;
+}
+
+/* Stagger the fade for each image */
+.headshot-carousel .headshot-image:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.headshot-carousel .headshot-image:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.headshot-carousel .headshot-image:nth-child(4) {
+  animation-delay: 0.9s;
+}
+
+.headshot-carousel .headshot-image:nth-child(5) {
+  animation-delay: 1.2s;
+}
+
+.headshot-carousel .headshot-image:nth-child(6) {
+  animation-delay: 1.5s;
+}
+
+.headshot-carousel .headshot-image:nth-child(7) {
+  animation-delay: 1.8s;
+}
+
+.headshot-carousel .headshot-image:nth-child(8) {
+  animation-delay: 2.1s;
+}
+
+.headshot-carousel .headshot-image:nth-child(9) {
+  animation-delay: 2.4s;
+}
+
+.headshot-carousel .headshot-image:nth-child(10) {
+  animation-delay: 2.7s;
+}
+</style>

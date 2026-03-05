@@ -28,58 +28,38 @@ const currentHeadshot = headshots[Math.floor(Math.random() * headshots.length)];
     <img 
       src={src} 
       alt={`${altText} - Photo ${index + 1}`}
-      class={`headshot-image ${index === 0 ? 'active' : ''}`}
+      class="headshot-image"
+      data-index={index}
       style="position: absolute; top: 0; left: 0; width: 100%; height: auto; opacity: 0; transition: opacity 1s ease-in-out;"
     />
   ))}
 </div>
 
+<script>
+  const carousel = document.querySelector('.headshot-carousel');
+  if (carousel) {
+    const images = Array.from(carousel.querySelectorAll('.headshot-image'));
+    let currentIndex = 0;
+    
+    function showImage(index) {
+      images.forEach((img, i) => {
+        img.style.opacity = i === index ? '1' : '0';
+      });
+    }
+    
+    // Show first image immediately
+    showImage(0);
+    
+    // Cycle through images every 3 seconds
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % images.length;
+      showImage(currentIndex);
+    }, 3000);
+  }
+</script>
+
 <style is:global>
-@keyframes headshotFade {
-  0% { opacity: 0; }
-  50% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
 .headshot-carousel .headshot-image.active {
-  animation: headshotFade 3s infinite ease-in-out;
   opacity: 1 !important;
-}
-
-/* Stagger the fade for each image */
-.headshot-carousel .headshot-image:nth-child(2) {
-  animation-delay: 0.3s;
-}
-
-.headshot-carousel .headshot-image:nth-child(3) {
-  animation-delay: 0.6s;
-}
-
-.headshot-carousel .headshot-image:nth-child(4) {
-  animation-delay: 0.9s;
-}
-
-.headshot-carousel .headshot-image:nth-child(5) {
-  animation-delay: 1.2s;
-}
-
-.headshot-carousel .headshot-image:nth-child(6) {
-  animation-delay: 1.5s;
-}
-
-.headshot-carousel .headshot-image:nth-child(7) {
-  animation-delay: 1.8s;
-}
-
-.headshot-carousel .headshot-image:nth-child(8) {
-  animation-delay: 2.1s;
-}
-
-.headshot-carousel .headshot-image:nth-child(9) {
-  animation-delay: 2.4s;
-}
-
-.headshot-carousel .headshot-image:nth-child(10) {
-  animation-delay: 2.7s;
 }
 </style>

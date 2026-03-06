@@ -357,17 +357,33 @@ a:hover {
   transition: all var(--transition-fast);
 }
 
-/* Hero Section */
+/* Hero Section with Mountain Background Image & Maximum Text Contrast */
 .hero {
-  position: relative;
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative; /* Required for ::before overlay positioning to work correctly */
+  min-height: 80vh !important;
+  display: flex !important; 
+  align-items: center !important;
+  justify-content: center !important;
   text-align: center;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-  color: white;
-  padding: var(--spacing-xl) 0;
+  
+  background-image: url('/bg/BlueRidgeMountainsBackground1.jpg'); /* Background image directly on hero */
+  background-size: cover;
+  background-position: top center; 
+}
+
+/* Dark overlay for readability - positioned behind content with z-index layering so buttons remain clickable! */
+.hero::before {
+  position: absolute !important;
+  inset: auto calc(-50vw + 600px) auto calc(-50vw + 600px); /* Centered box, ~1200px wide max (matches container width), transparent on sides so mountains show through! */
+
+  background-image: linear-gradient(90deg, 
+    rgba(74,124,89,0) 0%,      /* Transparent at far left - lets mountain photo shine through edges */
+    rgba(35,60,45,0.85) 30%,   /* Dark green gradient starting from center-left (keeps text readable!) */ 
+    rgba(27,45,31,0.95) 50%,   /* Darkest at exact center - maximum contrast for "A Natural Approach to Healing" and buttons! */
+    rgba(35,60,45,0.85) 70%,   /* Dark green gradient ending toward right (keeps text readable!) */ 
+    rgba(74,124,89,0) 100%     /* Transparent at far right - lets mountain photo shine through edges! */
+  ); 
+  
 }
 
 .hero-content {

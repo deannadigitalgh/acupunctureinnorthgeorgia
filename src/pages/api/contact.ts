@@ -1,6 +1,7 @@
 // @ts-check
 /** @type {import('astro').APIRoute} */
 export async function POST({ request }) {
+  console.log('[Contact API] Received POST request');
   try {
     const formData = await request.formData();
     
@@ -18,8 +19,24 @@ export async function POST({ request }) {
       );
     }
 
-    // Formspree integration - Replace FORM_ID with your actual Form ID from https://formspree.io/
+    // Formspree integration
+    // Use env variable in production, or fallback to local testing mode
     const FORMSPREE_FORM_ID = import.meta.env.FORMSPREE_FORM_ID || 'YOUR_FORM_ID';
+    const isProduction = process.env.NODE_ENV === 'production';
+    
+    if (!isProduction && FORMSPREE_FORM_ID === 'YOUR_FORM_ID') {
+      console.warn('⚠️  Formspree not configured for local testing. Set FORMSPREE_FORM_ID in .env.local or use your actual Form ID.');
+      // For local testing, return success without actually sending
+      return new Response(
+        JSON.stringify({ 
+          success: true, 
+          message: 'Thank you! (Local test mode - no email sent)',
+          data: { name, phone, email, service, message }
+        }),
+        { status: 200, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+    
     const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_FORM_ID}`;
 
     // Build form data for Formspree (expects multipart/form-data)

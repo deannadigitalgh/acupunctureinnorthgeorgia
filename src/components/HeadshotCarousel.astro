@@ -23,43 +23,104 @@ const headshots = [
 const currentHeadshot = headshots[Math.floor(Math.random() * headshots.length)];
 ---
 
-<div class="headshot-carousel" style="position: relative; width: 100%; height: auto;">
+<div class="headshot-carousel">
   {headshots.map((src, index) => (
     <img 
       src={src} 
       alt={`${altText} - Photo ${index + 1}`}
       class="headshot-image"
       data-index={index}
-      style="position: absolute; top: 0; left: 0; width: 100%; height: auto; opacity: 0; transition: opacity 1s ease-in-out;"
     />
   ))}
 </div>
 
 <script>
   const carousel = document.querySelector('.headshot-carousel');
+  
   if (carousel) {
     const images = Array.from(carousel.querySelectorAll('.headshot-image'));
-    let currentIndex = 0;
     
-    function showImage(index) {
-      images.forEach((img, i) => {
-        img.style.opacity = i === index ? '1' : '0';
-      });
+    // Set initial active state on first image
+    if (images.length > 0) {
+      images[0].classList.add('active');
+      
+      let currentIndex = 0;
+      
+      function showImage(index) {
+        images.forEach((img, i) => {
+          img.classList.toggle('active', i === index);
+        });
+        
+        // Update data-index for accessibility tracking (optional enhancement)
+        carousel.setAttribute('data-current-image', String(index + 1));
+      }
+      
+      // Cycle through images every 3 seconds
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage(currentIndex);
+      }, 3000);
     }
-    
-    // Show first image immediately
-    showImage(0);
-    
-    // Cycle through images every 3 seconds
-    setInterval(() => {
-      currentIndex = (currentIndex + 1) % images.length;
-      showImage(currentIndex);
-    }, 3000);
   }
 </script>
 
 <style is:global>
-.headshot-carousel .headshot-image.active {
+/* Headshot Carousel - Rounded Frame Styling */
+
+.headshot-carousel {
+  position: relative;
+  width: 300px; /* Fixed container size for consistency */
+  height: auto;
+  margin: var(--spacing-lg) auto;
+}
+
+.headshot-image {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  max-width: 300px !important; /* Ensure consistent display size */
+  height: auto !important;
+  aspect-ratio: 2 / 3; /* Portrait orientation ratio for headshots */
+  
+  border-radius: var(--radius-lg); /* Rounded corners - nice frame effect */
+  box-shadow: 
+    0 4px 15px rgba(74, 124, 89, 0.2), /* Green-tinted shadow matching brand color */
+    inset 0 0 30px rgba(255, 255, 255, 0.3); /* Inner glow for depth */
+  
+  opacity: 0;
+  transition: 
+    opacity 1s ease-in-out,
+    transform 400ms ease-out;
+  
+  object-fit: cover; /* Ensures images fill the frame consistently regardless of source dimensions */
+}
+
+.headshot-image.active {
   opacity: 1 !important;
+  z-index: 2;
+}
+
+/* Subtle hover effect for desktop users */
+@media (hover: hover) and (min-width: 769px) {
+  .headshot-carousel:hover .headshot-image:not(.active) {
+    transform: scale(0.98); /* Slight dimming of non-active images */
+  }
+}
+
+/* Mobile optimization - ensure touch-friendly sizing */
+@media (max-width: 768px) {
+  .headshot-carousel {
+    width: 250px; /* Slightly smaller on mobile for better fit */
+  }
+  
+  .headshot-image {
+    max-width: 100% !important;
+  }
+}
+
+/* Accessibility - focus states not needed (images are decorative) but ensure keyboard users can skip past if needed */
+.headshot-carousel:focus-within {
+  outline: none;
 }
 </style>

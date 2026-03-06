@@ -97,19 +97,22 @@ const cta = {
 
   <!-- About Section with Headshot -->
   <section class="section section-light">
-    <div class="container" style="display: flex; flex-direction: column; align-items: center;">
+    <div class="container">
       <!-- Logo at top -->
-      <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" style="max-width: 300px; width: 100%; height: auto; margin-bottom: var(--spacing-lg);" />
+      <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" style="max-width: 300px; width: 100%; height: auto; margin-bottom: var(--spacing-lg); display: block; margin-left: auto; margin-right: auto;" />
       
-      <div style="display: flex; align-items: center; gap: var(--spacing-xl); flex-wrap: wrap;">
-        <div style="flex: 1; min-width: 300px; max-width: 400px;">
+      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: var(--spacing-xl); align-items: start;">
+        <!-- Headshot Carousel -->
+        <div>
           <HeadshotCarousel altText="Deanna Stennett - Licensed Acupuncturist in North Georgia" />
         </div>
-        <div style="flex: 2; min-width: 300px;">
+        
+        <!-- About Content -->
+        <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
           <h2>About Deanna</h2>
           <p>{aboutExcerpt}</p>
           
-          <h3 style="margin-top: var(--spacing-lg);">Certifications & Qualifications</h3>
+          <h3 style="margin-bottom: var(--spacing-sm);">Certifications & Qualifications</h3>
         <ul style="list-style-type: none; padding-left: 0;">
           <li style="padding: var(--spacing-xs) 0;">✓ Georgia licensed acupuncturist</li>
           <li style="padding: var(--spacing-xs) 0;">✓ Nationally Certified by the NCCAOM</li>
@@ -118,16 +121,12 @@ const cta = {
           <li style="padding: var(--spacing-xs) 0;">✓ Author of "Poetry of the Body: Stories about Acupuncture Points"</li>
         </ul>
         
-        <p style="margin-top: var(--spacing-md);">Deanna studied with the esteemed Professor J.R. Worsley who is known for bringing Five-Element Acupuncture to western culture. She practices both Five-Element Acupuncture and Traditional Chinese Medicine based on what each individual patient needs.</p>
+        <p>Deanna studied with the esteemed Professor J.R. Worsley who is known for bringing Five-Element Acupuncture to western culture. She practices both Five-Element Acupuncture and Traditional Chinese Medicine based on what each individual patient needs.</p>
         
-          <a href="/about" class="btn btn-primary" style="margin-top: var(--spacing-md);">Learn More About Deanna</a>
+          <a href="/about" class="btn btn-primary">Learn More About Deanna</a>
         </div>
       </div>
-      
-      <!-- Logo at bottom -->
-      <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" style="max-width: 300px; width: 100%; height: auto; margin-top: var(--spacing-xl);" />
-    </div>
-  </section>
+    </section>
 
   <!-- Services Section -->
   <section class="section section-gray">

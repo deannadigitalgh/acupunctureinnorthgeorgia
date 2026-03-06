@@ -57,14 +57,22 @@ const personal = `Deanna loves animals, nature, and art, believing that we are p
 >
   <!-- Hero Section with Headshot -->
   <section class="hero">
-    <div class="container hero-content" style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-xl); flex-wrap: wrap;">
-      <div style="flex: 1; min-width: 300px; max-width: 500px; display: flex; flex-direction: column; align-items: center; gap: var(--spacing-lg);">
-        <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" style="max-width: 300px; width: 100%; height: auto;" />
-        <HeadshotCarousel altText="Deanna Stennett - Licensed Acupuncturist in North Georgia" />
+    <div style="display: grid; gap: var(--spacing-xl); align-items: start; justify-content: center; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); padding-bottom: var(--spacing-lg); max-width: 1200px; margin: 0 auto;">      
+
+      <!-- Logo -->
+      <div style="display: flex; align-items: center; justify-content: start;">        
+        <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" style="max-width: 250px; width: 100%; height: auto; margin-bottom: var(--spacing-sm);" />
       </div>
-      <div style="flex: 2; min-width: 300px;">
+
+      <!-- Title & Subtitle -->
+      <div style="display: flex; flex-direction: column; gap: var(--spacing-xs); align-items: center;">        
         <h1>About Deanna Stennett</h1>
-        <p style="font-size: 1.25rem; opacity: 0.95;">Georgia Licensed Acupuncturist | 30+ Years of Experience | Author & Educator</p>
+        <p>Georgia Licensed Acupuncturist | 30+ Years of Experience | Author & Educator</p>
+      </div>
+
+      <!-- Headshot Carousel -->
+      <div style="display: flex; align-items: center; justify-content: start;">        
+        <HeadshotCarousel altText="Deanna Stennett - Licensed Acupuncturist in North Georgia" />
       </div>
     </div>
   </section>

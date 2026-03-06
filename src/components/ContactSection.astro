@@ -1,0 +1,130 @@
+---
+import * as config from '../config/contact.ts';
+
+interface Props {
+  title?: string;
+}
+
+const { title = 'Get Started on Your Healing Journey' } = Astro.props;
+---
+
+<section id="contact" class="section section-gray">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">{title}</h2>
+      
+      <div style="display: grid; gap: var(--spacing-xl); grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <!-- Contact Info -->
+        <div>
+          <h3>Contact Information</h3>
+          
+          <div style="margin-top: var(--spacing-md);">
+            <h4>Ellijay Office</h4>
+            <p>{config.OFFICES.ellijay.fullAddress}</p>
+          </div>
+
+          <div style="margin-top: var(--spacing-md);">
+            <h4>Blairsville Office</h4>
+            <p>{config.OFFICES.blairsville.fullAddress}</p>
+          </div>
+
+          <div style="margin-top: var(--spacing-md);">
+            <h4>Phone</h4>
+            <a href={config.getPhoneLink()} style="font-size: 1.25rem; font-weight: 600;">{config.PHONE.formatted}</a>
+          </div>
+
+          <div style="margin-top: var(--spacing-md);">
+            <h4>Hours</h4>
+            <p>{config.HOURS.fullDescription}</p>
+          </div>
+        </div>
+
+        <!-- Cal.com Booking Widget - Inline Embed -->
+        <div class="cal-embed-container" style="background-color: var(--color-surface); padding: var(--spacing-lg); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+          <h3 style="text-align: center; margin-bottom: var(--spacing-md);">Book Your Appointment Online</h3>
+          
+          <!-- Cal.com Inline Embed Container - Using OFFICIAL embed code -->
+          <div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline-newacuellijay"></div>
+          
+          <!-- Official Cal.com inline embed script -->
+          <script type="text/javascript">
+            (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+            Cal("init", "newacuellijay", {origin:"https://app.cal.com"});
+
+            Cal.ns.newacuellijay("inline", {
+              elementOrSelector:"#my-cal-inline-newacuellijay",
+              config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+              calLink: "deannastennett/newacuellijay",
+            });
+
+            Cal.ns.newacuellijay("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+          </script>
+          
+          <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: var(--spacing-md); text-align: center;">
+            Select a time that works for you, or fill out the form below and we'll call you within minutes!
+          </p>
+        </div>
+
+        <!-- Alternative Contact Form (for users who prefer to be called) -->
+        <form class="contact-form" action="/api/contact" method="POST">
+          <h3 style="text-align: center; margin-bottom: var(--spacing-md);">Prefer a Phone Call?</h3>
+          
+          <div class="form-group">
+            <label for="name" class="form-label">Full Name *</label>
+            <input type="text" id="name" name="name" class="form-input" required placeholder="Your full name"/>
+          </div>
+
+          <div class="form-group">
+            <label for="phone" class="form-label">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" class="form-input" required placeholder="(410) 961-9033"/>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Email Address *</label>
+            <input type="email" id="email" name="email" class="form-input" required placeholder="your@email.com"/>
+          </div>
+
+          <div class="form-group">
+            <label for="service" class="form-label">What brings you in today? *</label>
+            <select id="service" name="service" class="form-select" required>
+              <option value="">Select a service...</option>
+              <option value="new-patient-acupuncture">New Patient - Acupuncture</option>
+              <option value="follow-up-acupuncture">Follow-up - Acupuncture</option>
+              <option value="naet-treatment">NAET Allergy Treatment</option>
+              <option value="facial-rejuvenation">Facial Rejuvenation</option>
+              <option value="general-inquiry">General Inquiry</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message" class="form-label">Message (Optional)</label>
+            <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your health concerns or preferred appointment times..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Request Appointment</button>
+          
+          <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: var(--spacing-sm); text-align: center;">
+            We'll call you within minutes to confirm your appointment!
+          </p>
+          
+          <p style="font-size: 0.75rem; color: var(--color-text-secondary); margin-top: var(--spacing-xs); text-align: center;">
+            Your information is kept confidential and HIPAA-compliant. 
+            <a href="/privacy-policy">Privacy Policy</a>
+          </p>
+        </form>
+      </div>
+
+      <!-- Map Embed Placeholder -->
+      <div style="margin-top: var(--spacing-xl);">
+        <h3 style="text-align: center; margin-bottom: var(--spacing-md);">Find Us</h3>
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3334.567890123456!2d-84.12345678901234!3d34.86543210987654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f5a00000000001%3A0x0000000000000001!2s11%20Kiker%20St%2C%20Ellijay%2C%20GA%2030540!5e0!3m2!1sen!2sus!4v1234567890"
+          width="100%"
+          height="400"
+          style="border: 0; border-radius: var(--radius-md);"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+</section>

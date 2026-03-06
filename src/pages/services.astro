@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ContactSection from '../components/ContactSection.astro';
 import * as config from '../config/contact.ts';
 
 const pageData = {
@@ -257,49 +258,7 @@ const cta = {
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="section section-light">
-    <div class="container">
-      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Ready to Begin Your Healing Journey?</h2>
-      
-      <div style="max-width: 600px; margin: 0 auto;">
-        <form class="contact-form" action="/api/contact" method="POST">
-          <div class="form-group">
-            <label for="name" class="form-label">Full Name *</label>
-            <input type="text" id="name" name="name" class="form-input" required placeholder="Your full name"/>
-          </div>
-
-          <div class="form-group">
-            <label for="phone" class="form-label">Phone Number *</label>
-            <input type="tel" id="phone" name="phone" class="form-input" required placeholder="(410) 961-9033"/>
-          </div>
-
-          <div class="form-group">
-            <label for="email" class="form-label">Email Address *</label>
-            <input type="email" id="email" name="email" class="form-input" required placeholder="your@email.com"/>
-          </div>
-
-          <div class="form-group">
-            <label for="service" class="form-label">Interested Service *</label>
-            <select id="service" name="service" class="form-select" required>
-              <option value="">Select a service...</option>
-              <option value="new-patient-acupuncture">New Patient - Acupuncture</option>
-              <option value="follow-up-acupuncture">Follow-up - Acupuncture</option>
-              <option value="naet-treatment">NAET Allergy Treatment</option>
-              <option value="facial-rejuvenation">Facial Rejuvenation</option>
-              <option value="general-inquiry">General Inquiry</option>
-            </select>
-          </div>
-
-          <button type="submit" class="btn btn-primary" style="width: 100%;">Request Appointment</button>
-          
-          <p style="font-size: 0.75rem; color: var(--color-text-secondary); margin-top: var(--spacing-xs); text-align: center;">
-            Your information is kept confidential and HIPAA-compliant. 
-            <a href="/privacy-policy">Privacy Policy</a>
-          </p>
-        </form>
-      </div>
-    </div>
-  </section>
+  <ContactSection />
 
   <!-- SEO Content Block -->
   <article style="display: none;">

@@ -22,21 +22,22 @@ export async function POST({ request }) {
     const FORMSPREE_FORM_ID = import.meta.env.FORMSPREE_FORM_ID || 'YOUR_FORM_ID';
     const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_FORM_ID}`;
 
+    // Build form data for Formspree (expects multipart/form-data)
+    const formDataToSend = new FormData();
+    formDataToSend.append('name', name);
+    formDataToSend.append('phone', phone);
+    formDataToSend.append('email', email);
+    if (service) formDataToSend.append('service', service);
+    if (message) formDataToSend.append('message', message);
+    formDataToSend.append('_subject', 'New appointment request from acupunctureinnorthgeorgia.com');
+
     // Send email via Formspree
     const response = await fetch(FORMSPREE_ENDPOINT, {
       method: 'POST',
-      headers: { 
-        'Content-Type': 'application/json',
+      body: formDataToSend,
+      headers: {
         'Accept': 'application/json'
-      },
-      body: JSON.stringify({
-        name,
-        phone,
-        email,
-        service,
-        message,
-        source: "acupunctureinnorthgeorgia.com"
-      })
+      }
     });
 
     if (!response.ok) {

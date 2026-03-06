@@ -12,7 +12,7 @@
 - [x] Migrated from Wix to zero-cost static hosting
 - [x] Self-maintainable by non-technical user (via GitHub Copilot)
 - [x] Optimized for target SEO keywords in Georgia/Northern Georgia
-- [x] Fast lead capture form with Formspree integration ready
+- [x] Fast lead capture form with Formspree integration (AJAX pattern via API route)
 - [x] Visual branding implemented:
   - Logo integrated into navigation header on all pages
   - Professional headshot added to About page and homepage
@@ -138,22 +138,17 @@ projaa-acu/
 
 ## 🛠️ Deployment Instructions
 
-### Step 1: Create GitHub Repository
-```bash
-# In your terminal
-cd /mnt/shared/WebStormProjects/projaa-acu
-git init
-git add .
-git commit -m "Initial commit - Acupuncture website"
-```
+### Deployment Status ✅ LIVE
+- **GitHub Repository:** https://github.com/deannadigitalgh/acupunctureinnorthgeorgia 
+- **Cloudflare Pages (Staging):** https://acupunctureinnorthgeorgia.pages.dev 
+- **Custom Domain:** acupunctureinnorthgeorgia.com (configure in Cloudflare Pages)
 
-### Step 2: Deploy to Cloudflare Pages
-1. Go to https://pages.cloudflare.com/
-2. Sign in with GitHub account
-3. Select this repository
-4. Build command: `npm run build`
-5. Build output directory: `dist`
-6. Add custom domain: `acupunctureinnorthgeorgia.com`
+### Step: Configure Custom Domain in Cloudflare Pages
+1. Go to your project at https://pages.cloudflare.com/
+2. Click "Domains" tab
+3. Add custom domain: `acupunctureinnorthgeorgia.com`
+4. Follow DNS configuration instructions for your registrar 
+5. SSL certificate auto-provisioned by Cloudflare (free)
 
 ### Step 3: Configure Form Email Integration (CRITICAL - Required for Lead Capture)
 
@@ -328,12 +323,11 @@ The Cal.com embed generates console warnings in Chrome. These are **known issues
      ```
 
 2. **[ ] Set up Formspree Account & Get Form ID**
-   ```bash
-   # Go to https://formspree.io/ and create account
-   # Create new form for AA's email address
-   # Add FORMSPREE_FORM_ID environment variable to Cloudflare Pages:
-   # FORMSPREE_FORM_ID=your_actual_form_id_here
-   ```
+   - Go to https://formspree.io/ and create account
+   - Create new form for AA's email address
+   - Add FORMSPREE_FORM_ID environment variable in Cloudflare Pages:
+     - Project Settings → Environment Variables → Add Variable
+     - Name: `FORMSPREE_FORM_ID`, Value: `[your_form_id]`
 
 3. **[ ] Claim & Optimize Google Business Profile** (Required for #1 rankings)
    - Go to https://business.google.com/
@@ -342,20 +336,15 @@ The Cal.com embed generates console warnings in Chrome. These are **known issues
    - Set up automated review collection system
    - Post weekly updates via GBP dashboard
 
-3. **[ ] Deploy to Cloudflare Pages**
-   ```bash
-   git init
-   git add .
-   git commit -m "SEO fixes: sitemap, robots.txt, privacy policy, Formspree integration"
-   # Push to GitHub and connect to Cloudflare Pages
-   ```
-
 4. **[ ] Submit Sitemap to Google Search Console**
-   - After deployment, submit `https://acupunctureinnorthgeorgia.com/sitemap.xml`
-   - Verify property ownership
+   - Go to https://search.google.com/search-console/
+   - Add property: `https://acupunctureinnorthgeorgia.com`
+   - Verify ownership (HTML file upload or DNS record)
+   - Submit sitemap: `https://acupunctureinnorthgeorgia.com/sitemap.xml`
 
 5. **[ ] Set Up Google Analytics 4** (Optional but recommended)
-   - Add tracking code to Layout.astro
+   - Create account at https://analytics.google.com/
+   - Add tracking code to Layout.astro in `<head>` section
    - Monitor traffic and rankings
 
 ### SEO Timeline Expectations

@@ -12,7 +12,7 @@
 - [x] Migrated from Wix to zero-cost static hosting
 - [x] Self-maintainable by non-technical user (via GitHub Copilot)
 - [x] Optimized for target SEO keywords in Georgia/Northern Georgia
-- [x] Fast lead capture form with Formspree integration (AJAX pattern via API route)
+- [x] Fast lead capture form with direct Formspree submission ✅ WORKING
 - [x] Visual branding implemented:
   - Logo integrated into navigation header on all pages
   - Professional headshot added to About page and homepage
@@ -155,13 +155,15 @@ projaa-acu/
 **Formspree Setup:**
 1. Sign up at https://formspree.io/
 2. Create new form for AA's email address
-3. Copy your Form ID (looks like `xmqbzqkp`)
-4. Add as environment variable in Cloudflare Pages:
-   - Go to Project Settings > Environment Variables
-   - Add: `FORMSPREE_FORM_ID` = `your_actual_form_id_here`
-5. Test form submission on staging site
+3. Copy your Form ID (looks like `xyknygzk`)
+4. Update the contact form in `src/components/ContactSection.astro` line 68:
+   ```html
+   <form class="contact-form" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
+   ```
+5. Replace `YOUR_FORM_ID_HERE` with your actual Form ID from Formspree
+6. Commit and push to GitHub - Cloudflare auto-deploys within 60 seconds!
 
-**Note:** The API route is already configured at `src/pages/api/contact.ts`. It will automatically use the environment variable when deployed.
+**Note:** The form now submits directly to Formspree (no API route needed). This is the recommended approach for static sites.
 
 ### Step 4: Google Business Profile (CRITICAL for #1 Rankings)
 
@@ -286,19 +288,21 @@ The following critical fixes have been implemented based on the SEO evaluation:
 1. ✅ **Sitemap Plugin Added** - Astro sitemap plugin configured in `astro.config.mjs`
 2. ✅ **robots.txt Created** - Located at `/public/robots.txt` with sitemap reference
 3. ✅ **Schema Markup Updated** - Real phone number (+14109619033) and GPS coordinates (Ellijay: 34.8657, -84.8290)
-4. ✅ **Formspree Integration Ready** - Contact form API route configured for email delivery (requires Form ID setup)
+4. ✅ **Formspree Integration Complete** - Contact form submits directly to Formspree (no API route needed)
 5. ✅ **Privacy Policy Page Created** - `/privacy-policy` page with HIPAA-compliant language
 6. ✅ **Favicon References Fixed** - Removed non-existent fallback files from Layout.astro
 7. ✅ **Test Files Cleaned Up** - All debug test files removed from `src/pages/`
 8. ✅ **Privacy Policy Links Added** - All contact forms now link to privacy policy
+9. ✅ **Cloudflare Pages Routing Configured** - `_routes.json` created for proper API routing
 
 ### 📅 NEW: Cal.com Online Booking Integration (February 2026)
 
 1. ✅ **Cal.com Inline Embed Implemented** - Month view calendar embedded in homepage contact section using `set:html` directive for script execution
-2. ✅ **Dual Booking Options** - Online self-service calendar + traditional phone form
-3. ✅ **Configuration Centralized** - Cal.com settings in `src/config/contact.ts` (update `calLink`, `containerId`, and `layout`)
-4. ✅ **Responsive Styling** - Mobile-optimized embed container with proper z-index and scroll handling
-5. ✅ **SEO-Friendly** - Inline embed allows Google to index calendar content (vs. hidden floating button)
+2. ✅ **Dual Location Support** - Ellijay and Blairsville calendars with tab switching UI
+3. ✅ **Tab-Based Navigation** - Clean UX with "Ellijay Office" / "Blairsville Office" buttons that toggle between calendar embeds (added February 2026)
+4. ✅ **Configuration Centralized** - Cal.com settings in `src/config/contact.ts` (update `calLink`, `containerId`, and `layout`)
+5. ✅ **Responsive Styling** - Mobile-optimized embed container with proper z-index and scroll handling
+6. ✅ **SEO-Friendly** - Inline embed allows Google to index calendar content (vs. hidden floating button)  
 
 ### ⚠️ Known Console Warnings (Third-Party Library Issues)
 
@@ -312,7 +316,16 @@ The Cal.com embed generates console warnings in Chrome. These are **known issues
 
 ### ⚠️ REMAINING CRITICAL ACTIONS (You Must Complete)
 
-1. **[ ] Set up Cal.com Account & Configure Event Types** (Recommended but optional)
+1. **[ ] Update Formspree Form ID in Contact Section** (CRITICAL - Required for emails to work)
+   - Go to https://formspree.io/ and get your Form ID
+   - Edit `src/components/ContactSection.astro` line 68:
+     ```html
+     <form class="contact-form" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
+     ```
+   - Replace `YOUR_FORM_ID_HERE` with your actual Form ID (e.g., `xyknygzk`)
+   - Commit and push to GitHub
+
+2. **[ ] Set up Cal.com Account & Configure Event Types** (Recommended but optional)
    - See [`CAL_COM_SETUP_GUIDE.md`](CAL_COM_SETUP_GUIDE.md) for detailed step-by-step instructions
    - Quick steps:
      ```bash
@@ -321,13 +334,6 @@ The Cal.com embed generates console warnings in Chrome. These are **known issues
      # Update src/config/contact.ts with your cal.com username/event URL
      # Example: calLink: 'deanna-stennett/new-patient-acupuncture'
      ```
-
-2. **[ ] Set up Formspree Account & Get Form ID**
-   - Go to https://formspree.io/ and create account
-   - Create new form for AA's email address
-   - Add FORMSPREE_FORM_ID environment variable in Cloudflare Pages:
-     - Project Settings → Environment Variables → Add Variable
-     - Name: `FORMSPREE_FORM_ID`, Value: `[your_form_id]`
 
 3. **[ ] Claim & Optimize Google Business Profile** (Required for #1 rankings)
    - Go to https://business.google.com/

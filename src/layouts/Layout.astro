@@ -652,6 +652,45 @@ textarea:focus-visible {
 .skip-link:focus {
   top: 0;
 }
+
+/* Cal.com Location Tabs */
+.cal-location-tabs {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.cal-tab {
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background-color: transparent;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cal-tab:hover {
+  border-color: var(--color-primary);
+  color: var(--color-text-primary);
+}
+
+.cal-tab-active {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.cal-calendar {
+  display: none;
+}
+
+.cal-calendar.active {
+  display: block;
+}
+
     </style>
   </head>
   <body style="margin: 0; padding: 0;">

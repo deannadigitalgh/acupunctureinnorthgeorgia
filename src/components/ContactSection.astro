@@ -65,7 +65,7 @@ const { title = 'Get Started on Your Healing Journey' } = Astro.props;
         </div>
 
         <!-- Alternative Contact Form (for users who prefer to be called) -->
-        <form class="contact-form" id="contact-form">
+        <form class="contact-form" id="contact-form" action="https://formspree.io/f/xyknygzk" method="POST">
           <h3 style="text-align: center; margin-bottom: var(--spacing-md);">Prefer a Phone Call?</h3>
           
           <div class="form-group">
@@ -100,7 +100,11 @@ const { title = 'Get Started on Your Healing Journey' } = Astro.props;
             <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your health concerns or preferred appointment times..."></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary" style="width: 100%;" id="submit-btn">Request Appointment</button>
+          <!-- Hidden fields -->
+          <input type="hidden" name="_subject" value="New appointment request from acupunctureinnorthgeorgia.com"/>
+          <input type="hidden" name="_captcha" value="false"/>
+          
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Request Appointment</button>
           
           <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: var(--spacing-sm); text-align: center;">
             We'll call you within minutes to confirm your appointment!
@@ -111,40 +115,6 @@ const { title = 'Get Started on Your Healing Journey' } = Astro.props;
             <a href="/privacy-policy">Privacy Policy</a>
           </p>
         </form>
-        
-        <script>
-          document.getElementById('contact-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const submitBtn = document.getElementById('submit-btn');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-            
-            try {
-              const formData = new FormData(e.target);
-              const response = await fetch('/api/contact', {
-                method: 'POST',
-                body: formData
-              });
-              
-              const data = await response.json();
-              
-              if (response.ok && data.success) {
-                alert(data.message || 'Thank you! We will call you within minutes.');
-                e.target.reset();
-              } else {
-                alert(data.error || 'Failed to submit form. Please call us directly.');
-              }
-            } catch (error) {
-              console.error('Form submission error:', error);
-              alert('Failed to submit form. Please call us directly.');
-            } finally {
-              submitBtn.textContent = originalText;
-              submitBtn.disabled = false;
-            }
-          });
-        </script>
       </div>
 
       <!-- Map Embed Placeholder -->

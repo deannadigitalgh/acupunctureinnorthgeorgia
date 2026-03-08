@@ -357,6 +357,45 @@ a:hover {
   transition: all var(--transition-fast);
 }
 
+/* Location Dropdown Menu */
+.location-dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) 0;
+  min-width: 200px;
+  z-index: 1001;
+}
+
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: var(--spacing-sm) var(--spacing-md);
+  color: var(--color-text-primary);
+  font-weight: 500;
+  transition: background-color var(--transition-fast);
+}
+
+.dropdown-menu a:hover {
+  background-color: var(--color-background);
+  color: var(--color-primary);
+}
+
+.location-dropdown:hover .dropdown-menu {
+  display: block;
+}
+
 /* Hero Section with Mountain Background Image & Maximum Text Contrast */
 .hero {
   position: relative; /* Required for ::before overlay positioning to work correctly */
@@ -606,6 +645,26 @@ a:hover {
     display: flex;
   }
   
+  /* Mobile dropdown menu - show on click, not hover */
+  .location-dropdown {
+    position: relative;
+  }
+  
+  .dropdown-menu {
+    display: none;
+  }
+  
+  .location-links-mobile {
+    display: flex !important;
+    flex-direction: column;
+    padding-left: var(--spacing-md);
+    background-color: var(--color-background);
+  }
+  
+  .location-links-mobile a {
+    padding: var(--spacing-sm) 0;
+  }
+  
   .mobile-menu-btn {
     display: flex;
   }
@@ -722,6 +781,13 @@ textarea:focus-visible {
           <li><a href="/services">Services</a></li>
           <li><a href="/faq">FAQ</a></li>
           <li><a href="/testimonials">Testimonials</a></li>
+          <li class="location-dropdown">
+            <a href="#locations" style="color: var(--color-primary); font-weight: 600;">Locations ▼</a>
+          </li>
+          <li class="location-links-mobile" style="display: none;">
+            <a href="/ellijay-ga">Ellijay Office</a>
+            <a href="/blairsville-ga">Blairsville Office</a>
+          </li>
           <li><a href="#contact" style="color: var(--color-primary); font-weight: 600;">Contact</a></li>
         </ul>
       </div>
@@ -731,5 +797,57 @@ textarea:focus-visible {
     
     <!-- Version Number -->
     <div style="position: fixed; bottom: 10px; right: 10px; font-size: 0.75rem; color: var(--color-text-secondary); opacity: 0.6; z-index: 9999;">v1.2.0</div>
+    
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (menuBtn && navLinks) {
+          menuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            
+            // Animate hamburger to X
+            const spans = this.querySelectorAll('span');
+            if (navLinks.classList.contains('active')) {
+              spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+              spans[1].style.opacity = '0';
+              spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+            } else {
+              spans[0].style.transform = '';
+              spans[1].style.opacity = '';
+              spans[2].style.transform = '';
+            }
+          });
+        }
+        
+        // Close mobile menu when any link is clicked
+        const allNavLinks = document.querySelectorAll('.nav-links a');
+        allNavLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+              navLinks.classList.remove('active');
+              
+              // Reset hamburger animation
+              const spans = menuBtn.querySelectorAll('span');
+              spans[0].style.transform = '';
+              spans[1].style.opacity = '';
+              spans[2].style.transform = '';
+            }
+          });
+        });
+        
+        // Mobile dropdown toggle for locations
+        const locationDropdown = document.querySelector('.location-dropdown');
+        const locationLinksMobile = document.querySelector('.location-links-mobile');
+        if (locationDropdown && locationLinksMobile && window.innerWidth <= 768) {
+          locationDropdown.addEventListener('click', function(e) {
+            e.preventDefault();
+            locationLinksMobile.style.display = locationLinksMobile.style.display === 'flex' ? 'none' : 'flex';
+          });
+        }
+      });
+    </script>
   </body>
 </html>

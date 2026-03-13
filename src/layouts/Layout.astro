@@ -1,4 +1,6 @@
 ---
+import * as config from '../config/contact.ts';
+
 interface Props {
   title: string;
   description: string;
@@ -399,13 +401,13 @@ a:hover {
 /* Hero Section with Mountain Background Image & Maximum Text Contrast */
 .hero {
   position: relative; /* Required for ::before overlay positioning to work correctly */
-  min-height: 80vh !important;
+  min-height: var(--hero-min-height, 80vh) !important;
   display: flex !important; 
   align-items: center !important;
   justify-content: center !important;
   text-align: center;
   
-  background-image: url('/bg/BlueRidgeMountainsBackground1.jpg'); /* Background image directly on hero */
+  background-image: var(--hero-background, url('/bg/BlueRidgeMountainsBackground1.jpg')); /* Background image directly on hero */
   background-size: cover;
   background-position: top center; 
 }
@@ -415,13 +417,13 @@ a:hover {
   position: absolute !important;
   inset: auto calc(-50vw + 600px) auto calc(-50vw + 600px); /* Centered box, ~1200px wide max (matches container width), transparent on sides so mountains show through! */
 
-  background-image: linear-gradient(90deg, 
+  background-image: var(--hero-gradient, linear-gradient(90deg, 
     rgba(74,124,89,0) 0%,      /* Transparent at far left - lets mountain photo shine through edges */
     rgba(35,60,45,0.85) 30%,   /* Dark green gradient starting from center-left (keeps text readable!) */ 
     rgba(27,45,31,0.95) 50%,   /* Darkest at exact center - maximum contrast for "A Natural Approach to Healing" and buttons! */
     rgba(35,60,45,0.85) 70%,   /* Dark green gradient ending toward right (keeps text readable!) */ 
     rgba(74,124,89,0) 100%     /* Transparent at far right - lets mountain photo shine through edges! */
-  ); 
+  )); 
   
 }
 
@@ -610,16 +612,28 @@ a:hover {
   display: none;
   background-color: var(--color-surface);
   box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: 6px 8px;
   z-index: 999;
 }
 
 .mobile-cta-buttons {
   display: flex;
-  gap: var(--spacing-sm);
+  gap: 6px;
   width: 100%;
   justify-content: center;
   align-items: center;
+}
+
+.mobile-cta .btn {
+  padding: 8px 12px !important;
+  font-size: 0.875rem !important;
+}
+
+/* Desktop button centering fix */
+@media (min-width: 769px) {
+  .mobile-cta-buttons {
+    display: flex !important;
+  }
 }
 
 /* Responsive Design */
@@ -680,7 +694,7 @@ a:hover {
   }
   
   .mobile-cta {
-    display: block;
+    display: flex !important;
   }
   
   body {
@@ -853,5 +867,30 @@ textarea:focus-visible {
         }
       });
     </script>
+    
+    <!-- Persistent Book Now Button (Desktop Only) -->
+    <a href="#contact" class="book-now-float btn btn-primary" style="position: fixed; bottom: 20px; right: 20px; z-index: 9998; animation: pulse 2s infinite; padding: 1rem 1.5rem; font-size: 1rem;">Book Now!</a>
+    
+    <!-- Mobile Sticky CTA (All Pages) -->
+    <div class="mobile-cta">
+      <div class="container mobile-cta-buttons">
+        <a href={config.getPhoneLink()} class="btn btn-primary" style="flex: 1;">Call Now</a>
+        <a href="#contact" class="btn btn-secondary" style="flex: 1; border-color: var(--color-primary); color: var(--color-primary);">Book Online</a>
+      </div>
+    </div>
+    
+    <style>
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+      }
+      
+      /* Hide Book Now button on mobile */
+      @media (max-width: 768px) {
+        .book-now-float {
+          display: none !important;
+        }
+      }
+    </style>
   </body>
 </html>

@@ -96,8 +96,7 @@ const currentHeadshot = headshots[Math.floor(Math.random() * headshots.length)];
 
 .headshot-image:not(.active) {
   position: absolute !important;
-  top: -999px;
-  left: -999px;
+  visibility: hidden;
   opacity: 0;
   pointer-events: none;
 }
@@ -116,11 +115,13 @@ const currentHeadshot = headshots[Math.floor(Math.random() * headshots.length)];
 /* Mobile optimization - ensure touch-friendly sizing */
 @media (max-width: 768px) {
   .headshot-carousel {
-    width: 250px; /* Slightly smaller on mobile for better fit */
+    width: 280px; /* Larger on mobile for better visibility */
+    margin: var(--spacing-lg);
   }
   
   .headshot-image {
     max-width: 100% !important;
+    width: 280px !important;
   }
 }
 

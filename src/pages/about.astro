@@ -58,11 +58,11 @@ const personal = `Deanna loves animals, nature, and art, believing that we are p
 >
   <!-- Hero Section with Headshot -->
   <section class="hero">
-    <div style="display: grid; gap: var(--spacing-xl); align-items: start; justify-content: center; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); padding-bottom: var(--spacing-lg); max-width: 1200px; margin: 0 auto;">      
+    <div style="display: flex; flex-direction: column; gap: var(--spacing-lg); align-items: center; justify-content: center; padding-bottom: var(--spacing-lg); max-width: 1200px; margin: 0 auto; text-align: center;">      
 
       <!-- Logo -->
-      <div style="display: flex; align-items: center; justify-content: start;">        
-        <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" style="max-width: 250px; width: 100%; height: auto; margin-bottom: var(--spacing-sm);" />
+      <div style="display: flex; align-items: center; justify-content: center;">        
+        <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" style="max-width: 200px; width: 100%; height: auto; margin-bottom: var(--spacing-sm);" />
       </div>
 
       <!-- Title & Subtitle -->
@@ -72,7 +72,7 @@ const personal = `Deanna loves animals, nature, and art, believing that we are p
       </div>
 
       <!-- Headshot Carousel -->
-      <div style="display: flex; align-items: center; justify-content: start;">        
+      <div style="display: flex; align-items: center; justify-content: center;">        
         <HeadshotCarousel altText="Deanna Stennett - Licensed Acupuncturist in North Georgia" />
       </div>
     </div>
@@ -202,6 +202,14 @@ const personal = `Deanna loves animals, nature, and art, believing that we are p
 
   <!-- Contact Section -->
   <ContactSection title="Ready to Begin Your Healing Journey?" />
+
+  <!-- Mobile Sticky CTA (All Pages) -->
+  <div class="mobile-cta">
+    <div class="container mobile-cta-buttons">
+      <a href={config.getPhoneLink()} class="btn btn-primary" style="flex: 1;">Call Now</a>
+      <a href="#contact" class="btn btn-secondary" style="flex: 1; border-color: var(--color-primary); color: var(--color-primary);">Book Online</a>
+    </div>
+  </div>
 
   <!-- SEO Content Block -->
   <article style="display: none;">

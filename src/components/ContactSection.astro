@@ -13,31 +13,6 @@ const { title = 'Get Started on Your Healing Journey' } = Astro.props;
       <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">{title}</h2>
       
       <div style="display: grid; gap: var(--spacing-xl); grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-        <!-- Contact Info -->
-        <div>
-          <h3>Contact Information</h3>
-          
-          <div style="margin-top: var(--spacing-md);">
-            <h4>Ellijay Office</h4>
-            <p>{config.OFFICES.ellijay.fullAddress}</p>
-          </div>
-
-          <div style="margin-top: var(--spacing-md);">
-            <h4>Blairsville Office</h4>
-            <p>{config.OFFICES.blairsville.fullAddress}</p>
-          </div>
-
-          <div style="margin-top: var(--spacing-md);">
-            <h4>Phone</h4>
-            <a href={config.getPhoneLink()} style="font-size: 1.25rem; font-weight: 600;">{config.PHONE.formatted}</a>
-          </div>
-
-          <div style="margin-top: var(--spacing-md);">
-            <h4>Hours</h4>
-            <p>{config.HOURS.fullDescription}</p>
-          </div>
-        </div>
-
         <!-- Cal.com Booking Widget - Inline Embed with Location Tabs -->
         <div class="cal-embed-container" style="background-color: var(--color-surface); padding: 2rem; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
           <h3 style="text-align: center; margin-bottom: 1.5rem;">Book Your Appointment Online</h3>
@@ -83,35 +58,6 @@ const { title = 'Get Started on Your Healing Journey' } = Astro.props;
           </div>
         </div>
       
-      <!-- Tab Switching Script -->
-      <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', function() {
-          const ellijayTab = document.getElementById('tab-ellijay');
-          const blairsvilleTab = document.getElementById('tab-blairsville');
-          const ellijayCalendar = document.getElementById('calendar-ellijay');
-          const blairsvilleCalendar = document.getElementById('calendar-blairsville');
-          
-          function showEllijay() {
-            ellijayTab.classList.add('cal-tab-active');
-            blairsvilleTab.classList.remove('cal-tab-active');
-            ellijayCalendar.style.display = 'block';
-            blairsvilleCalendar.style.display = 'none';
-          }
-          
-          function showBlairsville() {
-            blairsvilleTab.classList.add('cal-tab-active');
-            ellijayTab.classList.remove('cal-tab-active');
-            blairsvilleCalendar.style.display = 'block';
-            ellijayCalendar.style.display = 'none';
-          }
-          
-          if (ellijayTab && blairsvilleTab) {
-            ellijayTab.addEventListener('click', showEllijay);
-            blairsvilleTab.addEventListener('click', showBlairsville);
-          }
-        });
-      </script>
-
         <!-- Alternative Contact Form (for users who prefer to be called) -->
         <form class="contact-form" id="contact-form" action="https://formspree.io/f/xyknygzk" method="POST">
           <h3 style="text-align: center; margin-bottom: var(--spacing-md);">Prefer a Phone Call?</h3>
@@ -163,20 +109,66 @@ const { title = 'Get Started on Your Healing Journey' } = Astro.props;
             <a href="/privacy-policy">Privacy Policy</a>
           </p>
         </form>
+      
+        <!-- Contact Info -->
+        <div>
+          <h3>Contact Information</h3>
+          
+          <div style="margin-top: var(--spacing-md);">
+            <h4>Ellijay Office</h4>
+            <p>{config.OFFICES.ellijay.fullAddress}</p>
+          </div>
+
+          <div style="margin-top: var(--spacing-md);">
+            <h4>Blairsville Office</h4>
+            <p>{config.OFFICES.blairsville.fullAddress}</p>
+          </div>
+
+          <div style="margin-top: var(--spacing-md);">
+            <h4>Phone</h4>
+            <a href={config.getPhoneLink()} style="font-size: 1.25rem; font-weight: 600;">{config.PHONE.formatted}</a>
+          </div>
+
+          <div style="margin-top: var(--spacing-md);">
+            <h4>Hours</h4>
+            <p>{config.HOURS.fullDescription}</p>
+          </div>
+        </div>
       </div>
 
-      <!-- Map Embed Placeholder -->
+      <!-- Map Embed - Both Locations -->
       <div style="margin-top: var(--spacing-xl);">
         <h3 style="text-align: center; margin-bottom: var(--spacing-md);">Find Us</h3>
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3334.567890123456!2d-84.12345678901234!3d34.86543210987654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f5a00000000001%3A0x0000000000000001!2s11%20Kiker%20St%2C%20Ellijay%2C%20GA%2030540!5e0!3m2!1sen!2sus!4v1234567890"
-          width="100%"
-          height="400"
-          style="border: 0; border-radius: var(--radius-md);"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
+        
+        <div style="display: grid; gap: var(--spacing-lg); grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+          <!-- Ellijay Map -->
+          <div>
+            <h4 style="text-align: center; margin-bottom: var(--spacing-sm);">📍 Ellijay Office</h4>
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3334.567890123456!2d-84.8290!3d34.8657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s11%20Kiker%20St%2C%20Ellijay%2C%20GA%2030540!5e0!3m2!1sen!2sus!4v1709280000000"
+              width="100%"
+              height="300"
+              style="border: 0; border-radius: var(--radius-md);"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          
+          <!-- Blairsville Map -->
+          <div>
+            <h4 style="text-align: center; margin-bottom: var(--spacing-sm);">📍 Blairsville Office</h4>
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3334.567890123456!2d-83.5452!3d34.8761!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s563%20Gainesville%20Hwy%2C%20Blairsville%2C%20GA%2030512!5e0!3m2!1sen!2sus!4v1709280000000"
+              width="100%"
+              height="300"
+              style="border: 0; border-radius: var(--radius-md);"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
       </div>
     </div>
 </section>

@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ContactSection from '../components/ContactSection.astro';
 
 const title = 'Privacy Policy';
 const description = 'Privacy policy for Acupuncture in North Georgia - Deanna Stennett, Licensed Acupuncturist serving Ellijay, Blairsville, and Northern Georgia.';
@@ -148,57 +149,6 @@ const keywords = ['privacy policy', 'healthcare privacy', 'HIPAA', 'patient info
     </section>
 
     <!-- Contact Section -->
-    <section class="section section-gray" id="contact">
-      <div class="container">
-        <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Contact Us</h2>
-        
-        <form 
-          action="/api/contact" 
-          method="POST" 
-          class="contact-form"
-          data-skip-layout-padding="true"
-        >
-          <div class="form-group">
-            <label for="name" class="form-label">Full Name *</label>
-            <input type="text" id="name" name="name" class="form-input" required />
-          </div>
-
-          <div class="form-group">
-            <label for="phone" class="form-label">Phone Number *</label>
-            <input type="tel" id="phone" name="phone" class="form-input" required />
-          </div>
-
-          <div class="form-group">
-            <label for="email" class="form-label">Email Address *</label>
-            <input type="email" id="email" name="email" class="form-input" required />
-          </div>
-
-          <div class="form-group">
-            <label for="service" class="form-label">Service Interest</label>
-            <select id="service" name="service" class="form-select">
-              <option value="">Select a service...</option>
-              <option value="Initial Consultation">Initial Consultation</option>
-              <option value="Acupuncture Treatment">Acupuncture Treatment</option>
-              <option value="NAET Allergy Treatment">NAET Allergy Treatment</option>
-              <option value="Facial Rejuvenation">Facial Rejuvenation</option>
-              <option value="Five-Element Acupuncture">Five-Element Acupuncture</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="message" class="form-label">Message (Optional)</label>
-            <textarea id="message" name="message" class="form-textarea"></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary" style="width: 100%;">Request an Appointment</button>
-          
-          <p style="font-size: 0.75rem; color: var(--color-text-secondary); margin-top: var(--spacing-xs); text-align: center;">
-            Your information is kept confidential and HIPAA-compliant. 
-            <a href="/privacy-policy">Privacy Policy</a>
-          </p>
-        </form>
-      </div>
-    </section>
+    <ContactSection />
   </main>
 </Layout>

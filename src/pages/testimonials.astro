@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ContactSection from '../components/ContactSection.astro';
+import MobileCTA from '../components/MobileCTA.astro';
 import * as config from '../config/contact.ts';
 
 const pageData = {
@@ -84,28 +85,28 @@ const cta = {
       <h1>Testimonials</h1>
       <p style="font-size: 1.25rem; opacity: 0.95;">Real People, Real Results</p>
       
-      <p style="margin-top: var(--spacing-md); max-width: 700px; margin-left: auto; margin-right: auto;">What My Patients Say</p>
+      <p class="margin-top-md" style="max-width: 700px; margin-left: auto; margin-right: auto;">What My Patients Say</p>
       
-      <div style="margin-top: var(--spacing-lg);">
-        <a href="#contact" class="btn btn-primary" style="background-color: white; color: var(--color-primary);">{cta.primaryText}</a>
-        <a href={config.getPhoneLink()} class="btn btn-secondary" style="border-color: white; color: white;">{cta.secondaryText}</a>
+      <div class="margin-top-lg">
+        <a href="#contact" class="btn btn-primary hero-btn">{cta.primaryText}</a>
+        <a href={config.getPhoneLink()} class="btn btn-secondary hero-btn-alt">{cta.secondaryText}</a>
       </div>
     </div>
   </section>
 
   <!-- Logo at top (no headshot on this page) -->
   <section class="section section-light">
-    <div class="container" style="text-align: center; margin-bottom: var(--spacing-xl);">
-      <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" style="max-width: 300px; width: 100%; height: auto;" />
+    <div class="container text-center margin-bottom-xl">
+      <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" class="logo-img" />
     </div>
   </section>
 
   <!-- Featured Testimonials -->
   <section class="section section-light">
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Featured Success Stories</h2>
+      <h2 class="text-center" style="margin-bottom: var(--spacing-lg);">Featured Success Stories</h2>
       
-      <div class="testimonial-grid" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
+      <div class="testimonial-grid">
         {testimonials.filter(t => t.featured).map(testimonial => (
           <article class="testimonial-card">
             <!-- Rating Stars -->
@@ -115,7 +116,7 @@ const cta = {
 
             <p class="testimonial-text" style="font-size: 1.125rem; line-height: 1.8;">{testimonial.text}</p>
             
-            <div style="margin-top: var(--spacing-md); padding-top: var(--spacing-sm); border-top: 1px solid var(--color-border);">
+            <div class="margin-top-md padding-top-sm border-top-border">
               <p class="testimonial-author" style="font-size: 1.25rem;">{testimonial.author}</p>
               <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: var(--spacing-xs);"><em>{testimonial.condition}</em></p>
               <p style="font-size: 0.875rem; color: var(--color-text-secondary);">Published {testimonial.date}</p>
@@ -125,7 +126,7 @@ const cta = {
       </div>
 
       <!-- CTA -->
-      <div style="text-align: center; margin-top: var(--spacing-xl);">
+      <div class="text-center margin-top-xl">
         <h3>Create Your Own Success Story</h3>
         <p style="margin-bottom: var(--spacing-md);">Join the many patients who have found healing and relief through acupuncture.</p>
         
@@ -137,12 +138,12 @@ const cta = {
   <!-- All Testimonials -->
   <section class="section section-gray">
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">All Patient Reviews</h2>
+      <h2 class="text-center" style="margin-bottom: var(--spacing-lg);">All Patient Reviews</h2>
       
-      <p style="text-align: center; max-width: 600px; margin: 0 auto var(--spacing-xl);">Every patient's journey is unique, but the common thread is healing and improved quality of life.</p>
+      <p class="text-center" style="max-width: 600px; margin: 0 auto var(--spacing-xl);">Every patient's journey is unique, but the common thread is healing and improved quality of life.</p>
 
       {testimonials.map(testimonial => (
-        <article class="card" style="margin-bottom: var(--spacing-lg); border-left: 4px solid var(--color-primary);">
+        <article class="card margin-bottom-lg testimonial-border">
           <!-- Rating Stars -->
           <div style="margin-bottom: var(--spacing-sm); color: #FFD700;">
             {'★'.repeat(testimonial.rating)}{'☆'.repeat(5 - testimonial.rating)}
@@ -150,7 +151,7 @@ const cta = {
 
           <p class="testimonial-text" style="font-size: 1.125rem; line-height: 1.8;">{testimonial.text}</p>
           
-          <div style="margin-top: var(--spacing-md); padding-top: var(--spacing-sm); border-top: 1px solid var(--color-border);">
+          <div class="margin-top-md padding-top-sm border-top-border">
             <p class="testimonial-author">{testimonial.author}</p>
             <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: var(--spacing-xs);"><em>{testimonial.condition}</em></p>
           </div>
@@ -158,7 +159,7 @@ const cta = {
       ))}
 
       <!-- Leave a Review CTA -->
-      <div style="text-align: center; margin-top: var(--spacing-xl);">
+      <div class="text-center margin-top-xl">
         <h3>Have You Been Treated by Deanna?</h3>
         <p style="margin-bottom: var(--spacing-md);">Share your healing journey and help others discover acupuncture.</p>
         
@@ -170,18 +171,18 @@ const cta = {
   <!-- Results by Category -->
   <section class="section section-light">
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Results by Treatment Type</h2>
+      <h2 class="text-center" style="margin-bottom: var(--spacing-lg);">Results by Treatment Type</h2>
       
-      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+      <div class="card-grid">
         {categories.filter(c => c.count > 0).map(category => (
-          <article class="card" style="text-align: center;">
+          <article class="card text-center">
             <h4>{category.name}</h4>
             <p style="font-size: 2rem; font-weight: 700; color: var(--color-primary); margin-top: var(--spacing-sm);">{category.count}+ Reviews</p>
           </article>
         ))}
 
         <!-- General Acupuncture -->
-        <article class="card" style="text-align: center;">
+        <article class="card text-center">
           <h4>General Acupuncture</h4>
           <p style="font-size: 2rem; font-weight: 700; color: var(--color-primary); margin-top: var(--spacing-sm);">100%+ Satisfaction</p>
         </article>
@@ -217,13 +218,8 @@ const cta = {
   <!-- Contact Section -->
   <ContactSection />
 
-  <!-- Mobile Sticky CTA (All Pages) -->
-  <div class="mobile-cta">
-    <div class="container mobile-cta-buttons">
-      <a href={config.getPhoneLink()} class="btn btn-primary" style="flex: 1;">Call Now</a>
-      <a href="#contact" class="btn btn-secondary" style="flex: 1; border-color: var(--color-primary); color: var(--color-primary);">Book Online</a>
-    </div>
-  </div>
+  <!-- Mobile Sticky CTA -->
+  <MobileCTA />
 
   <!-- SEO Content Block -->
   <article style="display: none;">

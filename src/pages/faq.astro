@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ContactSection from '../components/ContactSection.astro';
+import MobileCTA from '../components/MobileCTA.astro';
 import * as config from '../config/contact.ts';
 
 const pageData = {
@@ -162,19 +163,19 @@ const cta = {
       <h1>Your Questions, Answered</h1>
       <p style="font-size: 1.25rem; opacity: 0.95;">I'm Here for You</p>
       
-      <p style="margin-top: var(--spacing-md); max-width: 700px; margin-left: auto; margin-right: auto;">If you've never visited a professional Acupuncturist before, you're bound to have lots of questions or concerns. Below, you'll find a list of several frequently asked questions from my patients.</p>
+      <p class="margin-top-md" style="max-width: 700px; margin-left: auto; margin-right: auto;">If you've never visited a professional Acupuncturist before, you're bound to have lots of questions or concerns. Below, you'll find a list of several frequently asked questions from my patients.</p>
       
-      <div style="margin-top: var(--spacing-lg);">
-        <a href="#contact" class="btn btn-primary" style="background-color: white; color: var(--color-primary); margin-right: var(--spacing-sm);">{config.PRICING.firstVisit.price} First Visit</a>
-        <a href={config.getPhoneLink()} class="btn btn-secondary" style="border-color: white; color: white;">{config.PHONE.formatted}</a>
+      <div class="margin-top-lg">
+        <a href="#contact" class="btn btn-primary hero-btn margin-right-sm">{config.PRICING.firstVisit.price} First Visit</a>
+        <a href={config.getPhoneLink()} class="btn btn-secondary hero-btn-alt">{config.PHONE.formatted}</a>
       </div>
     </div>
   </section>
 
   <!-- Logo at top (no headshot on this page) -->
   <section class="section section-light">
-    <div class="container" style="text-align: center; margin-bottom: var(--spacing-xl);">
-      <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" style="max-width: 300px; width: 100%; height: auto;" />
+    <div class="container text-center margin-bottom-xl">
+      <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" class="logo-img" />
     </div>
   </section>
 
@@ -182,11 +183,11 @@ const cta = {
   <section class="section section-light">
     <div class="container">
       {faqs.map(category => (
-        <article style="margin-bottom: var(--spacing-xxl);">
+        <article class="margin-bottom-xxl">
           <h2 style="color: var(--color-secondary); margin-bottom: var(--spacing-lg);">{category.category}</h2>
           
           {category.questions.map(faq => (
-            <details class="faq-item" style="margin-bottom: var(--spacing-md);">
+            <details class="faq-item margin-bottom-md">
               <summary class="faq-question">{faq.question}</summary>
               <p class="faq-answer">{faq.answer}</p>
             </details>
@@ -195,7 +196,7 @@ const cta = {
       ))}
 
       <!-- Connect Section -->
-      <div style="margin-top: var(--spacing-xxl); text-align: center;">
+      <div class="margin-top-xxl text-center">
         <h3>Still Have Questions?</h3>
         <p style="font-size: 1.125rem; margin-bottom: var(--spacing-lg);">Connect with me today for more information.</p>
         
@@ -207,11 +208,11 @@ const cta = {
   <!-- Quick Links Section -->
   <section class="section section-gray">
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Quick Links</h2>
+      <h2 class="text-center" style="margin-bottom: var(--spacing-lg);">Quick Links</h2>
       
-      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+      <div class="card-grid">
         {resources.map(resource => (
-          <article class="card" style="text-align: center;">
+          <article class="card text-center">
             <a href={resource.link} class="btn btn-secondary">{resource.title}</a>
           </article>
         ))}
@@ -222,18 +223,13 @@ const cta = {
   <!-- Contact Section -->
   <ContactSection />
 
-  <!-- Mobile Sticky CTA (All Pages) -->
-  <div class="mobile-cta">
-    <div class="container mobile-cta-buttons">
-      <a href={config.getPhoneLink()} class="btn btn-primary" style="flex: 1;">Call Now</a>
-      <a href="#contact" class="btn btn-secondary" style="flex: 1; border-color: var(--color-primary); color: var(--color-primary);">Book Online</a>
-    </div>
-  </div>
+  <!-- Mobile Sticky CTA -->
+  <MobileCTA />
 
   <!-- Logo at bottom (no headshot on this page) -->
-  <section class="section section-light" style="margin-top: var(--spacing-xl);">
-    <div class="container" style="text-align: center;">
-      <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" style="max-width: 300px; width: 100%; height: auto;" />
+  <section class="section section-light margin-top-xl">
+    <div class="container text-center">
+      <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" class="logo-img" />
     </div>
   </section>
 

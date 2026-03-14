@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ContactSection from '../components/ContactSection.astro';
+import MobileCTA from '../components/MobileCTA.astro';
 import * as config from '../config/contact.ts';
 
 const pageData = {
@@ -78,17 +79,17 @@ const cta = {
       <h1>Healing Services - Mind, Body & Soul</h1>
       <p style="font-size: 1.25rem; opacity: 0.95;">Everybody holds the key to their own healing, but sometimes the body needs a little help.</p>
       
-      <div style="margin-top: var(--spacing-lg);">
-        <a href="#contact" class="btn btn-primary" style="background-color: white; color: var(--color-primary); margin-right: var(--spacing-sm);">{config.PRICING.firstVisit.price} First Visit</a>
-        <a href={config.getPhoneLink()} class="btn btn-secondary" style="border-color: white; color: white;">{config.PHONE.formatted}</a>
+      <div class="margin-top-lg">
+        <a href="#contact" class="btn btn-primary hero-btn margin-right-sm">{config.PRICING.firstVisit.price} First Visit</a>
+        <a href={config.getPhoneLink()} class="btn btn-secondary hero-btn-alt">{config.PHONE.formatted}</a>
       </div>
     </div>
   </section>
 
   <!-- Logo at top (no headshot on this page) -->
   <section class="section section-light">
-    <div class="container" style="text-align: center; margin-bottom: var(--spacing-xl);">
-      <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" style="max-width: 300px; width: 100%; height: auto;" />
+    <div class="container text-center margin-bottom-xl">
+      <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" class="logo-img" />
     </div>
   </section>
 
@@ -97,10 +98,10 @@ const cta = {
     <div class="container">
       <p style="font-size: 1.125rem; line-height: 1.8;">As an experienced acupuncturist, Deanna works with you to restore your balance and find your center. She specializes in acupuncture as well as Facial Rejuvenation and NAET.</p>
       
-      <div style="margin-top: var(--spacing-xl);">
+      <div class="margin-top-xl">
         <h2>Treatment Pricing</h2>
         
-        <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-top: var(--spacing-md);">
+        <div class="card-grid margin-top-md">
           <article class="card">
             <h3>First Visit</h3>
             <p style="font-size: 2rem; font-weight: 700; color: var(--color-primary);">{config.PRICING.firstVisit.price}</p>
@@ -122,11 +123,11 @@ const cta = {
   <!-- Services Detail Section -->
   <section class="section section-gray">
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: var(--spacing-xl);">Our Services</h2>
+      <h2 class="text-center" style="margin-bottom: var(--spacing-xl);">Our Services</h2>
       
       {localServices.map(service => (
-        <article style="margin-bottom: var(--spacing-xxl);">
-          <div style="display: flex; align-items: center; gap: var(--spacing-sm); margin-bottom: var(--spacing-md);">
+        <article class="margin-bottom-xxl">
+          <div class="flex-center gap-sm margin-bottom-md">
             <span style="font-size: 2.5rem;">{service.icon}</span>
             <h3>{service.title}</h3>
           </div>
@@ -135,11 +136,11 @@ const cta = {
 
           <!-- Benefits -->
           {service.benefits && (
-            <div style="margin-top: var(--spacing-md);">
+            <div class="margin-top-md">
               <h4 style="color: var(--color-secondary);">Benefits:</h4>
-              <ul style="list-style-type: none; display: flex; flex-wrap: wrap; gap: var(--spacing-sm); padding-left: 0;">
+              <ul class="list-none flex-wrap gap-sm padding-left-0">
                 {service.benefits.map(benefit => (
-                  <li style="background-color: var(--color-surface); padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-sm); box-shadow: var(--shadow-sm);">✓ {benefit}</li>
+                  <li class="card-item">✓ {benefit}</li>
                 ))}
               </ul>
             </div>
@@ -147,15 +148,15 @@ const cta = {
 
           <!-- Conditions Treated -->
           {service.conditionsTreated && (
-            <div style="margin-top: var(--spacing-lg);">
+            <div class="margin-top-lg">
               <h4 style="color: var(--color-secondary);">What This Service Can Treat:</h4>
               
               {service.conditionsTreated.map(category => (
-                <div style="margin-bottom: var(--spacing-md);">
+                <div class="margin-bottom-md">
                   <p><strong>{category.category}:</strong></p>
-                  <ul style="list-style-type: none; display: flex; flex-wrap: wrap; gap: var(--spacing-sm); padding-left: 0;">
+                  <ul class="list-none flex-wrap gap-sm padding-left-0">
                     {category.items.map(item => (
-                      <li style="background-color: var(--color-background); padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-sm);">{item}</li>
+                      <li class="card-item-bg">{item}</li>
                     ))}
                   </ul>
                 </div>
@@ -200,7 +201,7 @@ const cta = {
   <!-- Testimonials Section -->
   <section class="section section-gray">
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Patient Results</h2>
+      <h2 class="text-center" style="margin-bottom: var(--spacing-lg);">Patient Results</h2>
       
       <div class="testimonial-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
         {testimonials.map(testimonial => (
@@ -217,7 +218,7 @@ const cta = {
   <!-- FAQ Preview Section -->
   <section class="section section-light">
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Frequently Asked Questions</h2>
+      <h2 class="text-center" style="margin-bottom: var(--spacing-lg);">Frequently Asked Questions</h2>
       
       <div style="max-width: 800px; margin: 0 auto;">
         {faqs.map(faq => (
@@ -235,14 +236,14 @@ const cta = {
   <!-- Patient Forms Section -->
   <section class="section section-gray">
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Patient Intake Forms</h2>
+      <h2 class="text-center" style="margin-bottom: var(--spacing-lg);">Patient Intake Forms</h2>
       
       <article class="card" style="max-width: 600px; margin: 0 auto;">
-        <p style="font-size: 1.125rem; text-align: center;">Already have an appointment? Below are patient intake forms for your upcoming visit!</p>
+        <p class="text-center" style="font-size: 1.125rem;">Already have an appointment? Below are patient intake forms for your upcoming visit!</p>
         
-        <div style="margin-top: var(--spacing-lg);">
-          <a href="#" class="btn btn-primary" style="display: block; text-align: center; margin-bottom: var(--spacing-sm);">Download Patient Intake Form (PDF)</a>
-          <a href="#" class="btn btn-secondary" style="display: block; text-align: center;">Download Health History Questionnaire (PDF)</a>
+        <div class="margin-top-lg">
+          <a href="#" class="btn btn-primary display-block text-center margin-bottom-sm">Download Patient Intake Form (PDF)</a>
+          <a href="#" class="btn btn-secondary display-block text-center">Download Health History Questionnaire (PDF)</a>
         </div>
 
         <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: var(--spacing-md); text-align: center;">If you have any questions, please do not hesitate to reach out.</p>
@@ -251,22 +252,17 @@ const cta = {
   </section>
 
   <!-- Logo at bottom (no headshot on this page) -->
-  <section class="section section-gray" style="margin-top: var(--spacing-xl);">
-    <div class="container" style="text-align: center;">
-      <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" style="max-width: 300px; width: 100%; height: auto;" />
+  <section class="section section-gray margin-top-xl">
+    <div class="container text-center">
+      <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" class="logo-img" />
     </div>
   </section>
 
   <!-- Contact Section -->
   <ContactSection />
 
-  <!-- Mobile Sticky CTA (All Pages) -->
-  <div class="mobile-cta">
-    <div class="container mobile-cta-buttons">
-      <a href={config.getPhoneLink()} class="btn btn-primary" style="flex: 1;">Call Now</a>
-      <a href="#contact" class="btn btn-secondary" style="flex: 1; border-color: var(--color-primary); color: var(--color-primary);">Book Online</a>
-    </div>
-  </div>
+  <!-- Mobile Sticky CTA -->
+  <MobileCTA />
 
   <!-- SEO Content Block -->
   <article style="display: none;">

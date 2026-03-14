@@ -40,8 +40,8 @@ const { title = 'Get Started on Your Healing Journey' } = Astro.props;
             </script>
           </div>
           
-          <!-- Blairsville Calendar -->
-          <div id="calendar-blairsville" class="cal-calendar hidden">
+          <!-- Blairsville Calendar - Hidden but in DOM for Cal.com initialization -->
+          <div id="calendar-blairsville" class="cal-calendar cal-hidden">
             <div style="width:100%;height:auto;overflow:scroll" id="my-cal-inline-newacublairsville"></div>
             <script type="text/javascript">
               (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
@@ -58,6 +58,58 @@ const { title = 'Get Started on Your Healing Journey' } = Astro.props;
           </div>
         </div>
       
+      <!-- Tab Switching Script -->
+      <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+          const ellijayTab = document.getElementById('tab-ellijay');
+          const blairsvilleTab = document.getElementById('tab-blairsville');
+          const ellijayCalendar = document.getElementById('calendar-ellijay');
+          const blairsvilleCalendar = document.getElementById('calendar-blairsville');
+          
+          function showEllijay() {
+            ellijayTab.classList.add('cal-tab-active');
+            blairsvilleTab.classList.remove('cal-tab-active');
+            // Move Ellijay calendar into view
+            ellijayCalendar.style.position = 'relative';
+            ellijayCalendar.style.left = 'auto';
+            ellijayCalendar.style.top = 'auto';
+            ellijayCalendar.style.display = 'block';
+            ellijayCalendar.classList.add('active');
+            ellijayCalendar.classList.remove('cal-hidden');
+            // Hide Blairsville calendar off-screen
+            blairsvilleCalendar.style.position = 'absolute';
+            blairsvilleCalendar.style.left = '-9999px';
+            blairsvilleCalendar.classList.remove('active');
+            blairsvilleCalendar.classList.add('cal-hidden');
+          }
+          
+          function showBlairsville() {
+            blairsvilleTab.classList.add('cal-tab-active');
+            ellijayTab.classList.remove('cal-tab-active');
+            // Move Blairsville calendar into view
+            blairsvilleCalendar.style.position = 'relative';
+            blairsvilleCalendar.style.left = 'auto';
+            blairsvilleCalendar.style.top = 'auto';
+            blairsvilleCalendar.style.display = 'block';
+            blairsvilleCalendar.classList.add('active');
+            blairsvilleCalendar.classList.remove('cal-hidden');
+            // Hide Ellijay calendar off-screen
+            ellijayCalendar.style.position = 'absolute';
+            ellijayCalendar.style.left = '-9999px';
+            ellijayCalendar.classList.remove('active');
+            ellijayCalendar.classList.add('cal-hidden');
+          }
+          
+          // Initialize calendars on page load - show Ellijay by default
+          showEllijay();
+          
+          if (ellijayTab && blairsvilleTab) {
+            ellijayTab.addEventListener('click', showEllijay);
+            blairsvilleTab.addEventListener('click', showBlairsville);
+          }
+        });
+      </script>
+
         <!-- Alternative Contact Form (for users who prefer to be called) -->
         <form class="contact-form" id="contact-form" action="https://formspree.io/f/xyknygzk" method="POST">
           <h3 style="text-align: center; margin-bottom: var(--spacing-md);">Prefer a Phone Call?</h3>

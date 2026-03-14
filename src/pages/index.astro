@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import HeadshotCarousel from '../components/HeadshotCarousel.astro';
 import ContactSection from '../components/ContactSection.astro';
+import MobileCTA from '../components/MobileCTA.astro';
 import * as config from '../config/contact.ts';
 
 const pageData = {
@@ -89,9 +90,9 @@ const cta = {
       <p style="font-size: 1.5rem; margin-bottom: var(--spacing-lg);">{config.PRACTICE.name} | Ellijay & Blairsville, GA</p>
       <p style="font-size: 1.25rem; opacity: 0.95;">{config.PRACTICE.founderName} - Licensed Acupuncturist with 30+ Years of Experience</p>
       
-      <div style="margin-top: var(--spacing-lg); display: flex; gap: var(--spacing-sm); justify-content: center;">
-        <a href="#contact" class="btn btn-primary" style="background-color: white; color: var(--color-primary);">{cta.primaryText}</a>
-        <a href={config.getPhoneLink()} class="btn btn-secondary" style="border-color: white; color: white;">{cta.secondaryText}</a>
+      <div class="flex-center gap-sm margin-top-lg">
+        <a href="#contact" class="btn btn-primary hero-btn">{cta.primaryText}</a>
+        <a href={config.getPhoneLink()} class="btn btn-secondary hero-btn-alt">{cta.secondaryText}</a>
       </div>
     </div>
   </section>
@@ -100,7 +101,7 @@ const cta = {
   <section class="section section-light">
     <div class="container">
       <!-- Logo at top -->
-      <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" style="max-width: 300px; width: 100%; height: auto; margin-bottom: var(--spacing-lg); display: block; margin-left: auto; margin-right: auto;" />
+      <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" class="text-center logo-img" style="max-width: 300px; width: 100%; height: auto; margin-bottom: var(--spacing-lg);" />
       
       <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: var(--spacing-xl); align-items: start;">
         <!-- Headshot Carousel -->
@@ -109,17 +110,17 @@ const cta = {
         </div>
         
         <!-- About Content -->
-        <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
+        <div class="flex-column">
           <h2>About Deanna</h2>
           <p>{aboutExcerpt}</p>
           
           <h3 style="margin-bottom: var(--spacing-sm);">Certifications & Qualifications</h3>
-        <ul style="list-style-type: none; padding-left: 0;">
-          <li style="padding: var(--spacing-xs) 0;">✓ Georgia licensed acupuncturist</li>
-          <li style="padding: var(--spacing-xs) 0;">✓ Nationally Certified by the NCCAOM</li>
-          <li style="padding: var(--spacing-xs) 0;">✓ Clinical supervisor for 20 years at Maryland University of Integrative Health (MUIH)</li>
-          <li style="padding: var(--spacing-xs) 0;">✓ Adjunct Professor in the didactic portion of the Acupuncture Program for 20 years</li>
-          <li style="padding: var(--spacing-xs) 0;">✓ Author of "Poetry of the Body: Stories about Acupuncture Points"</li>
+        <ul class="list-none padding-left-0">
+          <li class="padding-sm">✓ Georgia licensed acupuncturist</li>
+          <li class="padding-sm">✓ Nationally Certified by the NCCAOM</li>
+          <li class="padding-sm">✓ Clinical supervisor for 20 years at Maryland University of Integrative Health (MUIH)</li>
+          <li class="padding-sm">✓ Adjunct Professor in the didactic portion of the Acupuncture Program for 20 years</li>
+          <li class="padding-sm">✓ Author of "Poetry of the Body: Stories about Acupuncture Points"</li>
         </ul>
         
         <p>Deanna studied with the esteemed Professor J.R. Worsley who is known for bringing Five-Element Acupuncture to western culture. She practices both Five-Element Acupuncture and Traditional Chinese Medicine based on what each individual patient needs.</p>
@@ -132,7 +133,7 @@ const cta = {
   <!-- Services Section -->
   <section class="section section-gray">
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: var(--spacing-xl);">Healing Services - Mind, Body & Soul</h2>
+      <h2 class="text-center" style="margin-bottom: var(--spacing-xl);">Healing Services - Mind, Body & Soul</h2>
       
       <div class="card-grid">
         {config.SERVICES.map(service => (
@@ -142,10 +143,10 @@ const cta = {
             <p>{service.description}</p>
             {service.title === 'Acupuncture' && (
               <>
-                <p style="margin-top: var(--spacing-md);"><strong>Pricing:</strong></p>
-                <ul style="list-style-type: none; padding-left: 0;">
-                  <li style="padding: var(--spacing-xs) 0;"><strong>First Visit ({config.PRICING.firstVisit.duration}):</strong> {config.PRICING.firstVisit.price}</li>
-                  <li style="padding: var(--spacing-xs) 0;"><strong>Follow-up ({config.PRICING.followUp.duration}):</strong> {config.PRICING.followUp.price}</li>
+                <p class="margin-top-lg"><strong>Pricing:</strong></p>
+                <ul class="list-none padding-left-0">
+                  <li><strong>First Visit ({config.PRICING.firstVisit.duration}):</strong> {config.PRICING.firstVisit.price}</li>
+                  <li><strong>Follow-up ({config.PRICING.followUp.duration}):</strong> {config.PRICING.followUp.price}</li>
                 </ul>
               </>
             )}
@@ -154,15 +155,15 @@ const cta = {
       </div>
 
       <!-- Conditions Treated -->
-      <div style="margin-top: var(--spacing-xxl);">
-        <h3 style="text-align: center; margin-bottom: var(--spacing-lg);">What Acupuncture Can Treat</h3>
+      <div class="margin-top-lg">
+        <h3 class="text-center" style="margin-bottom: var(--spacing-lg);">What Acupuncture Can Treat</h3>
         
         {conditions.map(condition => (
-          <div style="margin-bottom: var(--spacing-lg);">
+          <div class="margin-bottom-lg">
             <h4>{condition.category}</h4>
-            <ul style="list-style-type: none; display: flex; flex-wrap: wrap; gap: var(--spacing-sm); padding-left: 0;">
+            <ul class="flex-center gap-sm padding-left-0">
               {condition.items.map(item => (
-                <li style="background-color: var(--color-surface); padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-sm); box-shadow: var(--shadow-sm);">{item}</li>
+                <li class="card-item">{item}</li>
               ))}
             </ul>
           </div>
@@ -176,12 +177,12 @@ const cta = {
   <!-- Service Areas Section -->
   <section class="section section-light">
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Serving Northern Georgia</h2>
-      <p style="text-align: center; max-width: 600px; margin: 0 auto var(--spacing-lg);">Conveniently located in Ellijay and Blairsville, with patients traveling from throughout Northern Georgia.</p>
+      <h2 class="text-center" style="margin-bottom: var(--spacing-lg);">Serving Northern Georgia</h2>
+      <p class="text-center" style="max-width: 600px; margin: 0 auto var(--spacing-lg);">Conveniently located in Ellijay and Blairsville, with patients traveling from throughout Northern Georgia.</p>
       
-      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+      <div class="card-grid">
         {config.SERVICE_AREAS.map(area => (
-          <article class="card" style="text-align: center;">
+          <article class="card text-center">
             <h4>{area.name}</h4>
             <p style="color: var(--color-text-secondary);">{area.distance}</p>
           </article>
@@ -189,9 +190,9 @@ const cta = {
       </div>
 
       <!-- Local SEO Content -->
-      <div style="margin-top: var(--spacing-xl);">
-        <h3 style="text-align: center;">Acupuncture Near Me in Northern Georgia</h3>
-        <p style="text-align: center; max-width: 700px; margin: var(--spacing-sm) auto;">Whether you're in Blue Ridge, Ellijay, Dahlonega, Jasper, Helen, or surrounding areas, Deanna provides compassionate acupuncture care to help you achieve better health and balance. Search "acupuncture near me" and discover why patients travel from throughout Northern Georgia for her expertise.</p>
+      <div class="margin-top-lg">
+        <h3 class="text-center">Acupuncture Near Me in Northern Georgia</h3>
+        <p class="text-center" style="max-width: 700px; margin: var(--spacing-sm) auto;">Whether you're in Blue Ridge, Ellijay, Dahlonega, Jasper, Helen, or surrounding areas, Deanna provides compassionate acupuncture care to help you achieve better health and balance. Search "acupuncture near me" and discover why patients travel from throughout Northern Georgia for her expertise.</p>
       </div>
     </div>
   </section>
@@ -199,9 +200,9 @@ const cta = {
   <!-- Testimonials Section -->
   <section class="section section-gray">
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Real People, Real Results</h2>
+      <h2 class="text-center" style="margin-bottom: var(--spacing-lg);">Real People, Real Results</h2>
       
-      <div class="testimonial-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+      <div class="testimonial-grid">
         {testimonials.map(testimonial => (
           <article class="testimonial-card">
             <p class="testimonial-text">"{testimonial.text}"</p>
@@ -211,30 +212,33 @@ const cta = {
         ))}
       </div>
 
-      <a href="/testimonials" class="btn btn-secondary" style="display: block; text-align: center; margin-top: var(--spacing-lg);">Read More Testimonials</a>
+      <a href="/testimonials" class="btn btn-secondary display-block text-center margin-top-lg">Read More Testimonials</a>
     </div>
   </section>
 
   <!-- FAQ Preview Section -->
   <section class="section section-light">
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Your Questions, Answered</h2>
+      <h2 class="text-center" style="margin-bottom: var(--spacing-lg);">Your Questions, Answered</h2>
       
       <div style="max-width: 800px; margin: 0 auto;">
         {faqs.map(faq => (
-          <details class="faq-item" style="margin-bottom: var(--spacing-sm);">
+          <details class="faq-item margin-bottom-sm">
             <summary class="faq-question">{faq.question}</summary>
             <p class="faq-answer">{faq.answer}</p>
           </details>
         ))}
       </div>
 
-      <a href="/faq" class="btn btn-secondary" style="display: block; text-align: center; margin-top: var(--spacing-lg);">View All FAQs</a>
+      <a href="/faq" class="btn btn-secondary display-block text-center margin-top-lg">View All FAQs</a>
     </div>
   </section>
 
   <!-- Contact Section -->
   <ContactSection />
+
+  <!-- Mobile Sticky CTA -->
+  <MobileCTA />
 
   <!-- SEO Content Block (Hidden but accessible to crawlers) -->
   <article style="display: none;">

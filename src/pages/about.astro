@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import HeadshotCarousel from '../components/HeadshotCarousel.astro';
 import ContactSection from '../components/ContactSection.astro';
+import MobileCTA from '../components/MobileCTA.astro';
 import * as config from '../config/contact.ts';
 
 const pageData = {
@@ -58,21 +59,21 @@ const personal = `Deanna loves animals, nature, and art, believing that we are p
 >
   <!-- Hero Section with Headshot -->
   <section class="hero">
-    <div style="display: flex; flex-direction: column; gap: var(--spacing-lg); align-items: center; justify-content: center; padding-bottom: var(--spacing-lg); max-width: 1200px; margin: 0 auto; text-align: center;">      
+    <div class="hero-flex-column">      
 
       <!-- Logo -->
-      <div style="display: flex; align-items: center; justify-content: center;">        
-        <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" style="max-width: 200px; width: 100%; height: auto; margin-bottom: var(--spacing-sm);" />
+      <div class="hero-flex-center">        
+        <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" class="logo-img" style="margin-bottom: var(--spacing-sm);" />
       </div>
 
       <!-- Title & Subtitle -->
-      <div style="display: flex; flex-direction: column; gap: var(--spacing-xs); align-items: center;">        
+      <div class="flex-column">        
         <h1>About Deanna Stennett</h1>
         <p>Georgia Licensed Acupuncturist | 30+ Years of Experience | Author & Educator</p>
       </div>
 
       <!-- Headshot Carousel -->
-      <div style="display: flex; align-items: center; justify-content: center;">        
+      <div class="hero-flex-center">        
         <HeadshotCarousel altText="Deanna Stennett - Licensed Acupuncturist in North Georgia" />
       </div>
     </div>
@@ -89,20 +90,20 @@ const personal = `Deanna loves animals, nature, and art, believing that we are p
       
       <p style="font-size: 1.125rem; line-height: 1.8;">Deanna studied with the esteemed Professor J.R. Worsley who is known for bringing Five-Element Acupuncture to western culture. Ms. Stennett practices both Five-Element Acupuncture and Traditional Chinese Medicine based on what each individual patient needs.</p>
       
-      <blockquote style="font-size: 1.5rem; font-family: var(--font-heading); text-align: center; margin: var(--spacing-xl) 0; color: var(--color-primary);">"I treat people, not diseases."</blockquote>
+      <blockquote class="text-center" style="font-size: 1.5rem; font-family: var(--font-heading); margin: var(--spacing-xl) 0; color: var(--color-primary);">"I treat people, not diseases."</blockquote>
       
       <p>{philosophy}</p>
       
-      <p style="margin-top: var(--spacing-md);">{personal}</p>
+      <p class="margin-top-md">{personal}</p>
     </div>
   </section>
 
   <!-- Credentials Section -->
   <section class="section section-gray">
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Certifications & Qualifications</h2>
+      <h2 class="text-center" style="margin-bottom: var(--spacing-lg);">Certifications & Qualifications</h2>
       
-      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+      <div class="card-grid">
         {credentials.map(cred => (
           <article class="card">
             <h3>{cred.title}</h3>
@@ -112,11 +113,11 @@ const personal = `Deanna loves animals, nature, and art, believing that we are p
       </div>
 
       <!-- Education -->
-      <div style="margin-top: var(--spacing-xl);">
-        <h3 style="text-align: center; margin-bottom: var(--spacing-lg);">Education & Training</h3>
+      <div class="margin-top-xl">
+        <h3 class="text-center" style="margin-bottom: var(--spacing-lg);">Education & Training</h3>
         
         {education.map(edu => (
-          <article class="card" style="margin-bottom: var(--spacing-md);">
+          <article class="card margin-bottom-md">
             <h4>{edu.institution}</h4>
             <p>{edu.program}</p>
           </article>
@@ -124,11 +125,11 @@ const personal = `Deanna loves animals, nature, and art, believing that we are p
       </div>
 
       <!-- Specializations -->
-      <div style="margin-top: var(--spacing-xl);">
-        <h3 style="text-align: center; margin-bottom: var(--spacing-lg);">Areas of Expertise</h3>
+      <div class="margin-top-xl">
+        <h3 class="text-center" style="margin-bottom: var(--spacing-lg);">Areas of Expertise</h3>
         
         {specializations.map(spec => (
-          <article class="card" style="margin-bottom: var(--spacing-md);">
+          <article class="card margin-bottom-md">
             <h4>{spec.title}</h4>
             <p>{spec.description}</p>
           </article>
@@ -140,15 +141,15 @@ const personal = `Deanna loves animals, nature, and art, believing that we are p
   <!-- Published Work Section -->
   <section class="section section-light">
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Latest Work - Published Author</h2>
+      <h2 class="text-center" style="margin-bottom: var(--spacing-lg);">Latest Work - Published Author</h2>
       
       <div style="max-width: 600px; margin: 0 auto;">
-        <article class="card" style="text-align: center;">
+        <article class="card text-center">
           <div style="font-size: 4rem; margin-bottom: var(--spacing-md);">📚</div>
           <h3>Poetry of the Body: Stories about Acupuncture Points</h3>
           <p style="font-style: italic; color: var(--color-text-secondary);">Written for the lay person, making acupuncture accessible to everyone.</p>
           
-          <a href="https://www.amazon.com/Poetry-Body-Stories-Acupuncture-Points/dp/1532057067" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-top: var(--spacing-md);">Purchase on Amazon</a>
+          <a href="https://www.amazon.com/Poetry-Body-Stories-Acupuncture-Points/dp/1532057067" target="_blank" rel="noopener noreferrer" class="btn btn-primary margin-top-md">Purchase on Amazon</a>
           
           <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: var(--spacing-sm);">Available in paperback and electronic formats</p>
         </article>
@@ -159,9 +160,9 @@ const personal = `Deanna loves animals, nature, and art, believing that we are p
   <!-- Locations Section -->
   <section class="section section-gray">
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Office Locations</h2>
+      <h2 class="text-center" style="margin-bottom: var(--spacing-lg);">Office Locations</h2>
       
-      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+      <div class="card-grid">
         <!-- Ellijay -->
         <article class="card">
           <h3>Ellijay Office</h3>
@@ -169,8 +170,8 @@ const personal = `Deanna loves animals, nature, and art, believing that we are p
             {config.OFFICES.ellijay.fullAddress}
           </address>
           
-          <div style="margin-top: var(--spacing-md);">
-            <a href={config.getPhoneLink(config.OFFICES.ellijay.phone)} class="btn btn-primary" style="width: 100%;">Call to Schedule</a>
+          <div class="margin-top-md">
+            <a href={config.getPhoneLink(config.OFFICES.ellijay.phone)} class="btn btn-primary block-btn">Call to Schedule</a>
           </div>
         </article>
 
@@ -181,21 +182,21 @@ const personal = `Deanna loves animals, nature, and art, believing that we are p
             {config.OFFICES.blairsville.fullAddress}
           </address>
           
-          <div style="margin-top: var(--spacing-md);">
-            <a href={config.getPhoneLink(config.OFFICES.blairsville.phone)} class="btn btn-primary" style="width: 100%;">Call to Schedule</a>
+          <div class="margin-top-md">
+            <a href={config.getPhoneLink(config.OFFICES.blairsville.phone)} class="btn btn-primary block-btn">Call to Schedule</a>
           </div>
         </article>
       </div>
 
       <!-- Call-to-action -->
-      <div style="text-align: center; margin-top: var(--spacing-xl);">
+      <div class="text-center margin-top-xl">
         <p style="font-size: 1.25rem;">Ready to start your healing journey?</p>
-        <a href="#contact" class="btn btn-primary" style="margin-top: var(--spacing-sm);">Request an Appointment</a>
+        <a href="#contact" class="btn btn-primary margin-top-sm">Request an Appointment</a>
       </div>
 
       <!-- Logo at bottom -->
-      <div style="text-align: center; margin-top: var(--spacing-xl);">
-        <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" style="max-width: 300px; width: 100%; height: auto;" />
+      <div class="text-center margin-top-xl">
+        <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" class="logo-img" />
       </div>
     </div>
   </section>
@@ -203,13 +204,8 @@ const personal = `Deanna loves animals, nature, and art, believing that we are p
   <!-- Contact Section -->
   <ContactSection title="Ready to Begin Your Healing Journey?" />
 
-  <!-- Mobile Sticky CTA (All Pages) -->
-  <div class="mobile-cta">
-    <div class="container mobile-cta-buttons">
-      <a href={config.getPhoneLink()} class="btn btn-primary" style="flex: 1;">Call Now</a>
-      <a href="#contact" class="btn btn-secondary" style="flex: 1; border-color: var(--color-primary); color: var(--color-primary);">Book Online</a>
-    </div>
-  </div>
+  <!-- Mobile Sticky CTA -->
+  <MobileCTA />
 
   <!-- SEO Content Block -->
   <article style="display: none;">

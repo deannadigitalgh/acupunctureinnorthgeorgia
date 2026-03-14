@@ -57,6 +57,12 @@ projaa-acu/
 │   └── headshots/                # Professional headshots
 │       └── AA-headshot-10.jpg    # Deanna's professional headshot
 ├── src/
+│   ├── components/
+│   │   ├── ContactSection.astro  # Reusable contact form + Cal.com embed component
+│   │   ├── HeadshotCarousel.astro# Rotating headshot carousel component
+│   │   └── MobileCTA.astro       # Reusable mobile sticky CTA component
+│   ├── config/
+│   │   └── contact.ts            # Centralized site-wide configuration (phone, addresses, hours)
 │   ├── layouts/
 │   │   └── Layout.astro          # Global layout with schema markup + embedded CSS
 │   ├── pages/
@@ -69,8 +75,7 @@ projaa-acu/
 │   │   ├── dahlonega-ga.astro    # Service area page (SEO)
 │   │   ├── jasper-ga.astro       # Service area page (SEO)
 │   │   ├── helen-ga.astro        # Service area page (SEO)
-│   │   └── api/
-│   │       └── contact.ts        # Form submission handler
+│   │   └── privacy-policy.astro  # HIPAA-compliant privacy policy
 │   └── styles/
 │       └── global.css            # Legacy file - CSS now embedded in Layout.astro
 ├── public/                       # Static assets (favicon, images)
@@ -287,13 +292,14 @@ The following critical fixes have been implemented based on the SEO evaluation:
 
 1. ✅ **Sitemap Plugin Added** - Astro sitemap plugin configured in `astro.config.mjs`
 2. ✅ **robots.txt Created** - Located at `/public/robots.txt` with sitemap reference
-3. ✅ **Schema Markup Updated** - Real phone number (+14109619033) and GPS coordinates (Ellijay: 34.8657, -84.8290)
+3. ✅ **Schema Markup Updated** - Real phone number (+14109619033) and GPS coordinates for both locations (Ellijay: 34.8657, -84.8290; Blairsville: 34.7453, -83.9501)
 4. ✅ **Formspree Integration Complete** - Contact form submits directly to Formspree (no API route needed)
 5. ✅ **Privacy Policy Page Created** - `/privacy-policy` page with HIPAA-compliant language
 6. ✅ **Favicon References Fixed** - Removed non-existent fallback files from Layout.astro
 7. ✅ **Test Files Cleaned Up** - All debug test files removed from `src/pages/`
 8. ✅ **Privacy Policy Links Added** - All contact forms now link to privacy policy
 9. ✅ **Cloudflare Pages Routing Configured** - `_routes.json` created for proper API routing
+10. ✅ **Unused Files Removed** - Deleted `/public/src/` (Affinity exports), `src/config/hero.ts`, and unused API route
 
 ### 📅 NEW: Cal.com Online Booking Integration (February 2026)
 
@@ -303,6 +309,7 @@ The following critical fixes have been implemented based on the SEO evaluation:
 4. ✅ **Configuration Centralized** - Cal.com settings in `src/config/contact.ts` (update `calLink`, `containerId`, and `layout`)
 5. ✅ **Responsive Styling** - Mobile-optimized embed container with proper z-index and scroll handling
 6. ✅ **SEO-Friendly** - Inline embed allows Google to index calendar content (vs. hidden floating button)  
+7. ✅ **Tab Switching Fixed** - Blairsville calendar now properly displays when tab is clicked using position-based visibility
 
 ### ⚠️ Known Console Warnings (Third-Party Library Issues)
 
@@ -314,11 +321,30 @@ The Cal.com embed generates console warnings in Chrome. These are **known issues
 
 **Impact**: None to Minor - These are warnings only, functionality is unaffected. See [`CAL_COM_SETUP_GUIDE.md`](CAL_COM_SETUP_GUIDE.md) (see "Known Console Warnings" section near the end) for detailed analysis and monitoring plan.
 
-### ✅ COMPLETED ACTIONS
+### ✅ COMPLETED ACTIONS (Latest Updates)
 
 1. **[✅] Formspree Integration Complete** - Contact form submits directly to Formspree and emails are working!
    - Verified: Forms deliver immediately to AA's email address
    - Workflow preserved: Visitor fills form → AA receives email → AA calls within minutes
+
+2. **[✅] Mobile CTA Component Created** - Reusable `MobileCTA.astro` component added for consistent mobile navigation across all 11 pages
+
+3. **[✅] Inline Styles → CSS Classes** - All inline styles replaced with reusable utility classes in Layout.astro (improves maintainability)
+
+4. **[✅] Unused Files Removed** - Deleted:
+   - `src/config/hero.ts` (unused hero configuration)
+   - `/public/src/` folder (Affinity Photo exports)
+   - `src/pages/api/contact.ts` (unused API route, Formspree handles forms directly)
+
+5. **[✅] Cal.com Tab Switching Fixed** - Blairsville calendar now properly displays when tab is clicked using position-based visibility instead of display:none
+
+6. **[✅] Navigation Bar Height Reduced** - Navbar padding reduced from 16px to 4px for more compact header
+
+7. **[✅] Privacy Policy Form Consistent** - Updated privacy-policy page to use ContactSection component (was using different form)
+
+8. **[✅] Schema Markup Enhanced** - Added dual geo-coordinates for both Ellijay and Blairsville locations in JSON-LD schema
+
+9. **[✅] Mobile CTA on All Pages** - Sticky "Call Now" / "Book Online" buttons now appear consistently across all 11 pages (index, about, services, faq, testimonials, blairsville-ga, blue-ridge-ga, dahlonega-ga, ellijay-ga, jasper-ga, helen-ga)
 
 2. **[ ] Set up Cal.com Account & Configure Event Types** (Recommended but optional)
    - See [`CAL_COM_SETUP_GUIDE.md`](CAL_COM_SETUP_GUIDE.md) for detailed step-by-step instructions

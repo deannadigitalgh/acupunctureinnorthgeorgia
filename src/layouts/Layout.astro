@@ -275,7 +275,7 @@ a:hover {
   z-index: 1000;
   background-color: var(--color-surface);
   box-shadow: var(--shadow-sm);
-  padding: 4px 0 !important;
+  padding: 8px 0 !important;
 }
 
 .nav-container {
@@ -295,7 +295,7 @@ a:hover {
 }
 
 .logo-img {
-  height: 38px;
+  height: 76px;
   width: auto;
   transition: opacity var(--transition-fast);
 }
@@ -306,13 +306,13 @@ a:hover {
 
 /* Logo sizing */
 .logo-lg-nav {
-  height: 38px;
+  height: 76px;
   width: auto;
 }
 
 @media (max-width: 768px) {
   .logo-lg-nav {
-    height: 32px;
+    height: 64px;
   }
 }
 
@@ -325,8 +325,17 @@ a:hover {
 .nav-links a {
   color: var(--color-text-primary);
   font-weight: 500;
+  font-size: 1.1rem;
   padding: var(--spacing-xs) 0;
   position: relative;
+}
+
+/* Logo text styling */
+.logo-text {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-primary);
 }
 
 .nav-links a::after {

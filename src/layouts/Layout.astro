@@ -883,6 +883,19 @@ textarea:focus-visible {
   }
 }
 
+/* About Hero Logo - Scales properly with viewport to prevent cutoff when zooming */
+.about-hero-logo {
+  height: auto;
+  width: clamp(200px, 45vw, 380px); /* Minimum 200px, scales at 45% of viewport width, max 380px */
+}
+
+@media (max-width: 768px) {
+  .about-hero-logo {
+    height: auto;
+    width: clamp(160px, 50vw, 280px); /* Smaller on mobile - minimum 160px */
+  }
+}
+
 .block-btn {
   width: 100%;
   display: block;

@@ -896,6 +896,30 @@ textarea:focus-visible {
   }
 }
 
+/* Logo + Carousel Side-by-Side Unit (Option A layout) */
+.logo-carousel-unit {
+  display: flex;
+  align-items: center; /* Vertically centers logo and carousel together */
+  gap: var(--spacing-xl); /* Spacing between them */
+  justify-content: center;
+}
+
+.side-by-side-logo {
+  height: auto;
+  width: clamp(180px, 42vw, 350px); /* Slightly smaller than hero logo for side-by-side layout */
+}
+
+@media (max-width: 768px) {
+  .logo-carousel-unit {
+    flex-direction: column; /* Stack vertically on mobile */
+    gap: var(--spacing-lg);
+  }
+  
+  .side-by-side-logo {
+    width: clamp(140px, 50vw, 260px); /* Mobile sizing for stacked layout */
+  }
+}
+
 .block-btn {
   width: 100%;
   display: block;

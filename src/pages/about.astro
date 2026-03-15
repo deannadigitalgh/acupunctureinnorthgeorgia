@@ -61,19 +61,19 @@ const personal = `Deanna loves animals, nature, and art, believing that we are p
   <section class="hero">
     <div class="hero-flex-column">      
 
-      <!-- Logo -->
-      <div class="hero-flex-center">        
-        <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" class="about-hero-logo" style="margin-bottom: var(--spacing-sm); margin-top: 20px;" />
-      </div>
-
-      <!-- Title & Subtitle -->
-      <div class="flex-column">        
+      <!-- Title & Subtitle (moved above logo+carousel unit) -->
+      <div class="flex-column" style="text-align: center; align-items: center;">        
         <h1>About Deanna Stennett</h1>
         <p>Georgia Licensed Acupuncturist | 30+ Years of Experience | Author & Educator</p>
       </div>
 
-      <!-- Headshot Carousel -->
-      <div class="hero-flex-center">        
+      <!-- Logo + Carousel Side-by-Side Unit (vertically centered together) -->
+      <div class="hero-flex-center logo-carousel-unit">
+        
+        <!-- Logo on left -->
+        <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" class="about-hero-logo side-by-side-logo" />
+
+        <!-- Headshot Carousel on right -->
         <HeadshotCarousel altText="Deanna Stennett - Licensed Acupuncturist in North Georgia" />
       </div>
     </div>

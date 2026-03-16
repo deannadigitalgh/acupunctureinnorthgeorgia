@@ -57,23 +57,22 @@ const personal = `Deanna loves animals, nature, and art, believing that we are p
   keywords={pageData.keywords}
   canonicalUrl={pageData.canonicalUrl}
 >
-  <!-- Hero Section with Headshot -->
+  <!-- Hero Section with Headshot (matches homepage structure for consistency) -->
   <section class="hero">
-    <div class="hero-flex-column">      
-
-      <!-- Title & Subtitle (moved above logo+carousel unit) -->
-      <div class="flex-column" style="text-align: center; align-items: center;">        
-        <h1>About Deanna Stennett</h1>
-        <p>Georgia Licensed Acupuncturist | 30+ Years of Experience | Author & Educator</p>
-      </div>
-
-      <!-- Logo + Carousel Side-by-Side Unit (vertically centered together) -->
-      <div class="hero-flex-center logo-carousel-unit">
+    <div class="container hero-content"> {/* ← Uses .container wrapper like homepage */}
+      {/* Content centered via flexbox, no explicit top padding needed - uses .hero's centralized spacing! */}
+      
+      <!-- Title & Subtitle -->
+      <h1>About Deanna Stennett</h1>
+      <p>Georgia Licensed Acupuncturist | 30+ Years of Experience | Author & Educator</p>
+      
+      {/* Logo + Carousel Side-by-Side Unit (vertically centered together) */}
+      <div class="logo-carousel-unit">
         
-        <!-- Logo on left -->
+        {/* Logo on left */}
         <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" class="about-hero-logo side-by-side-logo" />
 
-        <!-- Headshot Carousel on right -->
+        {/* Headshot Carousel on right */}
         <HeadshotCarousel altText="Deanna Stennett - Licensed Acupuncturist in North Georgia" />
       </div>
     </div>

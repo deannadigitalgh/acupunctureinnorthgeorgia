@@ -159,6 +159,10 @@ const schemaJson = JSON.stringify(schema);
   --spacing-xl: 3rem;     /* 48px */
   --spacing-xxl: 4rem;    /* 64px */
   
+  /* Layout Constants - Single Source of Truth for All Pages */
+  --navbar-height: 76px;          /* Fixed navbar height (logo height) */
+  --hero-top-spacing: calc(var(--navbar-height) + var(--spacing-lg)); /* Top padding for hero sections */
+  
   /* Border Radius */
   --radius-sm: 4px;
   --radius-md: 8px;
@@ -424,6 +428,7 @@ a:hover {
   align-items: center !important;
   justify-content: center !important;
   text-align: center;
+  padding-top: var(--hero-top-spacing); /* Top spacing to prevent navbar overlap (single source of truth!) */
   
   background-image: var(--hero-background, url('/bg/BlueRidgeMountainsBackground1.jpg')); /* Background image directly on hero */
   background-size: cover;

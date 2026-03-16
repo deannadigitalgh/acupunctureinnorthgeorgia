@@ -160,7 +160,7 @@ const schemaJson = JSON.stringify(schema);
   --spacing-xxl: 4rem;    /* 64px */
   
   /* Layout Constants - Single Source of Truth for All Pages */
-  --navbar-height: 76px;          /* Fixed navbar height (logo height) */
+  --navbar-height: 84px;          /* Fixed navbar height (increased from 76px to prevent title cutoff on high-scaling displays) */
   --hero-top-spacing: calc(var(--navbar-height) + var(--spacing-lg)); /* Top padding for hero sections */
   
   /* Border Radius */
@@ -314,15 +314,15 @@ a:hover {
   opacity: 0.85;
 }
 
-/* Logo sizing */
+/* Logo sizing - increased height to prevent title cutoff on high-scaling displays */
 .logo-lg-nav {
-  height: 76px;
+  height: 84px;  /* Increased from 76px to provide more spacing */
   width: auto;
 }
 
 @media (max-width: 768px) {
   .logo-lg-nav {
-    height: 64px;
+    height: 72px;  /* Mobile logo slightly smaller but still sufficient */
   }
 }
 
@@ -379,6 +379,17 @@ a:hover {
   height: 3px;
   background-color: var(--color-primary);
   transition: all var(--transition-fast);
+}
+
+/* Fix for tall/thin devices (Samsung Z Fold, etc.) - prevent hamburger from overlapping site name */
+@media (max-width: 768px) and (min-aspect-ratio: 9/16) {
+  .logo-text {
+    font-size: 1.2rem; /* Smaller on tall screens */
+  }
+  
+  .nav-container {
+    padding: 0 var(--spacing-xs); /* Reduced horizontal padding */
+  }
 }
 
 /* Location Dropdown Menu */
@@ -721,7 +732,7 @@ a:hover {
   }
   
   body {
-    padding-top: 80px !important; /* Account for fixed navbar on mobile */
+    padding-top: 90px !important; /* Account for increased navbar height (84px) + 6px buffer */
     padding-bottom: 72px !important; /* Space for mobile CTA */
   }
 }
@@ -1035,7 +1046,10 @@ textarea:focus-visible {
         const navLinks = document.querySelector('.nav-links');
         
         if (menuBtn && navLinks) {
-          menuBtn.addEventListener('click', function() {
+          menuBtn.addEventListener('click', function(e) {
+            // Prevent click from bubbling to logo-link on tall/thin devices
+            e.stopPropagation();
+            
             navLinks.classList.toggle('active');
             
             // Animate hamburger to X
@@ -1068,11 +1082,12 @@ textarea:focus-visible {
           });
         });
         
-        // Mobile dropdown toggle for locations
+        // Mobile dropdown toggle for locations - fix for tall/thin devices
         const locationDropdown = document.querySelector('.location-dropdown');
         const locationLinksMobile = document.querySelector('.location-links-mobile');
         if (locationDropdown && locationLinksMobile && window.innerWidth <= 768) {
           locationDropdown.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent bubbling to nav container
             e.preventDefault();
             locationLinksMobile.style.display = locationLinksMobile.style.display === 'flex' ? 'none' : 'flex';
           });

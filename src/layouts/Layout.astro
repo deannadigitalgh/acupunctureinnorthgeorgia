@@ -160,8 +160,10 @@ const schemaJson = JSON.stringify(schema);
   --spacing-xxl: 4rem;    /* 64px */
   
   /* Layout Constants - Single Source of Truth for All Pages */
-  --navbar-height: 84px;          /* Fixed navbar height (increased from 76px to prevent title cutoff on high-scaling displays) */
-  --hero-top-spacing: calc(var(--navbar-height) + var(--spacing-lg)); /* Top padding for hero sections */
+/* Use viewport-based units and clamp() to handle scaling/zoom levels properly */
+--base-nav-height: 84px;
+--viewport-safe-height: min(10vh, calc(var(--base-nav-height) + var(--spacing-lg)));
+--hero-top-spacing: max(calc(var(--navbar-min-height) || 96px), calc(var(--viewport-safe-height))); /* Top spacing for hero sections */
   
   /* Border Radius */
   --radius-sm: 4px;
@@ -316,13 +318,13 @@ a:hover {
 
 /* Logo sizing - increased height to prevent title cutoff on high-scaling displays */
 .logo-lg-nav {
-  height: 84px;  /* Increased from 76px to provide more spacing */
+  height: min(10vh, 96px);  /* Responsive height using viewport units for scaling */
   width: auto;
 }
 
 @media (max-width: 768px) {
   .logo-lg-nav {
-    height: 72px;  /* Mobile logo slightly smaller but still sufficient */
+    height: min(8vh, 72px);
   }
 }
 
@@ -434,16 +436,21 @@ a:hover {
 /* Hero Section with Mountain Background Image & Maximum Text Contrast */
 .hero {
   position: relative; /* Required for ::before overlay positioning to work correctly */
-  min-height: var(--hero-min-height, 80vh) !important;
-  display: flex !important; 
+  
+  /* Responsive min-height that works well across different zoom levels */
+  min-height: clamp(60vh, 80vh, 95vh) !important;
+  
+  display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   text-align: center;
-  padding-top: var(--hero-top-spacing); /* Top spacing to prevent navbar overlap (single source of truth!) */
+  
+  /* Responsive padding that scales with viewport and zoom levels */
+  padding-top: clamp(140px, max(20vh, calc(var(--base-nav-height) + var(--spacing-xl))), 35vh);
   
   background-image: var(--hero-background, url('/bg/BlueRidgeMountainsBackground1.jpg')); /* Background image directly on hero */
   background-size: cover;
-  background-position: top center; 
+  background-position: top center;
 }
 
 /* Dark overlay for readability - positioned behind content with z-index layering so buttons remain clickable! */
@@ -482,9 +489,11 @@ a:hover {
   margin-bottom: var(--spacing-lg);
 }
 
-/* Sections */
+/*_sections_*/
 .section {
-  padding: var(--spacing-xxl) 0;
+  /* Responsive section padding that works well with zoom levels */
+  padding-top: clamp(64px, max(12vh, calc(var(--spacing-xl))), 35vh);
+  padding-bottom: clamp(64px, max(12vh, calc(var(--spacing-xl))), 35vh);
 }
 
 .section-light {
@@ -732,8 +741,9 @@ a:hover {
   }
   
   body {
-    padding-top: 90px !important; /* Account for increased navbar height (84px) + 6px buffer */
-    padding-bottom: 72px !important; /* Space for mobile CTA */
+    /* Responsive padding that scales with viewport and zoom levels */
+    padding-top: clamp(90px, max(15vh, calc(var(--base-nav-height) + var(--spacing-sm))), 30vh) !important;
+    padding-bottom: clamp(72px, max(10vh, 84px), 25vh) !important; /* Space for mobile CTA */
   }
 }
 

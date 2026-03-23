@@ -87,7 +87,7 @@ export const PRICING = {
 export const SERVICES = [
   {
     title: 'Acupuncture',
-    description: 'Traditional Chinese Medicine and Five-Element Acupuncture to restore balance and find your center. Specializing in pain relief, stress reduction, and holistic healing.',
+    description: 'Traditional Chinese Medicine and Five-Element Acupuncture to restore balance and find your center. Specializing in pain relief, stress reduction, and holistic healing. Includes cupping, moxibustion, heat therapy, Gua Sha, and Western herbology (herbal) therapy.',
     icon: '🌿' as const,
   },
   {
@@ -97,7 +97,7 @@ export const SERVICES = [
   },
   {
     title: 'Facial Rejuvenation',
-    description: 'Insertion of paper-thin needles through strategic points on the face to increase blood flow, boost collagen production, and remove dead skin cells.',
+    description: 'Natural anti-aging treatment using fine needles to stimulate collagen production and improve facial circulation. Part of comprehensive acupuncture services including cupping, moxibustion, heat therapy, Gua Sha, and Western herbology.',
     icon: '✨' as const,
   },
 ] as const;

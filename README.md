@@ -1,48 +1,66 @@
-# Acupuncture in North Georgia - Static Website
+# Acupuncture in North Georgia & Heart Of A Lion Shamanism
 
 **Client:** AA (Deanna Stennett)  
-**Project:** Migration from Wix to static site + SEO optimization  
-**Status:** Complete  
+**Developer:** Eliot, Project Co-Lead & Implementor  
+**Status:** Acupuncture Site Complete ✅ | Shamanism Site Ready for Launch 🦁  
+
+---
+
+## 📚 Documentation Structure
+
+| Document | Purpose |
+|----------|---------|
+| **README.md** (this file) | Complete project overview, tech stack, deployment instructions, and maintenance guide |
+| `archive/FINAL_TECH_STACK.md` | Technology decisions and architectural rationale |
+| `archive/PROJECT_SUMMARY.md` | Implementation summary with SEO features, content preservation details |
 
 ---
 
 ## 🎯 Project Goals Achieved
 
 ### Task 1: Acupuncture Website ✅ COMPLETE & READY FOR LAUNCH
-- [x] Migrated from Wix to zero-cost static hosting
-- [x] Self-maintainable by non-technical user (via GitHub Copilot)
+- [x] Migrated from Wix to zero-cost static hosting ($0 vs $27-49/mo)
+- [x] Self-maintainable by non-technical user (via GitHub Copilot Chat in WebStorm/VS Code)
 - [x] Optimized for target SEO keywords in Georgia/Northern Georgia
-- [x] Fast lead capture form with direct Formspree submission ✅ WORKING
-- [x] Visual branding implemented:
-  - Logo integrated into navigation header on all pages
-  - Professional headshot added to About page and homepage
-  - Consistent mobile-responsive image display
-- [x] **SEO Fixes Implemented (February 2026):**
-  - Sitemap.xml auto-generation via Astro sitemap plugin
-  - robots.txt created with proper directives
-  - Schema markup updated with real phone number and GPS coordinates
-  - Privacy policy page created and linked on all contact forms
-  - Test files cleaned up, favicon references fixed
+- [x] Fast lead capture form with direct Formspree submission ✅ WORKING - emails deliver immediately!
+- [x] Dual-location Cal.com inline calendar embeds (Ellijay & Blairsville) with tab switching UI
+- [x] Mobile-responsive design with sticky CTAs across all 11 pages
+- [x] Centralized configuration system (`src/config/contact.ts`) for easy content updates
 
-### Task 2: Shamanism Website 🦁 IN PROGRESS
-- [ ] See `TASK_2_SHAMANISM_WEBSITE.md` for full project scope
-- [ ] Awaiting client content (services, pricing, testimonials, photos)
-- [ ] Separate repository recommended (`projaa-shaman`)
+### Task 2: Shamanism Website 🦁 READY FOR DEPLOYMENT
+- [x] Complete static site built using same Astro + Cloudflare Pages stack
+- [ ] Awaiting domain finalization and deployment (see `TASK_2_SHAMANISM_WEBSITE.md` for scope)
 
 ---
 
 ## 🚀 Tech Stack
 
+### Hosting & Deployment
 | Component | Technology | Cost |
 |-----------|------------|------|
-| **Framework** | Astro 5.x | Free |
-| **Hosting** | Cloudflare Pages | Free |
-| **Version Control** | GitHub | Free |
-| **Content Management** | GitHub Copilot (free tier) | $0-10/mo |
-| **Forms** | Custom API route + email integration | Free |
-| **Online Booking** | Cal.com (self-service scheduling) | Free tier available |
+| **Hosting** | Cloudflare Pages | Free - no commercial use restrictions, global CDN for Core Web Vitals |
+| **Version Control** | GitHub | Free - industry standard repository hosting |
 
-**Total Monthly Cost: $0** (vs. Wix's $27-49/month)
+> **Why not GitHub Pages?** GitHub's Terms of Service explicitly prohibit using it to host commercial business websites.
+
+### Site Framework
+- **Astro 5.x** (Free, open source) - Purpose-built for content-heavy sites. Ships zero JavaScript by default and generates clean semantic HTML that search engines can fully crawl without rendering issues.
+
+> **Why not Next.js?** Newer caching model and deployment complexity add unnecessary overhead for this static site scope.
+
+### Content Management
+- **GitHub Copilot** (Free tier: 2,000 completions + 50 chat messages/month) - Replaces traditional CMS entirely. AA describes changes in plain English →Copilot makes edits→one button commit/push→Cloudflare auto-deploys within 60 seconds.
+
+### Scheduling & Lead Capture
+| Tool | Cost | Purpose |
+|------|------|---------|
+| **Cal.com** (Open source) | Free tier available - native Apple Calendar integration, embedded inline for SEO indexing |
+| **Formspree** | Free tier - immediate email delivery with no API route needed |
+
+### Payments
+- **Square** (Existing setup unchanged) - AA handles payments locally post-treatment via Square on her phone
+
+> **Total Monthly Cost: $0** vs. Wix's $27-49/month = Annual savings of $324-588+
 
 ---
 
@@ -79,19 +97,91 @@ projaa-acu/
 │   └── styles/
 │       └── global.css            # Legacy file - CSS now embedded in Layout.astro
 ├── public/                       # Static assets (favicon, images)
-├── astro.config.mjs             # Astro configuration
-├── package.json                 # Dependencies
-├── tsconfig.json               # TypeScript config
-├── old_site_summary.md         # Preserved content from Wix site
-└── README.md                   # This file
-```
+│   ├── favicon.svg              # Simplified practice favicon (10.5KB — replace old placeholder)
+│   └── logo-large.svg           # Practice logo for headers and section frames
+├── src/
+│   ├── components/
+│   │   ├── ContactSection.astro  # Reusable contact form + Cal.com embed component
+│   │   ├── HeadshotCarousel.astro# Rotating headshot carousel component
+│   │   └── MobileCTA.astro       # Reusable mobile sticky CTA component
+│   ├── config/
+│   │   ├── contact.ts            # Centralized site-wide configuration (phone, addresses, hours)
+│   │   └── hero.ts               # Hero section defaults for all pages
+│   ├── layouts/
+├── public/                       # Static assets (favicon, images)
+│   ├── favicon.svg              # Simplified practice favicon (10.5KB — replace old placeholder)
+│   └── logo-large.svg           # Practice logo for headers and section frames
+├── src/
+│   ├── components/
+│   │   ├── ContactSection.astro  # Reusable contact form + Cal.com embed component
+│   │   ├── HeadshotCarousel.astro# Rotating headshot carousel component
+│   │   └── MobileCTA.astro       # Reusable mobile sticky CTA component
+│   ├── config/
+│   │   ├── contact.ts            # Centralized site-wide configuration (phone, addresses, hours)
+│   │   └── hero.ts               # Hero section defaults for all pages
+│   ├── layouts/
+│   │   └── Layout.astro          # Global layout with schema markup + embedded CSS
+│   ├── pages/
+│   │   ├── index.astro           # Homepage (SEO optimized)
+│   │   ├── about.astro           # Deanna's bio & credentials
+│   │   ├── services.astro        # Treatment offerings + pricing
+│   │   ├── faq.astro             # Patient questions answered
+│   │   ├── testimonials.astro    # Patient reviews
+│   │   └── privacy-policy.astro  # HIPAA-compliant privacy policy
+├── astro.config.mjs             # Astro configuration with sitemap plugin
+├── package.json                 # Dependencies and build scripts
+└── tsconfig.json               # TypeScript config
 
 ---
 
-## 🎨 SEO Strategy Implemented
+# Acupuncture in North Georgia & Heart Of A Lion Shamanism - Project AA README
 
-### Primary Keywords Targeted
-- "Acupuncture in Georgia"
+**Client:** AA (Deanna Stennett)  
+**Developer:** Eliot, Project Co-Lead & Implementor  
+**Status:** Complete & Ready for Deployment ✅🦁  
+
+---
+
+## 📚 Documentation Structure
+
+| Document | Purpose |
+|----------|---------|
+| **README.md** (this file - merged document) | Complete overview of both projects with tech stack and deployment instructions |
+| `archive/FINAL_TECH_STACK.md` | Technology decisions and architectural rationale for AA's wellness sites |
+| `archive/PROJECT_SUMMARY.md` | Implementation summary with SEO features, content preservation details |
+
+---
+
+## 🎯 Project Goals Achieved
+
+### Task 1: Acupuncture Website ✅ COMPLETE & READY FOR LAUNCH
+- [x] Migrated from Wix to zero-cost static hosting ($0 vs $27-49/mo)
+- [x] Self-maintainable by non-technical user (via GitHub Copilot Chat in WebStorm/VS Code)
+- [x] Optimized for target SEO keywords in Georgia/Northern Georgia
+- [x] Fast lead capture form with direct Formspree submission ✅ WORKING - emails deliver immediately!
+- [x] Dual-location Cal.com inline calendar embeds (Ellijay & Blairsville) with tab switching UI
+- [x] Mobile-responsive design with sticky CTAs across all 11 pages
+- [x] Centralized configuration system (`src/config/contact.ts`) for easy content updates
+
+### Task 2: Heart Of A Lion Shamanism Website 🦁 READY FOR DEPLOYMENT
+- [x] Complete static site built using same Astro + Cloudflare Pages stack
+- [ ] Final domain selection pending (heartofalionshamanism.com recommended)
+- [ ] Deployment to Cloudflare Pages ready with custom domain configuration
+
+---
+
+## 🚀 Tech Stack - Identical for Both Sites
+
+### Hosting & Deployment
+| Component | Technology | Cost |
+|-----------|------------|------|
+| **Hosting** | Cloudflare Pages | Free - no commercial use restrictions, global CDN for Core Web Vitals |
+| **Version Control** | GitHub | Free - industry standard repository hosting |
+
+> **Why not GitHub Pages?** GitHub's Terms of Service explicitly prohibit using it to host commercial business websites.
+
+### Site Framework
+- **Astro 5.x** (Free, open source) - Purpose-built for content-heavy sites. Ships zero JavaScript by default and generates clean semantic HTML that search engines can fully crawl without rendering issues.
 - "Alternative Medicine in Georgia"
 - "Holistic Medicine in Georgia"
 - "Acupuncture near me" (Northern Georgia)
@@ -187,7 +277,7 @@ This is the **#1 ranking factor** for "near me" queries per SEO research:
 3. **Optimize Profile:**
    - Upload 20+ professional photos (office, Deanna headshot, treatment room, team)
    - Set accurate hours: Mon-Fri 9AM-5PM, Sat-Sun by appointment
-   - Add services list (Acupuncture, NAET, Facial Rejuvenation, Five-Element)
+   - Add services list: Acupuncture (includes cupping, moxibustion, heat therapy, Gua Sha, Western herbology), NAET Allergy Treatment, Facial Rejuvenation
    - Write compelling business description with keywords
 
 4. **Review Collection System:**
@@ -685,29 +775,95 @@ This was the #1 cause of blank pages during development. Always use `<slot />` t
 
 ---
 
-## 🦁 TASK 2: Shamanism Website
+## 🦁 TASK 2: Heart Of A Lion Shamanism Website
 
-**Status:** Ready for Development - See [`TASK_2_SHAMANISM_WEBSITE.md`](TASK_2_SHAMANISM_WEBSITE.md) for full scope.
+**Status:** Complete & Ready for Deployment 🚀  
+**Repository:** `projaa-shm` (separate project)  
 
-A second static website is being built using the same Astro + Cloudflare Pages stack for AA's shamanic healing practice "Heart Of A Lion Shamanism". The technical architecture, deployment process, and maintenance workflow are identical to this acupuncture site.
+A second static website built using the same Astro + Cloudflare Pages stack for AA's shamanic healing practice "Heart Of A Lion Shamanism". The technical architecture, deployment process, and maintenance workflow are identical to this acupuncture site.
 
-**Key Differences:**
-- Separate repository recommended (`projaa-shaman`)
-- Different branding (reds/golds vs. healing greens/blues)
-- Workshop calendar feature (not needed on acupuncture site)
-- Target keywords: "Shamanic Healing in Georgia", "Shamanic Workshop Near Me"
+### Key Differences Between Sites
+
+| Feature | Acupuncture Site | Shamanism Site |
+|---------|-----------------|----------------|
+| **Primary Keywords** | "Acupuncture in Georgia" | "Shamanic Healing in Georgia" |
+| **Service Calendar** | Appointment scheduling (Cal.com) | Workshop calendar + sessions |
+| **Branding Colors** | Healing greens/blues | Reds/golds with lion symbolism |
+| **Target Locations** | Ellijay, Blairsville offices |Ellijay office + church ceremonies |
+
+### Technical Architecture - Identical Stack
+- **Framework:** Astro 5.x (static site generation)
+- **Hosting:** Cloudflare Pages (free, global CDN)
+- **Version Control:** GitHub repository
+- **Content Management:** GitHub Copilot Chat in WebStorm/VS Code
 
 ---
 
 ## 📞 Contact Information
 
 **Client:** AA (Deanna Stennett)  
-**Practice:** Acupuncture in North Georgia  
-**Offices:** 
-- Ellijay: 11 Kiker Street, Ellijay, GA 30540
-- Blairsville: 563 Gainesville Hwy, Blairsville, GA 30512
+**Practices:** Acupuncture in North Georgia & Heart Of A Lion Shamanism  
+
+### Office Locations
+| Location | Address |
+|----------|---------|
+| Ellijay Office | 11 Kiker Street, Ellijay, GA 30540 |
+| Blairsville Office | 563 Gainesville Hwy, Blairsville, GA 30512 |
+
+### Shamanism Practice Locations
+- **Ellijay Office** - Primary healing sessions  
+- **Church Ceremonies** - Community shamanic workshops (3rd Saturday monthly)
 
 ---
+
+# Heart Of A Lion Shamanism Website - Project AA Task 2
+
+**Status:** Complete & Ready for Deployment 🦁  
+**Developer:** Eliot, Project Co-Lead & Implementor  
+**Client:** AA (Deanna Stennett)  
+
+---
+
+## 📚 Documentation Structure
+
+| Document | Purpose |
+|----------|---------|
+| **README.md** (this file - merged document) | Complete overview of both projects with tech stack and deployment instructions |
+| `archive/FINAL_TECH_STACK.md` | Technology decisions and architectural rationale for AA's wellness sites |
+| `archive/PROJECT_SUMMARY.md` | Implementation summary with SEO features, content preservation details |
+
+---
+
+## 🎯 Project Goals Achieved
+
+### Task 1: Acupuncture Website ✅ COMPLETE & READY FOR LAUNCH
+- [x] Migrated from Wix to zero-cost static hosting ($0 vs $27-49/mo)
+- [x] Self-maintainable by non-technical user (via GitHub Copilot Chat in WebStorm/VS Code)
+- [x] Optimized for target SEO keywords in Georgia/Northern Georgia
+- [x] Fast lead capture form with direct Formspree submission ✅ WORKING - emails deliver immediately!
+- [x] Dual-location Cal.com inline calendar embeds (Ellijay & Blairsville) with tab switching UI
+- [x] Mobile-responsive design with sticky CTAs across all 11 pages
+- [x] Centralized configuration system (`src/config/contact.ts`) for easy content updates
+
+### Task 2: Heart Of A Lion Shamanism Website 🦁 READY FOR DEPLOYMENT
+- [x] Complete static site built using same Astro + Cloudflare Pages stack
+- [ ] Final domain selection pending (heartofalionshamanism.com recommended)
+- [ ] Deployment to Cloudflare Pages ready with custom domain configuration
+
+---
+
+## 🚀 Tech Stack - Identical for Both Sites
+
+### Hosting & Deployment
+| Component | Technology | Cost |
+|-----------|------------|------|
+| **Hosting** | Cloudflare Pages | Free - no commercial use restrictions, global CDN for Core Web Vitals |
+| **Version Control** | GitHub | Free - industry standard repository hosting |
+
+> **Why not GitHub Pages?** GitHub's Terms of Service explicitly prohibit using it to host commercial business websites.
+
+### Site Framework
+- **Astro 5.x** (Free, open source) - Purpose-built for content-heavy sites. Ships zero JavaScript by default and generates clean semantic HTML that search engines can fully crawl without rendering issues.
 
 ## 🔧 Centralized Configuration System
 
@@ -723,7 +879,7 @@ All site-wide contact information, pricing, and business details are now central
 | **Business Hours** | Weekday/weekend hours, full description |
 | **Service Areas** | All Northern Georgia towns with distances |
 | **Pricing** | First visit ($130/90min), follow-up ($90/60min) |
-| **Services** | Acupuncture, NAET, Facial Rejuvenation (basic info) |
+| **Services** | Acupuncture (includes cupping/moxibustion/Gua Sha/herbal therapy), NAET Allergy Treatment, Facial Rejuvenation |
 | **SEO Config** | Domain URL, primary keywords |
 
 ### How to Update Contact Info

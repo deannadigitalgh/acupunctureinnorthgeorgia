@@ -17,7 +17,7 @@ A fully functional, SEO-optimized static website that replaces the Wix site whil
 |------|---------|---------------|
 | `index.astro` | Homepage with hero, services preview, testimonials, contact form | Primary keywords: "Acupuncture in Georgia", "Holistic Medicine" |
 | `about.astro` | Deanna's bio, credentials, publications | "Licensed Acupuncturist Georgia", "NCCAOM certified" |
-| `services.astro` | All treatments with pricing ($130 first visit / $90 follow-up) | "NAET allergy treatment", "Facial Rejuvenation acupuncture" |
+| `services.astro` | All treatments (acupuncture + modalities: cupping, moxibustion, Gua Sha, herbal therapy, NAET, facial rejuvenation) with pricing ($130 first visit / $90 follow-up) | "Acupuncture Georgia", "NAET allergy treatment Ellijay" |
 | `faq.astro` | Complete patient Q&A (25+ questions answered) | "Do acupuncture needles hurt", "Prepare for first treatment" |
 | `testimonials.astro` | 4 full patient reviews with success stories | "Acupuncture testimonials Georgia" |
 | `blue-ridge-ga.astro` | Service area page targeting Blue Ridge patients | "Acupuncture near me Blue Ridge GA" |
@@ -123,7 +123,7 @@ Each page includes:
 All content from the original Wix site has been preserved in `old_site_summary.md` and integrated into new pages:
 
 ### Preserved Content
-✅ Deanna's bio and journey (since 1993)  
+✅ Deanna's bio and jou  rney (since 1993)  
 ✅ Certifications & qualifications (NCCAOM, Georgia licensed, MUIH professor)  
 ✅ Published work ("Poetry of the Body" book)  
 ✅ All service descriptions (Acupuncture, NAET, Facial Rejuvenation)  

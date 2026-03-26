@@ -12,53 +12,47 @@ const { title = 'Get Started on Your Healing Journey' } = Astro.props;
     <div class="container">
       <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">{title}</h2>
       
+      <!-- Cal.com Booking Widget - Inline Embed with Location Tabs (COMMENTED OUT AT CLIENT REQUEST) -->
+      <!--
       <div style="display: grid; gap: var(--spacing-xl); grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-        <!-- Cal.com Booking Widget - Inline Embed with Location Tabs -->
         <div class="cal-embed-container" style="background-color: var(--color-surface); padding: 2rem; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
           <h3 style="text-align: center; margin-bottom: 1.5rem;">Book Your Appointment Online</h3>
           
-          <!-- Location Tabs -->
           <div class="cal-location-tabs" style="display: flex; gap: 0.75rem; margin-bottom: var(--spacing-md);">
             <button type="button" id="tab-ellijay" class="cal-tab cal-tab-active" data-target="calendar-ellijay">Ellijay Office</button>
             <button type="button" id="tab-blairsville" class="cal-tab" data-target="calendar-blairsville">Blairsville Office</button>
           </div>
           
-          <!-- Ellijay Calendar -->
           <div id="calendar-ellijay" class="cal-calendar active">
             <div style="width:100%;height:auto;overflow:scroll" id="my-cal-inline-newacuellijay"></div>
             <script type="text/javascript">
               (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
               Cal("init", "newacuellijay", {origin:"https://app.cal.com"});
-
               Cal.ns.newacuellijay("inline", {
                 elementOrSelector:"#my-cal-inline-newacuellijay",
                 config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
                 calLink: "deannastennett/newacuellijay",
               });
-
               Cal.ns.newacuellijay("ui", {"hideEventTypeDetails":true,"layout":"month_view"});
             </script>
           </div>
           
-          <!-- Blairsville Calendar - Hidden but in DOM for Cal.com initialization -->
           <div id="calendar-blairsville" class="cal-calendar cal-hidden">
             <div style="width:100%;height:auto;overflow:scroll" id="my-cal-inline-newacublairsville"></div>
             <script type="text/javascript">
               (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
               Cal("init", "newacublairsville", {origin:"https://app.cal.com"});
-
               Cal.ns.newacublairsville("inline", {
                 elementOrSelector:"#my-cal-inline-newacublairsville",
                 config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
                 calLink: "deannastennett/newacublairsville",
               });
-
               Cal.ns.newacublairsville("ui", {"hideEventTypeDetails":true,"layout":"month_view"});
             </script>
           </div>
         </div>
+      </div>
       
-      <!-- Tab Switching Script -->
       <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
           const ellijayTab = document.getElementById('tab-ellijay');
@@ -69,14 +63,12 @@ const { title = 'Get Started on Your Healing Journey' } = Astro.props;
           function showEllijay() {
             ellijayTab.classList.add('cal-tab-active');
             blairsvilleTab.classList.remove('cal-tab-active');
-            // Move Ellijay calendar into view
             ellijayCalendar.style.position = 'relative';
             ellijayCalendar.style.left = 'auto';
             ellijayCalendar.style.top = 'auto';
             ellijayCalendar.style.display = 'block';
             ellijayCalendar.classList.add('active');
             ellijayCalendar.classList.remove('cal-hidden');
-            // Hide Blairsville calendar off-screen
             blairsvilleCalendar.style.position = 'absolute';
             blairsvilleCalendar.style.left = '-9999px';
             blairsvilleCalendar.classList.remove('active');
@@ -86,21 +78,18 @@ const { title = 'Get Started on Your Healing Journey' } = Astro.props;
           function showBlairsville() {
             blairsvilleTab.classList.add('cal-tab-active');
             ellijayTab.classList.remove('cal-tab-active');
-            // Move Blairsville calendar into view
             blairsvilleCalendar.style.position = 'relative';
             blairsvilleCalendar.style.left = 'auto';
             blairsvilleCalendar.style.top = 'auto';
             blairsvilleCalendar.style.display = 'block';
             blairsvilleCalendar.classList.add('active');
             blairsvilleCalendar.classList.remove('cal-hidden');
-            // Hide Ellijay calendar off-screen
             ellijayCalendar.style.position = 'absolute';
             ellijayCalendar.style.left = '-9999px';
             ellijayCalendar.classList.remove('active');
             ellijayCalendar.classList.add('cal-hidden');
           }
           
-          // Initialize calendars on page load - show Ellijay by default
           showEllijay();
           
           if (ellijayTab && blairsvilleTab) {
@@ -109,7 +98,10 @@ const { title = 'Get Started on Your Healing Journey' } = Astro.props;
           }
         });
       </script>
+      -->
 
+      <!-- Evenly Spread Contact Options -->
+      <div style="display: grid; gap: var(--spacing-xl); grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
         <!-- Alternative Contact Form (for users who prefer to be called) -->
         <form class="contact-form" id="contact-form" action="https://formspree.io/f/xyknygzk" method="POST">
           <h3 style="text-align: center; margin-bottom: var(--spacing-md);">Prefer a Phone Call?</h3>
@@ -146,7 +138,6 @@ const { title = 'Get Started on Your Healing Journey' } = Astro.props;
             <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your health concerns or preferred appointment times..."></textarea>
           </div>
 
-          <!-- Hidden fields -->
           <input type="hidden" name="_subject" value="New appointment request from acupunctureinnorthgeorgia.com"/>
           <input type="hidden" name="_captcha" value="false"/>
           
@@ -162,7 +153,7 @@ const { title = 'Get Started on Your Healing Journey' } = Astro.props;
           </p>
         </form>
       
-        <!-- Contact Info -->
+        <!-- Contact Information -->
         <div>
           <h3>Contact Information</h3>
           

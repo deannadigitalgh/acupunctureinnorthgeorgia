@@ -898,26 +898,26 @@ textarea:focus-visible {
 /* Page-level Logo Styling (About, Services, FAQ pages) */
 .logo-img {
   height: auto;
-  max-width: min(300px, calc(100vw - var(--spacing-lg) * 2)); /* Responsive sizing with viewport constraints */
+  max-width: min(150px, calc(100vw - var(--spacing-lg) * 2)); /* Reduced by ~50%: Responsive sizing with viewport constraints */
 }
 
 @media (max-width: 768px) {
   .logo-img {
     height: auto;
-    max-width: min(240px, calc(100vw - var(--spacing-md) * 2)); /* Smaller on mobile */
+    max-width: min(120px, calc(100vw - var(--spacing-md) * 2)); /* Smaller on mobile, reduced by ~50% */
   }
 }
 
 /* About Hero Logo - Scales properly with viewport to prevent cutoff when zooming */
 .about-hero-logo {
   height: auto;
-  width: clamp(200px, 45vw, 380px); /* Minimum 200px, scales at 45% of viewport width, max 380px */
+  width: clamp(100px, 22.5vw, 190px); /* Reduced by ~50%: Minimum 100px, scales at 22.5% of viewport width, max 190px */
 }
 
 @media (max-width: 768px) {
   .about-hero-logo {
     height: auto;
-    width: clamp(160px, 50vw, 280px); /* Smaller on mobile - minimum 160px */
+    width: clamp(80px, 25vw, 140px); /* Smaller on mobile - minimum 80px, reduced by ~50% */
   }
 }
 
@@ -931,7 +931,7 @@ textarea:focus-visible {
 
 .side-by-side-logo {
   height: auto;
-  width: clamp(180px, 42vw, 350px); /* Slightly smaller than hero logo for side-by-side layout */
+  width: clamp(90px, 21vw, 175px); /* Reduced by ~50%: Slightly smaller than hero logo for side-by-side layout */
 }
 
 @media (max-width: 768px) {

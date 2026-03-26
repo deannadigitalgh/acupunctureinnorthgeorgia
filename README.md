@@ -4,6 +4,11 @@
 **Developer:** Eliot, Project Co-Lead & Implementor  
 **Status:** Acupuncture Site Complete | Shamanism Site Ready for Deployment  
 
+## Recent Updates (March 2026)
+- **Cal.com Calendar:** Commented out at client request (kept in code for potential future use)
+- **Contact Section Optimization:** "Prefer a Phone Call?" form and "Contact Information" sections now evenly distributed in responsive grid layout
+- **Map Integration:** Both Ellijay and Blairsville locations displayed with Google Maps embeds
+
 ## Project Goals Achieved
 
 ### Task 1: Acupuncture Website (COMPLETE)
@@ -11,7 +16,8 @@
 - Self-maintainable by non-technical user (via GitHub Copilot Chat in WebStorm/VS Code)
 - Optimized for target SEO keywords in Georgia/Northern Georgia
 - Fast lead capture form with direct Formspree submission - emails deliver immediately!
-- Dual-location Cal.com inline calendar embeds (Ellijay & Blairsville) with tab switching UI
+- Cal.com calendar embeds commented out at client request (kept for potential future use)
+- Contact section optimized: "Prefer a Phone Call?" form and "Contact Information" sections evenly distributed in grid layout
 - Mobile-responsive design with sticky CTAs across all 11 pages
 - Centralized configuration system for easy content updates
 - **SEO Features:** LocalBusiness schema markup, 7 service area pages (Blue Ridge, Dahlonega, Jasper, Helen), comprehensive FAQ section, HIPAA-compliant privacy policy, Core Web Vitals optimized (zero JS by default)
@@ -38,7 +44,7 @@ projaa-acu/
 │   └── logo-large.svg            # Practice logo for headers and section frames
 ├── src/
 │   ├── components/
-│   │   ├── ContactSection.astro  # Reusable contact form + Cal.com embed component
+│   │   ├── ContactSection.astro  # Reusable contact form + (commented out Cal.com embed)
 │   │   ├── HeadshotCarousel.astro# Rotating headshot carousel component
 │   │   └── MobileCTA.astro       # Reusable mobile sticky CTA component
 │   ├── config/
@@ -142,4 +148,3 @@ Contact form with multi-step conversational design (4 fields max) prioritizing p
 Built with Astro for AA's practice. All content preserved from original Wix site (see `OLD_SITE_SUMMARY.md`).  
 
 © 2026 Acupuncture in North Georgia. All rights reserved.
-

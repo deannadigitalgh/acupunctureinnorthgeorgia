@@ -20,15 +20,28 @@ const pageData = {
 };
 
 // Logo placement - top of page (no headshot on this page)
-const showLogoTop = true;
-const showLogoBottom = true;
+// const showLogoTop = true; // Not used in services.astro
+// const showLogoBottom = true; // Not used in services.astro
 
 // Use centralized services config (from contact.ts)
-const localServices = [
+interface ConditionCategory {
+  category: string;
+  items: string[];
+}
+
+interface ServiceItem {
+  title: string;
+  icon: string;
+  overview?: string;
+  benefits?: string[];
+  conditionsTreated?: ConditionCategory[];
+}
+
+const localServices: ServiceItem[] = [
   ...config.SERVICES,
   {
     title: 'Five-Element Acupuncture',
-    icon: '🍃' as const,
+    icon: '🍃',
     overview: 'Based on the teachings of Professor J.R. Worsley, Five-Element Acupuncture is a holistic approach that addresses the root emotional and physical causes of illness through elemental theory (Wood, Fire, Earth, Metal, Water).',
     benefits: ['Addresses root causes rather than symptoms', 'Emotional healing alongside physical relief', 'Long-lasting results', 'Personalized treatment plans', 'Holistic mind-body-spirit approach'],
     conditionsTreated: [
@@ -60,11 +73,11 @@ const testimonials = [
   { text: "I feel so much better now and can eat and be around items that caused me discomfort before. I have continued to go to Dee for acupuncture treatments 1-2 times a month.", author: 'Jackie A.', condition: 'Food Intolerance Treatment' }
 ];
 
-// Call-to-action
-const cta = {
-  primaryText: 'Book Your First Appointment',
-  secondaryText: '(410) 961-9033'
-};
+// Call-to-action - declared for future use but not currently used in services.astro
+// const cta = {
+//   primaryText: 'Book Your First Appointment',
+//   secondaryText: '(410) 961-9033'
+// };
 ---
 
 <Layout 
@@ -139,7 +152,7 @@ const cta = {
             <div class="margin-top-md">
               <h4 style="color: var(--color-secondary);">Benefits:</h4>
               <ul class="list-none flex-wrap gap-sm padding-left-0">
-                {service.benefits.map(benefit => (
+                {service.benefits.map((benefit: string) => (
                   <li class="card-item">✓ {benefit}</li>
                 ))}
               </ul>
@@ -151,11 +164,11 @@ const cta = {
             <div class="margin-top-lg">
               <h4 style="color: var(--color-secondary);">What This Service Can Treat:</h4>
               
-              {service.conditionsTreated.map(category => (
+              {service.conditionsTreated.map((category: ConditionCategory) => (
                 <div class="margin-bottom-md">
                   <p><strong>{category.category}:</strong></p>
                   <ul class="list-none flex-wrap gap-sm padding-left-0">
-                    {category.items.map(item => (
+                    {category.items.map((item: string) => (
                       <li class="card-item-bg">{item}</li>
                     ))}
                   </ul>

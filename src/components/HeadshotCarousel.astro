@@ -19,8 +19,6 @@ const headshots = [
   '/headshots/AA-headshot-9.jpeg',
   '/headshots/AA-headshot-10.jpg'
 ];
-
-const currentHeadshot = headshots[Math.floor(Math.random() * headshots.length)];
 ---
 
 <div class="headshot-carousel">
@@ -35,32 +33,11 @@ const currentHeadshot = headshots[Math.floor(Math.random() * headshots.length)];
 </div>
 
 <script>
-  const carousel = document.querySelector('.headshot-carousel');
+  import { initHeadshotCarousel } from '../lib/headshotCarousel.js';
   
-  if (carousel) {
-    const images = Array.from(carousel.querySelectorAll('.headshot-image'));
-    
-    // Set initial active state on first image
-    if (images.length > 0) {
-      images[0].classList.add('active');
-      
-      let currentIndex = 0;
-      
-      function showImage(index) {
-        images.forEach((img, i) => {
-          img.classList.toggle('active', i === index);
-        });
-        
-        // Update data-index for accessibility tracking (optional enhancement)
-        carousel.setAttribute('data-current-image', String(index + 1));
-      }
-      
-      // Cycle through images every 3 seconds
-      setInterval(() => {
-        currentIndex = (currentIndex + 1) % images.length;
-        showImage(currentIndex);
-      }, 3000);
-    }
+  // Initialize the carousel when component mounts
+  if (typeof window !== 'undefined') {
+    initHeadshotCarousel();
   }
 </script>
 

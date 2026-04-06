@@ -84,21 +84,35 @@ export const PRICING = {
   followUp: { duration: '60 minutes', price: '$90' },
 } as const;
 
-export const SERVICES = [
+interface ConditionCategory {
+  category: string;
+  items: string[];
+}
+
+interface ServiceItem {
+  title: string;
+  description?: string;
+  icon: string;
+  overview?: string;
+  benefits?: string[];
+  conditionsTreated?: ConditionCategory[];
+}
+
+export const SERVICES: ServiceItem[] = [
   {
     title: 'Acupuncture',
     description: 'Traditional Chinese Medicine and Five-Element Acupuncture to restore balance and find your center. Specializing in pain relief, stress reduction, and holistic healing. Includes cupping, moxibustion, heat therapy, Gua Sha, and Western herbology (herbal) therapy.',
-    icon: '🌿' as const,
+    icon: '🌿',
   },
   {
     title: 'NAET Allergy Treatment',
     description: 'Safe, holistic, non-invasive technique to help stop your body from reacting to allergies. Heal your body as a whole by balancing your energies.',
-    icon: '🍃' as const,
+    icon: '🍃',
   },
   {
     title: 'Facial Rejuvenation',
     description: 'Natural anti-aging treatment using fine needles to stimulate collagen production and improve facial circulation. Part of comprehensive acupuncture services including cupping, moxibustion, heat therapy, Gua Sha, and Western herbology.',
-    icon: '✨' as const,
+    icon: '✨',
   },
 ] as const;
 

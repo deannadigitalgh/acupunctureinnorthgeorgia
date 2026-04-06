@@ -919,10 +919,88 @@ textarea:focus-visible {
 .cal-calendar.active {
   display: block;
 }
-
 /* Hidden utility class for tab switching */
 .hidden {
   display: none !important;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--color-primary);
+  color: white;
+  padding: var(--spacing-xl) 0 var(--spacing-md);
+  margin-top: var(--spacing-xxl);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.footer-section h3 {
+  color: white;
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.footer-section h4 {
+  color: var(--color-accent);
+  font-size: 1rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.footer-section p {
+  color: white;
+  margin-bottom: var(--spacing-xs);
+  font-size: 0.9375rem;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.footer-links li {
+  margin-bottom: var(--spacing-xs);
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: underline;
+  font-size: 0.9375rem;
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--color-accent);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: var(--spacing-md);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin-top: var(--spacing-lg);
+}
+
+.footer-bottom p {
+  color: rgba(255,255,255,0.8);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .footer-section {
+    text-align: center;
+  }
 }
 
     </style>
@@ -966,6 +1044,36 @@ textarea:focus-visible {
     
     <slot />
     
+    
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-content">
+        <div class="footer-section">
+          <h3>Acupuncture in North Georgia</h3>
+          <p>A Natural Approach to Healing</p>
+        </div>
+        
+        <div class="footer-section footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/patients">Patient Forms</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/faq">FAQ</a></li>
+            <li><a href="/privacy-policy">Privacy Policy</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section footer-contact">
+          <h4>Contact Us</h4>
+          <p>{config.PHONE.formatted}</p>
+          <p>Ellijay & Blairsville, GA</p>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; {new Date().getFullYear()} Acupuncture in North Georgia. All rights reserved.</p>
+      </div>
+    </footer>
     
     <!-- Navigation Logic -->
     <script src="../lib/navigation.js"></script>

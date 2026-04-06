@@ -1,0 +1,247 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactSection from '../components/ContactSection.astro';
+import MobileCTA from '../components/MobileCTA.astro';
+import * as config from '../config/contact.ts';
+
+const pageData = {
+  title: `New Patients - Patient Forms & First Visit Info | ${config.PRACTICE.name}`,
+  description: `Welcome new patients! Download and complete your patient intake forms before your first visit to Acupuncture in North Georgia. Ellijay and Blairsville locations.`,
+  keywords: [
+    'new patient forms',
+    'patient intake form',
+    'health history questionnaire',
+    'acupuncture first visit',
+    'patient forms Georgia',
+    'download patient forms'
+  ],
+  canonicalUrl: `${config.DOMAIN}/patients`
+};
+
+// Patient forms available for download
+const forms = [
+  {
+    name: 'Patient Intake Form',
+    description: 'Complete your personal and medical information before your first visit',
+    filename: 'Consent Form.pdf',
+    size: '498 KB',
+    icon: '📝'
+  },
+  {
+    name: 'Health History Questionnaire',
+    description: 'Detailed health history to help Deanna understand your unique needs',
+    filename: 'North GA Health History Form.pdf',
+    size: '516 KB',
+    icon: '📋'
+  },
+  {
+    name: 'Financial & Cancellation Policy',
+    description: 'Practice policies regarding payments, insurance, and appointment cancellations',
+    filename: 'NG Financial and Cancellation Form.pdf',
+    size: '450 KB',
+    icon: '📄'
+  },
+  {
+    name: 'Letter to New Patients',
+    description: 'Welcome information and what to expect from your first visit',
+    filename: 'NG Letter to New Patients.pdf',
+    size: '136 KB',
+    icon: '✉️'
+  }
+];
+
+// First visit preparation checklist
+const preparationChecklist = [
+  { item: 'Complete and print your patient intake forms', icon: '✓' },
+  { item: 'Bring completed forms to your appointment', icon: '✓' },
+  { item: 'Wear comfortable, loose-fitting clothing', icon: '✓' },
+  { item: 'Eat a light meal before your appointment', icon: '✓' },
+  { item: 'Avoid wearing makeup or fragrances', icon: '✓' },
+  { item: 'Write down any questions you have', icon: '✓' }
+];
+
+// Call-to-action
+const cta = {
+  primaryText: 'Schedule Your First Appointment',
+  secondaryText: '(410) 961-9033'
+};
+---
+
+<Layout 
+  title={pageData.title} 
+  description={pageData.description} 
+  keywords={pageData.keywords}
+  canonicalUrl={pageData.canonicalUrl}
+>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Welcome, New Patient!</h1>
+      <p style="font-size: 1.25rem; opacity: 0.95;">Prepare for Your First Acupuncture Visit</p>
+      
+      <p class="margin-top-md" style="max-width: 700px; margin-left: auto; margin-right: auto;">
+        We're excited to help you on your healing journey! To make your first visit as smooth as possible, 
+        please download and complete the forms below before your appointment.
+      </p>
+      
+      <div class="margin-top-lg">
+        <a href="#forms" class="btn btn-primary hero-btn margin-right-sm">Download Patient Forms</a>
+        <a href={config.getPhoneLink()} class="btn btn-secondary hero-btn-alt">{config.PHONE.formatted}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Logo at top (no headshot on this page) -->
+  <section class="section section-light">
+    <div class="container text-center margin-bottom-xl">
+      <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" class="logo-img" />
+    </div>
+  </section>
+
+  <!-- Forms Download Section -->
+  <section id="forms" class="section section-gray">
+    <div class="container">
+      <h2 class="text-center" style="margin-bottom: var(--spacing-lg);">Patient Forms</h2>
+      
+      <p style="font-size: 1.125rem; text-align: center; max-width: 600px; margin: 0 auto var(--spacing-xl);">
+        Please download and complete the following forms before your appointment. 
+        You can bring the completed forms with you or email them to our office.
+      </p>
+
+      <div class="card-grid" style="margin-top: var(--spacing-xl);">
+        {forms.map(form => (
+          <article class="card text-center">
+            <span style="font-size: 2.5rem; display: block; margin-bottom: var(--spacing-sm);">{form.icon}</span>
+            <h3 style="color: var(--color-secondary); margin-bottom: var(--spacing-xs);">{form.name}</h3>
+            <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-sm);">
+              {form.description}
+            </p>
+            <p style="font-size: 0.75rem; color: var(--color-text-tertiary); margin-bottom: var(--spacing-md);">
+              PDF • {form.size}
+            </p>
+            <a 
+              href={`/Forms/${form.filename}`} 
+              class="btn btn-primary" 
+              download
+            >
+              Download PDF
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- First Visit Preparation Section -->
+  <section class="section section-light">
+    <div class="container">
+      <h2 class="text-center" style="margin-bottom: var(--spacing-lg);">First Visit Preparation</h2>
+      
+      <p style="font-size: 1.125rem; text-align: center; max-width: 600px; margin: 0 auto var(--spacing-xl);">
+        To help you get the most out of your first appointment, here's what to bring and how to prepare.
+      </p>
+
+      <div class="card-grid" style="margin-top: var(--spacing-xl);">
+        {preparationChecklist.map((item, index) => (
+          <article class="card text-center">
+            <span style="font-size: 2rem; display: block; margin-bottom: var(--spacing-sm);">{item.icon}</span>
+            <p>{item.item}</p>
+          </article>
+        ))}
+      </div>
+
+      <!-- Additional Tips -->
+      <article class="card margin-top-xl" style="max-width: 700px; margin: 0 auto;">
+        <h3 style="text-align: center; color: var(--color-secondary); margin-bottom: var(--spacing-md);">
+          More Tips for Your First Visit
+        </h3>
+        
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li style="margin-bottom: var(--spacing-sm);">• Your first visit is 90 minutes - please arrive 15 minutes early</li>
+          <li style="margin-bottom: var(--spacing-sm);">• Bring a list of any medications or supplements you're currently taking</li>
+          <li style="margin-bottom: var(--spacing-sm);">• If you have previous medical records related to your condition, please bring them</li>
+          <li style="margin-bottom: var(--spacing-sm);">• Feel free to bring a notebook to take notes during your consultation</li>
+          <li style="margin-bottom: var(--spacing-sm);">• Drink plenty of water before your appointment</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section section-gray">
+    <div class="container">
+      <h2 class="text-center" style="margin-bottom: var(--spacing-lg);">Common Patient Questions</h2>
+      
+      <div class="max-width-lg margin-auto">
+        <details class="faq-item margin-bottom-md">
+          <summary class="faq-question">How do I download and complete the forms?</summary>
+          <p class="faq-answer">
+            Simply click on each form link above to download the PDF. You can print them at home, 
+            fill them out with pen, or use a PDF editor on your computer or phone. If you prefer, 
+            you can also pick up paper copies at our office.
+          </p>
+        </details>
+
+        <details class="faq-item margin-bottom-md">
+          <summary class="faq-question">Do I need to complete all the forms?</summary>
+          <p class="faq-answer">
+            Yes, please complete the Patient Intake Form and Health History Questionnaire before your first visit. 
+            The Financial & Cancellation Policy form is for your reference, but you don't need to bring it completed.
+          </p>
+        </details>
+
+        <details class="faq-item margin-bottom-md">
+          <summary class="faq-question">Can I complete the forms at the office?</summary>
+          <p class="faq-answer">
+            Yes! If you prefer, you can arrive 15 minutes early for your appointment and we'll provide paper forms 
+            and a quiet space to complete them. However, completing them beforehand helps make your first visit more efficient.
+          </p>
+        </details>
+
+        <details class="faq-item margin-bottom-md">
+          <summary class="faq-question">What if I have questions about the forms?</summary>
+          <p class="faq-answer">
+            Don't hesitate to call us at {config.PHONE.formatted} or email with any questions. We're happy to help 
+            clarify any sections you're unsure about!
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <ContactSection />
+
+  <!-- Mobile Sticky CTA -->
+  <MobileCTA />
+
+  <!-- Logo at bottom (no headshot on this page) -->
+  <section class="section section-light margin-top-xl">
+    <div class="container text-center">
+      <img src="/logo-large.svg" alt="Acupuncture in North Georgia - Deanna Stennett" class="logo-img" />
+    </div>
+  </section>
+
+  <!-- SEO Content Block -->
+  <article style="display: none;">
+    <h2>New Patient Forms & First Visit Information</h2>
+    <p>Welcome to Acupuncture in North Georgia! We're excited to help you achieve optimal health through traditional Chinese medicine. 
+    To streamline your first visit, please download and complete our patient forms below.</p>
+
+    <h3>Patient Forms for Ellijay & Blairsville Locations</h3>
+    <p>Complete these forms before your appointment to save time:</p>
+    <ul>
+      <li><strong>Patient Intake Form (498 KB):</strong> Personal and medical information</li>
+      <li><strong>Health History Questionnaire (516 KB):</strong> Detailed health background</li>
+      <li><strong>Financial & Cancellation Policy (450 KB):</strong> Practice policies</li>
+    </ul>
+
+    <h3>What to Expect at Your First Visit</h3>
+    <p>Your first appointment is 90 minutes and includes a comprehensive consultation, physical exam, 
+    and your first acupuncture treatment. Arrive 15 minutes early if you haven't completed the forms beforehand.</p>
+
+    <h3>Serving Northern Georgia Communities</h3>
+    <p>Patients from Ellijay, Blairsville, Blue Ridge, Dahlonega, Jasper, Helen, and throughout 
+    Northern Georgia trust us with their acupuncture care. We look forward to helping you heal!</p>
+  </article>
+</Layout>

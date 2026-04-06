@@ -42,9 +42,9 @@ export const OFFICES = {
 } as const;
 
 export const HOURS = {
-  weekdays: '9:00 AM - 5:00 PM',
+  weekdays: '10:00 AM - 6:00 PM',
   weekend: 'By Appointment',
-  fullDescription: 'Monday - Friday: 9:00 AM - 5:00 PM | Saturday & Sunday: By Appointment',
+  fullDescription: 'Monday - Friday: 10:00 AM - 6:00 PM | Saturday & Sunday: By Appointment',
 } as const;
 
 // ==================== LOCATION / GEOGRAPHY ====================
